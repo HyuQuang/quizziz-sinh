@@ -226,7 +226,7 @@
     /* Main Navigation Tabs */
     .nav-tabs {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 8px;
       margin-bottom: 22px;
       background: rgba(15, 23, 42, 0.6);
@@ -985,9 +985,13 @@
       </p>
     </section>
 
-    <!-- Main Navigation Tabs -->
+    <!-- Main Navigation Tabs: 6 Tabs -->
     <nav class="nav-tabs">
-      <button class="tab-btn active" onclick="switchMainTab('official')">
+      <button class="tab-btn active" onclick="switchMainTab('theory')">
+        <span class="tab-icon">📚</span>
+        <span>Lí Thuyết & Video</span>
+      </button>
+      <button class="tab-btn" onclick="switchMainTab('official')">
         <span class="tab-icon">🎓</span>
         <span>Đề Chính Thức</span>
       </button>
@@ -1010,7 +1014,460 @@
     </nav>
 
     <!-- TAB 1: OFFICIAL EXAM (THPT CỔ LOA MÃ 497 & 121-124) -->
-    <div id="tab-official" class="tab-content-panel">
+    
+    <!-- TAB 0: THEORY & FUN VIDEOS -->
+    <div id="tab-theory" class="tab-content-panel">
+      <!-- Theory Hero -->
+      <div class="hero-banner" style="background: linear-gradient(135deg, rgba(6, 78, 59, 0.6) 0%, rgba(15, 23, 42, 0.9) 100%); border-color: rgba(52, 211, 153, 0.35); margin-bottom: 20px;">
+        <div class="hero-badge" style="background: rgba(52, 211, 153, 0.2); color: #34d399;">
+          📚 TỔNG ÔN LÍ THUYẾT CỐT LÕI & VIDEO HOẠT HÌNH
+        </div>
+        <h2 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; color: #f8fafc;">
+          Lí Thuyết Cốt Lõi & Video Học Tập Dễ Hiểu - Dễ Nhớ
+        </h2>
+        <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.55;">
+          Toàn bộ kiến thức trọng tâm Di truyền học phân tử & Điều hòa hoạt động gen (bám sát chương trình GDPT 2025 và ma trận đề THPT Cổ Loa). Kết hợp <b>video hoạt hình sinh học vui nhộn</b> và <b>mẹo thần chú nhớ nhanh</b> để tự tin ăn trọn điểm lí thuyết!
+        </p>
+      </div>
+
+      <!-- Theory Subnav Filter -->
+      <div class="subnav-bar">
+        <div class="filter-pills">
+          <button class="pill-btn active" onclick="filterTheory('all')">Tất Cả</button>
+          <button class="pill-btn" onclick="filterTheory('videos')">🎬 Video Hoạt Hình</button>
+          <button class="pill-btn" onclick="filterTheory('mnemonics')">🌟 Mẹo Thần Chú</button>
+          <button class="pill-btn" onclick="filterTheory('c1')">1. DNA, RNA & Gen</button>
+          <button class="pill-btn" onclick="filterTheory('c2')">2. Tái Bản DNA</button>
+          <button class="pill-btn" onclick="filterTheory('c3')">3. Phiên Mã</button>
+          <button class="pill-btn" onclick="filterTheory('c4')">4. Dịch Mã</button>
+          <button class="pill-btn" onclick="filterTheory('c5')">5. Operon Lac</button>
+        </div>
+      </div>
+
+      <!-- SECTION: FUN EDUCATIONAL VIDEOS -->
+      <div class="theory-section" id="sec-theory-videos" style="margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+            🎬 Kho Video Hoạt Hình Sinh Học 12 Vui Nhộn & Trực Quan 3D
+          </h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Bấm để xem trực tiếp</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+          
+          <!-- Video Card 1 -->
+          <div class="lab-panel" style="padding: 16px; margin-bottom: 0;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: #34d399; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+              <span>🧬 DNA vs RNA (Amoeba Sisters)</span>
+              <span class="q-type-badge" style="color: #38bdf8;">8 phút</span>
+            </div>
+            <div id="video_wrap_0Elo" style="position: relative; margin-bottom: 10px; border-radius: 10px; overflow: hidden; background: #000;">
+              <img src="https://img.youtube.com/vi/0Elo-zX1k8M/hqdefault.jpg" alt="DNA vs RNA" style="width: 100%; height: auto; display: block; opacity: 0.85;">
+              <button onclick="playInlineVideo('video_wrap_0Elo', '0Elo-zX1k8M')" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(16, 185, 129, 0.9); border: none; color: #fff; width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); display: flex; align-items: center; justify-content: center;">
+                ▶
+              </button>
+            </div>
+            <p style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.45; margin-bottom: 8px;">
+              Hoạt hình so sánh cực vui nhộn giữa DNA và RNA: đường Deoxyribose (C5H10O4) vs Ribose (C5H10O5), base Thymine vs Uracil, xoắn kép vs mạch đơn.
+            </p>
+            <div class="trap-tip-box" style="margin-top: 6px; padding: 8px 10px; font-size: 0.82rem;">
+              💡 <b>Mẹo nhớ:</b> "De-oxy" nghĩa là bị trừ bớt 1 nguyên tử Oxy tại vị trí carbon 2'!
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 8px;">
+              <a href="https://www.youtube.com/watch?v=0Elo-zX1k8M" target="_blank" rel="noopener noreferrer" class="btn-top" style="text-decoration: none; font-size: 0.78rem;">
+                ↗️ Mở YouTube
+              </a>
+            </div>
+          </div>
+
+          <!-- Video Card 2 -->
+          <div class="lab-panel" style="padding: 16px; margin-bottom: 0;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: #38bdf8; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+              <span>🔄 Tái Bản DNA & 4 Enzyme (Amoeba Sisters)</span>
+              <span class="q-type-badge" style="color: #38bdf8;">8 phút</span>
+            </div>
+            <div id="video_wrap_Qqe4" style="position: relative; margin-bottom: 10px; border-radius: 10px; overflow: hidden; background: #000;">
+              <img src="https://img.youtube.com/vi/Qqe4thU-os8/hqdefault.jpg" alt="DNA Replication" style="width: 100%; height: auto; display: block; opacity: 0.85;">
+              <button onclick="playInlineVideo('video_wrap_Qqe4', 'Qqe4thU-os8')" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(56, 189, 248, 0.9); border: none; color: #fff; width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; box-shadow: 0 0 20px rgba(56, 189, 248, 0.6); display: flex; align-items: center; justify-content: center;">
+                ▶
+              </button>
+            </div>
+            <p style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.45; margin-bottom: 8px;">
+              Khắc họa 4 enzyme như 4 nhân vật hoạt hình: Helicase (kẻ tháo dỡ), Primase (người mở lối), DNA Polymerase (thợ xây dựng 5'->3'), Ligase (thợ dán Okazaki).
+            </p>
+            <div class="trap-tip-box" style="margin-top: 6px; padding: 8px 10px; font-size: 0.82rem;">
+              💡 <b>Mẹo nhớ:</b> DNA pol là thợ xây khó tính, CHỈ gắn thêm gạch vào đầu 3'-OH tự do!
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 8px;">
+              <a href="https://www.youtube.com/watch?v=Qqe4thU-os8" target="_blank" rel="noopener noreferrer" class="btn-top" style="text-decoration: none; font-size: 0.78rem;">
+                ↗️ Mở YouTube
+              </a>
+              <a href="https://www.youtube.com/watch?v=DZjNwIYemfI" target="_blank" rel="noopener noreferrer" class="btn-top" style="text-decoration: none; font-size: 0.78rem; color: #34d399;">
+                🇻🇳 Bản Thuyết Minh Tiếng Việt
+              </a>
+            </div>
+          </div>
+
+          <!-- Video Card 3 -->
+          <div class="lab-panel" style="padding: 16px; margin-bottom: 0;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: #f59e0b; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+              <span>📜 Phiên Mã & Dịch Mã (Protein Synthesis)</span>
+              <span class="q-type-badge" style="color: #f59e0b;">9 phút</span>
+            </div>
+            <div id="video_wrap_oefA" style="position: relative; margin-bottom: 10px; border-radius: 10px; overflow: hidden; background: #000;">
+              <img src="https://img.youtube.com/vi/oefAI2x2CQM/hqdefault.jpg" alt="Protein Synthesis" style="width: 100%; height: auto; display: block; opacity: 0.85;">
+              <button onclick="playInlineVideo('video_wrap_oefA', 'oefAI2x2CQM')" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(245, 158, 11, 0.9); border: none; color: #fff; width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); display: flex; align-items: center; justify-content: center;">
+                ▶
+              </button>
+            </div>
+            <p style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.45; margin-bottom: 8px;">
+              Theo dõi phân tử mRNA đi từ nhân ra tế bào chất, gặp Ribosome và các phân tử tRNA mang amino acid vào ghép mã codon - anticodon chính xác từng bước.
+            </p>
+            <div class="trap-tip-box" style="margin-top: 6px; padding: 8px 10px; font-size: 0.82rem;">
+              💡 <b>Mẹo nhớ:</b> Phiên mã dùng mạch khuôn 3'->5'; Ribosome trượt dịch mã theo chiều 5'->3'.
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 8px;">
+              <a href="https://www.youtube.com/watch?v=oefAI2x2CQM" target="_blank" rel="noopener noreferrer" class="btn-top" style="text-decoration: none; font-size: 0.78rem;">
+                ↗️ Mở YouTube
+              </a>
+              <a href="https://www.youtube.com/watch?v=gG7uCskUOrA" target="_blank" rel="noopener noreferrer" class="btn-top" style="text-decoration: none; font-size: 0.78rem; color: #38bdf8;">
+                🎬 Xem Bản 3D Hollywood
+              </a>
+            </div>
+          </div>
+
+          <!-- Video Card 4 -->
+          <div class="lab-panel" style="padding: 16px; margin-bottom: 0;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: #a855f7; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+              <span>🎛️ Operon Lac & Ổ Khóa Lactose (Amoeba Sisters)</span>
+              <span class="q-type-badge" style="color: #a855f7;">6 phút</span>
+            </div>
+            <div id="video_wrap_h_1Q" style="position: relative; margin-bottom: 10px; border-radius: 10px; overflow: hidden; background: #000;">
+              <img src="https://img.youtube.com/vi/h_1QLdtF8d0/hqdefault.jpg" alt="Lac Operon" style="width: 100%; height: auto; display: block; opacity: 0.85;">
+              <button onclick="playInlineVideo('video_wrap_h_1Q', 'h_1QLdtF8d0')" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(168, 85, 247, 0.9); border: none; color: #fff; width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; box-shadow: 0 0 20px rgba(168, 85, 247, 0.6); display: flex; align-items: center; justify-content: center;">
+                ▶
+              </button>
+            </div>
+            <p style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.45; margin-bottom: 8px;">
+              Giải thích nguyên lý bật/tắt Operon Lac siêu hài hước: Khi đói lactose, protein ức chế như người gác cổng chặn đường; khi lactose xuất hiện thì kéo người gác cổng đi!
+            </p>
+            <div class="trap-tip-box" style="margin-top: 6px; padding: 8px 10px; font-size: 0.82rem;">
+              💡 <b>Mẹo nhớ:</b> Thứ tự Operon là P - O - Z - Y - A. Gen LacI nằm ngoài Operon!
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 8px;">
+              <a href="https://www.youtube.com/watch?v=h_1QLdtF8d0" target="_blank" rel="noopener noreferrer" class="btn-top" style="text-decoration: none; font-size: 0.78rem;">
+                ↗️ Mở YouTube
+              </a>
+              <a href="https://www.youtube.com/watch?v=RI7txQhF85M" target="_blank" rel="noopener noreferrer" class="btn-top" style="text-decoration: none; font-size: 0.78rem; color: #34d399;">
+                🇻🇳 Giảng Bài Tiếng Việt
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SECTION: MNEMONICS & FAST MEMORY TRICKS -->
+      <div class="theory-section" id="sec-theory-mnemonics" style="margin-bottom: 24px;">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #f59e0b; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+          🌟 6 Câu Thần Chú Bất Bại Sinh Học 12 (Thuộc Là Có Điểm)
+        </h3>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
+          
+          <div class="lab-panel" style="padding: 14px; border-color: rgba(245, 158, 11, 0.3); margin-bottom: 0;">
+            <div style="font-weight: 800; color: #f59e0b; font-size: 0.95rem; margin-bottom: 4px;">
+              1. Thứ Tự Operon Lac
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: #34d399; margin-bottom: 6px;">
+              P ➔ O ➔ Z ➔ Y ➔ A
+            </div>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">
+              Thần chú: <i>"<b>P</b>hải <b>Ô</b>m <b>Z</b>ai <b>Y</b>êu <b>A</b>nh"</i>. Nhớ ngay: Promoter ➔ Operator ➔ cụm gen Z-Y-A!
+            </div>
+          </div>
+
+          <div class="lab-panel" style="padding: 14px; border-color: rgba(239, 68, 68, 0.3); margin-bottom: 0;">
+            <div style="font-weight: 800; color: #ef4444; font-size: 0.95rem; margin-bottom: 4px;">
+              2. Ba Codon Kết Thúc
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: #38bdf8; margin-bottom: 6px;">
+              5'UAA3' • 5'UAG3' • 5'UGA3'
+            </div>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">
+              Thần chú: <i>"<b>U A</b>nh <b>Á</b> - <b>U A</b>nh <b>G</b>ặp - <b>U G</b>ặp <b>A</b>nh"</i>. Cả 3 đều KHÔNG mã hóa amino acid!
+            </div>
+          </div>
+
+          <div class="lab-panel" style="padding: 14px; border-color: rgba(16, 185, 129, 0.3); margin-bottom: 0;">
+            <div style="font-weight: 800; color: #34d399; font-size: 0.95rem; margin-bottom: 4px;">
+              3. Mạch Mới Luôn Đi Tới
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: #67e8f9; margin-bottom: 6px;">
+              Chiều 5' ➔ 3'
+            </div>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">
+              Tất cả các mạch mới (tái bản DNA, phiên mã RNA, ribosome trượt dịch mã) đều kéo dài theo chiều <b>5' ➔ 3'</b>!
+            </div>
+          </div>
+
+          <div class="lab-panel" style="padding: 14px; border-color: rgba(56, 189, 248, 0.3); margin-bottom: 0;">
+            <div style="font-weight: 800; color: #38bdf8; font-size: 0.95rem; margin-bottom: 4px;">
+              4. Mạch Mã Hóa 5'->3' = mRNA
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: #a7f3d0; margin-bottom: 6px;">
+              Chỉ Cần Đổi T ➔ U
+            </div>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">
+              Mạch mã hóa 5'->3' có trình tự giống hệt mRNA 5'->3', chỉ việc thay ký tự T bằng U, không cần phiên mã ngược!
+            </div>
+          </div>
+
+          <div class="lab-panel" style="padding: 14px; border-color: rgba(168, 85, 247, 0.3); margin-bottom: 0;">
+            <div style="font-weight: 800; color: #a855f7; font-size: 0.95rem; margin-bottom: 4px;">
+              5. Ba Tính Chất Mã Di Truyền
+            </div>
+            <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5;">
+              • 1 codon ➔ 1 aa: <b>Đặc hiệu</b><br>
+              • Nhiều codon ➔ 1 aa: <b>Thoái hóa</b> (dư thừa)<br>
+              • Dùng chung cả sinh giới: <b>Phổ biến</b>
+            </div>
+          </div>
+
+          <div class="lab-panel" style="padding: 14px; border-color: rgba(6, 182, 212, 0.3); margin-bottom: 0;">
+            <div style="font-weight: 800; color: #06b6d4; font-size: 0.95rem; margin-bottom: 4px;">
+              6. Vị Trí Cắt Nối Intron
+            </div>
+            <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5;">
+              Diễn ra <b>HOÀN TOÀN TRONG NHÂN</b> của tế bào <b>NHÂN THỰC</b>. Nhân sơ không phân mảnh nên không có hiện tượng này!
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SECTION: CHUYÊN ĐỀ 1 -->
+      <div class="theory-section" id="sec-theory-c1" style="margin-bottom: 24px;">
+        <div class="lab-panel">
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #34d399; margin-bottom: 12px;">
+            Chuyên Đề 1: DNA, RNA và Cấu Trúc Gen
+          </h3>
+          <div style="font-size: 0.92rem; line-height: 1.7; color: #e2e8f0;">
+            <p><b>1. Cấu trúc hóa học của DNA:</b> Cấu tạo theo nguyên tắc đa phân, đơn phân là 4 loại nucleotide: <code>dATP (A), dTTP (T), dGTP (G), dCTP (C)</code>. Mỗi nucleotide gồm 3 thành phần: gốc phosphate, đường deoxyribose (<b>C5H10O4</b>) và 1 base nitơ.</p>
+            <p><b>2. Hai loại liên kết trong DNA:</b></p>
+            <ul style="margin-left: 20px; margin-bottom: 8px;">
+              <li><b>Liên kết phosphodiester (cộng hóa trị):</b> Nối giữa đường của nu trước với phosphate của nu sau trên 1 mạch đơn ➔ Cực kỳ bền vững, không bị đứt khi nhân đôi/phiên mã.</li>
+              <li><b>Liên kết hydrogen (liên kết yếu):</b> Nối giữa base của 2 mạch đối diện theo NTBS: <code>A = T</code> (2 liên kết hydro); <code>G ≡ C</code> (3 liên kết hydro). Dễ dàng bị enzyme tháo xoắn tách ra tạm thời.</li>
+            </ul>
+
+            <p><b>3. Bảng so sánh DNA Nhân Sơ và Nhân Thực:</b></p>
+            <div style="overflow-x: auto; margin: 10px 0;">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Tiêu chí</th>
+                    <th>DNA Nhân Sơ (Vi khuẩn)</th>
+                    <th>DNA Nhân Thực (Động thực vật)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Cấu trúc</b></td>
+                    <td>Mạch kép, <b>dạng vòng</b>, trần (không bọc histone)</td>
+                    <td>Mạch kép, <b>dạng thẳng</b>, liên kết histone tạo NST</td>
+                  </tr>
+                  <tr>
+                    <td><b>Điểm khởi đầu (ori)</b></td>
+                    <td>Chỉ có <b>1 điểm ori</b> duy nhất</td>
+                    <td>Có <b>rất nhiều điểm ori</b> tạo nhiều replicon</td>
+                  </tr>
+                  <tr>
+                    <td><b>Cấu trúc gen</b></td>
+                    <td>Gen không phân mảnh (vùng mã hóa liên tục)</td>
+                    <td>Gen phân mảnh (xen kẽ Exon và Intron)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p><b>4. Ba loại RNA và chức năng:</b></p>
+            <ul style="margin-left: 20px;">
+              <li><b>mRNA (RNA thông tin):</b> Mạch đơn thẳng, không có liên kết hydro nội bộ. Mang codon làm khuôn cho dịch mã.</li>
+              <li><b>tRNA (RNA vận chuyển):</b> Cuộn gập 3 thùy, có liên kết hydro A-U, G-C. Đầu 3' gắn amino acid, thùy giữa mang anticodon đối mã.</li>
+              <li><b>rRNA (RNA ribosome):</b> Cuộn xoắn phức tạp, kết hợp với protein để tạo nên cấu trúc hạt Ribosome.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: CHUYÊN ĐỀ 2 -->
+      <div class="theory-section" id="sec-theory-c2" style="margin-bottom: 24px;">
+        <div class="lab-panel">
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #38bdf8; margin-bottom: 12px;">
+            Chuyên Đề 2: Cơ Chế Tái Bản (Nhân Đôi) DNA
+          </h3>
+          <div style="font-size: 0.92rem; line-height: 1.7; color: #e2e8f0;">
+            <p><b>1. Hai nguyên tắc cốt lõi:</b></p>
+            <ul style="margin-left: 20px; margin-bottom: 8px;">
+              <li><b>Nguyên tắc bổ sung:</b> A bắt cặp với T (2 lk hydro), G bắt cặp với C (3 lk hydro).</li>
+              <li><b>Nguyên tắc bán bảo toàn (giữ lại 1/2):</b> Mỗi phân tử DNA con tạo thành luôn chứa 1 mạch cũ của DNA mẹ và 1 mạch mới tổng hợp.</li>
+            </ul>
+
+            <p><b>2. Vai trò của 4 Enzyme trong chạc tái bản chữ Y:</b></p>
+            <div style="overflow-x: auto; margin: 10px 0;">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Enzyme</th>
+                    <th>Vai trò sinh học</th>
+                    <th>Lưu ý cạm bẫy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Helicase</b></td>
+                    <td>Bẻ gãy liên kết hydro, tách 2 mạch đơn tạo chạc tái bản chữ Y.</td>
+                    <td>Không tổng hợp mạch mới.</td>
+                  </tr>
+                  <tr>
+                    <td><b>Primase (RNA pol)</b></td>
+                    <td>Tổng hợp đoạn <b>RNA mồi ngắn</b> cung cấp đầu 3'-OH tự do.</td>
+                    <td>Bản chất đoạn mồi là RNA, KHÔNG PHẢI DNA!</td>
+                  </tr>
+                  <tr>
+                    <td><b>DNA Polymerase</b></td>
+                    <td>Lắp nucleotide tự do vào đầu 3'-OH, kéo dài mạch mới theo chiều 5'->3'.</td>
+                    <td>Mạch khuôn 3'->5': tổng hợp <b>liên tục</b>. Mạch khuôn 5'->3': tổng hợp <b>gián đoạn (Okazaki)</b>.</td>
+                  </tr>
+                  <tr>
+                    <td><b>DNA Ligase</b></td>
+                    <td>Nối các đoạn Okazaki lại với nhau bằng liên kết phosphodiester.</td>
+                    <td>Chỉ hoạt động chủ yếu trên mạch tổng hợp gián đoạn.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p><b>3. Thí nghiệm Meselson - Stahl (Đồng vị 15N và 14N):</b></p>
+            <p>Khi cho $a$ phân tử DNA chứa hoàn toàn <sup>15</sup>N nhân đôi $k$ đợt trong môi trường chỉ chứa <sup>14</sup>N:</p>
+            <ul style="margin-left: 20px;">
+              <li>Tổng số DNA con: <code>a × 2^k</code> phân tử.</li>
+              <li>Số DNA lai (1 mạch 15N, 1 mạch 14N): <b>Luôn luôn bằng 2a</b> (không thay đổi dù nhân đôi bao nhiêu lần).</li>
+              <li>Số DNA chỉ chứa 14N hoàn toàn: <code>a × (2^k - 2)</code> phân tử.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: CHUYÊN ĐỀ 3 -->
+      <div class="theory-section" id="sec-theory-c3" style="margin-bottom: 24px;">
+        <div class="lab-panel">
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">
+            Chuyên Đề 3: Cơ Chế Phiên Mã & Chế Biến mRNA
+          </h3>
+          <div style="font-size: 0.92rem; line-height: 1.7; color: #e2e8f0;">
+            <p><b>1. Bản chất:</b> Là quá trình truyền đạt thông tin từ mạch khuôn DNA sang phân tử RNA nhờ enzyme <b>RNA polymerase</b>.</p>
+            <p><b>2. Đặc điểm chính:</b></p>
+            <ul style="margin-left: 20px; margin-bottom: 8px;">
+              <li>RNA polymerase tự tháo xoắn và tự khởi đầu tổng hợp (không cần đoạn mồi).</li>
+              <li>Enzyme trượt trên <b>mạch khuôn DNA theo chiều 3' ➔ 5'</b>.</li>
+              <li>Mạch RNA được <b>kéo dài theo chiều 5' ➔ 3'</b>.</li>
+              <li>Nguyên tắc bổ sung: <code>A(khuôn) - U(tự do); T(khuôn) - A; G(khuôn) - C; C(khuôn) - G</code>.</li>
+            </ul>
+            <p><b>3. Quá trình hoàn thiện mRNA ở sinh vật nhân thực:</b></p>
+            <p>Phiên mã tạo ra pre-mRNA (sơ khai) ➔ diễn ra quá trình gắn mũ 5' cap, đuôi polyA và <b>cắt bỏ Intron, nối các Exon lại với nhau</b> ➔ tạo ra mRNA trưởng thành chui qua màng nhân ra tế bào chất. <i>Toàn bộ quá trình cắt nối diễn ra trong NHÂN TẾ BÀO.</i></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: CHUYÊN ĐỀ 4 -->
+      <div class="theory-section" id="sec-theory-c4" style="margin-bottom: 24px;">
+        <div class="lab-panel">
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #a855f7; margin-bottom: 12px;">
+            Chuyên Đề 4: Mã Di Truyền & Quá Trình Dịch Mã
+          </h3>
+          <div style="font-size: 0.92rem; line-height: 1.7; color: #e2e8f0;">
+            <p><b>1. Mã di truyền:</b> Là mã bộ ba (3 nucleotide kế tiếp mã hóa 1 amino acid). Có $4^3 = 64$ bộ ba, trong đó:</p>
+            <ul style="margin-left: 20px; margin-bottom: 8px;">
+              <li><b>61 bộ ba mã hóa</b> amino acid.</li>
+              <li><b>1 codon mở đầu: 5'AUG3'</b> (mã hóa Met ở nhân thực, fMet ở nhân sơ).</li>
+              <li><b>3 codon kết thúc: 5'UAA3', 5'UAG3', 5'UGA3'</b> (không mã hóa amino acid).</li>
+            </ul>
+
+            <p><b>2. Hai giai đoạn của quá trình dịch mã:</b></p>
+            <ul style="margin-left: 20px; margin-bottom: 8px;">
+              <li><b>Giai đoạn 1: Hoạt hóa amino acid:</b> <code>Amino acid + ATP + tRNA ➔ Phức hợp Aminoacyl-tRNA</code>.</li>
+              <li><b>Giai đoạn 2: Tổng hợp chuỗi polypeptide trên Ribosome:</b> Gồm Mở đầu ➔ Kéo dài chuỗi (hình thành liên kết peptide tại tiểu phần lớn ribosome) ➔ Kết thúc khi gặp codon dừng.</li>
+            </ul>
+
+            <p><b>3. Ý nghĩa của hiện tượng Polyribosome (Polysome):</b></p>
+            <p>Nhiều ribosome cùng trượt trên một phân tử mRNA duy nhất giúp <b>tăng hiệu suất tổng hợp cùng một loại chuỗi polypeptide</b> trong thời gian ngắn (không tạo ra các loại protein khác nhau!).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: CHUYÊN ĐỀ 5 -->
+      <div class="theory-section" id="sec-theory-c5" style="margin-bottom: 24px;">
+        <div class="lab-panel">
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #06b6d4; margin-bottom: 12px;">
+            Chuyên Đề 5: Điều Hòa Biểu Hiện Gene (Operon Lac ở E. coli)
+          </h3>
+          <div style="font-size: 0.92rem; line-height: 1.7; color: #e2e8f0;">
+            <p><b>1. Cấu trúc Operon Lac:</b> Gồm 3 thành phần liên tiếp: <code>Vùng khởi động (P) ➔ Vùng vận hành (O) ➔ Cụm gen cấu trúc (Z, Y, A)</code>.</p>
+            <p><i>LƯU Ý CỰC QUAN TRỌNG:</i> Gene điều hòa <b>LacI nằm phía trước, KHÔNG THUỘC thành phần của Operon Lac!</b></p>
+
+            <p><b>2. Cơ chế hoạt động:</b></p>
+            <ul style="margin-left: 20px; margin-bottom: 8px;">
+              <li><b>Khi KHÔNG có lactose:</b> Gen LacI phiên mã tạo protein ức chế ➔ bám chặt vào vùng O ➔ chặn RNA pol trượt qua ➔ cụm gen Z, Y, A KHÔNG phiên mã.</li>
+              <li><b>Khi CÓ lactose:</b> Lactose liên kết làm biến đổi cấu hình protein ức chế ➔ protein ức chế rời khỏi vùng O ➔ RNA pol tự do phiên mã cụm Z, Y, A tạo <b>1 phân tử polycistronic mRNA</b> ➔ dịch mã tạo 3 enzyme phân giải lactose.</li>
+            </ul>
+
+            <p><b>3. Bảng chẩn đoán 4 dạng đột biến Operon Lac:</b></p>
+            <div style="overflow-x: auto; margin: 10px 0;">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Vị trí đột biến</th>
+                    <th>Khi có lactose</th>
+                    <th>Khi không có lactose</th>
+                    <th>Bản chất cơ chế</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Đột biến vùng P</b></td>
+                    <td><b>Không phiên mã</b> (0%)</td>
+                    <td><b>Không phiên mã</b> (0%)</td>
+                    <td>RNA pol mất chỗ bám dính khởi đầu.</td>
+                  </tr>
+                  <tr>
+                    <td><b>Đột biến vùng O</b></td>
+                    <td><b>Phiên mã 100%</b></td>
+                    <td><b>Phiên mã 100%</b></td>
+                    <td>Protein ức chế không bám được vào O ➔ Operon mở liên tục.</td>
+                  </tr>
+                  <tr>
+                    <td><b>Đột biến gen LacI</b></td>
+                    <td><b>Phiên mã 100%</b></td>
+                    <td><b>Phiên mã 100%</b></td>
+                    <td>Không tạo protein ức chế hoặc protein ức chế mất hoạt tính.</td>
+                  </tr>
+                  <tr>
+                    <td><b>Đột biến tại gen Z</b></td>
+                    <td>Tạo mRNA 100%, nhưng enzyme Z hỏng</td>
+                    <td>Không phiên mã</td>
+                    <td>Chỉ làm hỏng enzyme beta-galactosidase, enzyme Y và A bình thường.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="tab-official" class="tab-content-panel" style="display: none;">
       <div class="subnav-bar">
         <div class="filter-pills">
           <button class="pill-btn active" onclick="filterOfficial('all')">Tất cả (29 câu)</button>
@@ -1402,7 +1859,7 @@
     <div class="bottom-bar-inner">
       <button class="btn-nav" onclick="scrollToTop()">⬆️ Lên Đầu Trang</button>
       <div style="font-size: 0.82rem; color: var(--text-muted); text-align: center;">
-        <span id="globalActiveTabLabel">Đề Chính Thức THPT Cổ Loa</span>
+        <span id="globalActiveTabLabel">Học Lí Thuyết & Video Hoạt Hình</span>
       </div>
       <button class="btn-nav primary" onclick="shuffleCurrentExam()">🔀 Xáo Đề Mới</button>
     </div>
@@ -1547,6 +2004,55 @@
     let currentOfficialFilter = 'all';
     let trapAnswers = {};
 
+    
+    /* ==========================================================================
+       THEORY TAB & VIDEO PLAYER ENGINE
+       ========================================================================== */
+    function playInlineVideo(containerId, videoId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = `
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+          <iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      `;
+      playSound('click');
+    }
+
+    function filterTheory(filterKey) {
+      document.querySelectorAll('#tab-theory .subnav-bar .pill-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const allSections = ['sec-theory-videos', 'sec-theory-mnemonics', 'sec-theory-c1', 'sec-theory-c2', 'sec-theory-c3', 'sec-theory-c4', 'sec-theory-c5'];
+      if (filterKey === 'all') {
+        allSections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'block';
+        });
+      } else if (filterKey === 'videos') {
+        allSections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = (id === 'sec-theory-videos' ? 'block' : 'none');
+        });
+      } else if (filterKey === 'mnemonics') {
+        allSections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = (id === 'sec-theory-mnemonics' ? 'block' : 'none');
+        });
+      } else {
+        const targetId = 'sec-theory-' + filterKey;
+        allSections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = (id === targetId ? 'block' : 'none');
+        });
+      }
+      playSound('click');
+    }
+
     /* ==========================================================================
        RENDER OFFICIAL EXAM (THPT CỔ LOA MÃ 497)
        ========================================================================== */
@@ -1613,7 +2119,7 @@
               </div>
               <span style="font-size: 0.82rem; color: var(--text-muted);">${q.title}</span>
             </div>
-            <div class="q-text">${q.text.replace(/\n/g, '<br>')}</div>
+            <div class="q-text">${q.text.replace(/\\n/g, '<br>')}</div>
             <div class="options-grid">${optionsHtml}</div>
             ${explainHtml}
           `;
