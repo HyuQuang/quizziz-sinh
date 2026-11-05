@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bản Đối Chiếu So Sánh & Đáp Án Chi Tiết Đề Thi Sinh Học 12 Chính Thức THPT Cổ Loa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --primary-light: #34d399;
+      --primary-bg: rgba(16, 185, 129, 0.12);
+      --accent: #38bdf8;
+      --accent-bg: rgba(56, 189, 248, 0.12);
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.12);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.12);
+      --bg: #090d16;
+      --card-bg: rgba(18, 25, 43, 0.92);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.14) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 90%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+                  linear-gradient(145deg, #070a12 0%, #0c1220 50%, #0f172a 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.65;
+      padding: clamp(12px, 3vw, 24px);
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    header.doc-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: clamp(20px, 4vw, 36px);
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+    }
+
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-bg);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--primary-light);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1.doc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(22px, 4.5vw, 34px);
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff 20%, #a7f3d0 60%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .doc-sub {
+      color: var(--text-muted);
+      font-size: clamp(13px, 2.5vw, 15px);
+      max-width: 720px;
+      margin: 0 auto 16px;
+    }
+
+    .header-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    #content {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: clamp(20px, 4vw, 40px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Markdown Styling */
+    #content h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(20px, 3.5vw, 26px);
+      color: #fff;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(16, 185, 129, 0.4);
+    }
+    #content h1:first-child { margin-top: 0; }
+
+    #content h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(17px, 3vw, 22px);
+      color: var(--primary-light);
+      margin: 24px 0 12px;
+    }
+
+    #content h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: #e2e8f0;
+      margin: 18px 0 8px;
+    }
+
+    #content p {
+      margin-bottom: 12px;
+      color: #cbd5e1;
+    }
+
+    #content strong, #content b {
+      color: #fff;
+    }
+
+    #content ul, #content ol {
+      margin-bottom: 14px;
+      padding-left: 24px;
+      color: #cbd5e1;
+    }
+
+    #content li {
+      margin-bottom: 6px;
+    }
+
+    #content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    #content th, #content td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13.5px;
+    }
+
+    #content th {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--primary-light);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+
+    #content tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    #content hr {
+      border: none;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 24px 0;
+    }
+
+    #content code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+
+    @media print {
+      body { background: #fff !important; color: #000 !important; padding: 0 !important; }
+      header.doc-header, #content { background: transparent !important; box-shadow: none !important; border: none !important; color: #000 !important; padding: 0 !important; }
+      h1.doc-title, #content h1, #content h2, #content h3 { color: #000 !important; -webkit-text-fill-color: initial !important; background: none !important; }
+      .btn, .header-actions { display: none !important; }
+      #content th { background: #e2e8f0 !important; color: #000 !important; }
+      #content td, #content p, #content li { color: #1e293b !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header class="doc-header">
+    <div class="top-badge">🧬 KHO DỮ LIỆU ĐỀ THI SINH HỌC 12 • THPT CỔ LOA</div>
+    <h1 class="doc-title">BẢN ĐỐI CHIẾU SO SÁNH & HƯỚNG DẪN GIẢI CHI TIẾT ĐỀ THI CHÍNH THỨC</h1>
+    <p class="doc-sub">Đối chiếu 5 Mã Đề Thi Chính Thức (Mã 497, 121, 122, 123, 124) với 2 Đề Ôn Luyện nguồn. Phân tích chi tiết 100% các câu hỏi, bẫy lí thuyết và bài tập phân hóa.</p>
+    <div class="header-actions">
+      <button class="btn btn-primary" onclick="window.print()">🖨️ In Ấn / Lưu PDF</button>
+      <a class="btn btn-secondary" href="https://hyuquang.github.io/quizziz-sinh/" target="_blank">⚡ Mở Web App QUIZZIZ Sinh</a>
+    </div>
+  </header>
+
+  <main id="content"></main>
+</div>
+
+<script>
+/**
+ * marked v15.0.12 - a markdown parser
+ * Copyright (c) 2011-2025, Christopher Jeffrey. (MIT Licensed)
+ * https://github.com/markedjs/marked
+ */
+
+/**
+ * DO NOT EDIT THIS FILE
+ * The code in this file is generated from files in ./src/
+ */
+(function(g,f){if(typeof exports=="object"&&typeof module<"u"){module.exports=f()}else if("function"==typeof define && define.amd){define("marked",f)}else {g["marked"]=f()}}(typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : this,function(){var exports={};var __exports=exports;var module={exports};
+"use strict";var H=Object.defineProperty;var be=Object.getOwnPropertyDescriptor;var Te=Object.getOwnPropertyNames;var we=Object.prototype.hasOwnProperty;var ye=(l,e)=>{for(var t in e)H(l,t,{get:e[t],enumerable:!0})},Re=(l,e,t,n)=>{if(e&&typeof e=="object"||typeof e=="function")for(let s of Te(e))!we.call(l,s)&&s!==t&&H(l,s,{get:()=>e[s],enumerable:!(n=be(e,s))||n.enumerable});return l};var Se=l=>Re(H({},"__esModule",{value:!0}),l);var kt={};ye(kt,{Hooks:()=>L,Lexer:()=>x,Marked:()=>E,Parser:()=>b,Renderer:()=>$,TextRenderer:()=>_,Tokenizer:()=>S,defaults:()=>w,getDefaults:()=>z,lexer:()=>ht,marked:()=>k,options:()=>it,parse:()=>pt,parseInline:()=>ct,parser:()=>ut,setOptions:()=>ot,use:()=>lt,walkTokens:()=>at});module.exports=Se(kt);function z(){return{async:!1,breaks:!1,extensions:null,gfm:!0,hooks:null,pedantic:!1,renderer:null,silent:!1,tokenizer:null,walkTokens:null}}var w=z();function N(l){w=l}var I={exec:()=>null};function h(l,e=""){let t=typeof l=="string"?l:l.source,n={replace:(s,i)=>{let r=typeof i=="string"?i:i.source;return r=r.replace(m.caret,"$1"),t=t.replace(s,r),n},getRegex:()=>new RegExp(t,e)};return n}var m={codeRemoveIndent:/^(?: {1,4}| {0,3}\t)/gm,outputLinkReplace:/\\([\[\]])/g,indentCodeCompensation:/^(\s+)(?:```)/,beginningSpace:/^\s+/,endingHash:/#$/,startingSpaceChar:/^ /,endingSpaceChar:/ $/,nonSpaceChar:/[^ ]/,newLineCharGlobal:/\n/g,tabCharGlobal:/\t/g,multipleSpaceGlobal:/\s+/g,blankLine:/^[ \t]*$/,doubleBlankLine:/\n[ \t]*\n[ \t]*$/,blockquoteStart:/^ {0,3}>/,blockquoteSetextReplace:/\n {0,3}((?:=+|-+) *)(?=\n|$)/g,blockquoteSetextReplace2:/^ {0,3}>[ \t]?/gm,listReplaceTabs:/^\t+/,listReplaceNesting:/^ {1,4}(?=( {4})*[^ ])/g,listIsTask:/^\[[ xX]\] /,listReplaceTask:/^\[[ xX]\] +/,anyLine:/\n.*\n/,hrefBrackets:/^<(.*)>$/,tableDelimiter:/[:|]/,tableAlignChars:/^\||\| *$/g,tableRowBlankLine:/\n[ \t]*$/,tableAlignRight:/^ *-+: *$/,tableAlignCenter:/^ *:-+: *$/,tableAlignLeft:/^ *:-+ *$/,startATag:/^<a /i,endATag:/^<\/a>/i,startPreScriptTag:/^<(pre|code|kbd|script)(\s|>)/i,endPreScriptTag:/^<\/(pre|code|kbd|script)(\s|>)/i,startAngleBracket:/^</,endAngleBracket:/>$/,pedanticHrefTitle:/^([^'"]*[^\s])\s+(['"])(.*)\2/,unicodeAlphaNumeric:/[\p{L}\p{N}]/u,escapeTest:/[&<>"']/,escapeReplace:/[&<>"']/g,escapeTestNoEncode:/[<>"']|&(?!(#\d{1,7}|#[Xx][a-fA-F0-9]{1,6}|\w+);)/,escapeReplaceNoEncode:/[<>"']|&(?!(#\d{1,7}|#[Xx][a-fA-F0-9]{1,6}|\w+);)/g,unescapeTest:/&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/ig,caret:/(^|[^\[])\^/g,percentDecode:/%25/g,findPipe:/\|/g,splitPipe:/ \|/,slashPipe:/\\\|/g,carriageReturn:/\r\n|\r/g,spaceLine:/^ +$/gm,notSpaceStart:/^\S*/,endingNewline:/\n$/,listItemRegex:l=>new RegExp(`^( {0,3}${l})((?:[	 ][^\\n]*)?(?:\\n|$))`),nextBulletRegex:l=>new RegExp(`^ {0,${Math.min(3,l-1)}}(?:[*+-]|\\d{1,9}[.)])((?:[ 	][^\\n]*)?(?:\\n|$))`),hrRegex:l=>new RegExp(`^ {0,${Math.min(3,l-1)}}((?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$)`),fencesBeginRegex:l=>new RegExp(`^ {0,${Math.min(3,l-1)}}(?:\`\`\`|~~~)`),headingBeginRegex:l=>new RegExp(`^ {0,${Math.min(3,l-1)}}#`),htmlBeginRegex:l=>new RegExp(`^ {0,${Math.min(3,l-1)}}<(?:[a-z].*>|!--)`,"i")},$e=/^(?:[ \t]*(?:\n|$))+/,_e=/^((?: {4}| {0,3}\t)[^\n]+(?:\n(?:[ \t]*(?:\n|$))*)?)+/,Le=/^ {0,3}(`{3,}(?=[^`\n]*(?:\n|$))|~{3,})([^\n]*)(?:\n|$)(?:|([\s\S]*?)(?:\n|$))(?: {0,3}\1[~`]* *(?=\n|$)|$)/,O=/^ {0,3}((?:-[\t ]*){3,}|(?:_[ \t]*){3,}|(?:\*[ \t]*){3,})(?:\n+|$)/,ze=/^ {0,3}(#{1,6})(?=\s|$)(.*)(?:\n+|$)/,F=/(?:[*+-]|\d{1,9}[.)])/,ie=/^(?!bull |blockCode|fences|blockquote|heading|html|table)((?:.|\n(?!\s*?\n|bull |blockCode|fences|blockquote|heading|html|table))+?)\n {0,3}(=+|-+) *(?:\n+|$)/,oe=h(ie).replace(/bull/g,F).replace(/blockCode/g,/(?: {4}| {0,3}\t)/).replace(/fences/g,/ {0,3}(?:`{3,}|~{3,})/).replace(/blockquote/g,/ {0,3}>/).replace(/heading/g,/ {0,3}#{1,6}/).replace(/html/g,/ {0,3}<[^\n>]+>\n/).replace(/\|table/g,"").getRegex(),Me=h(ie).replace(/bull/g,F).replace(/blockCode/g,/(?: {4}| {0,3}\t)/).replace(/fences/g,/ {0,3}(?:`{3,}|~{3,})/).replace(/blockquote/g,/ {0,3}>/).replace(/heading/g,/ {0,3}#{1,6}/).replace(/html/g,/ {0,3}<[^\n>]+>\n/).replace(/table/g,/ {0,3}\|?(?:[:\- ]*\|)+[\:\- ]*\n/).getRegex(),Q=/^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/,Pe=/^[^\n]+/,U=/(?!\s*\])(?:\\.|[^\[\]\\])+/,Ae=h(/^ {0,3}\[(label)\]: *(?:\n[ \t]*)?([^<\s][^\s]*|<.*?>)(?:(?: +(?:\n[ \t]*)?| *\n[ \t]*)(title))? *(?:\n+|$)/).replace("label",U).replace("title",/(?:"(?:\\"?|[^"\\])*"|'[^'\n]*(?:\n[^'\n]+)*\n?'|\([^()]*\))/).getRegex(),Ee=h(/^( {0,3}bull)([ \t][^\n]+?)?(?:\n|$)/).replace(/bull/g,F).getRegex(),v="address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|search|section|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul",K=/<!--(?:-?>|[\s\S]*?(?:-->|$))/,Ce=h("^ {0,3}(?:<(script|pre|style|textarea)[\\s>][\\s\\S]*?(?:</\\1>[^\\n]*\\n+|$)|comment[^\\n]*(\\n+|$)|<\\?[\\s\\S]*?(?:\\?>\\n*|$)|<![A-Z][\\s\\S]*?(?:>\\n*|$)|<!\\[CDATA\\[[\\s\\S]*?(?:\\]\\]>\\n*|$)|</?(tag)(?: +|\\n|/?>)[\\s\\S]*?(?:(?:\\n[ 	]*)+\\n|$)|<(?!script|pre|style|textarea)([a-z][\\w-]*)(?:attribute)*? */?>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n[ 	]*)+\\n|$)|</(?!script|pre|style|textarea)[a-z][\\w-]*\\s*>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n[ 	]*)+\\n|$))","i").replace("comment",K).replace("tag",v).replace("attribute",/ +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/).getRegex(),le=h(Q).replace("hr",O).replace("heading"," {0,3}#{1,6}(?:\\s|$)").replace("|lheading","").replace("|table","").replace("blockquote"," {0,3}>").replace("fences"," {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list"," {0,3}(?:[*+-]|1[.)]) ").replace("html","</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag",v).getRegex(),Ie=h(/^( {0,3}> ?(paragraph|[^\n]*)(?:\n|$))+/).replace("paragraph",le).getRegex(),X={blockquote:Ie,code:_e,def:Ae,fences:Le,heading:ze,hr:O,html:Ce,lheading:oe,list:Ee,newline:$e,paragraph:le,table:I,text:Pe},re=h("^ *([^\\n ].*)\\n {0,3}((?:\\| *)?:?-+:? *(?:\\| *:?-+:? *)*(?:\\| *)?)(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)").replace("hr",O).replace("heading"," {0,3}#{1,6}(?:\\s|$)").replace("blockquote"," {0,3}>").replace("code","(?: {4}| {0,3}	)[^\\n]").replace("fences"," {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list"," {0,3}(?:[*+-]|1[.)]) ").replace("html","</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag",v).getRegex(),Oe={...X,lheading:Me,table:re,paragraph:h(Q).replace("hr",O).replace("heading"," {0,3}#{1,6}(?:\\s|$)").replace("|lheading","").replace("table",re).replace("blockquote"," {0,3}>").replace("fences"," {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list"," {0,3}(?:[*+-]|1[.)]) ").replace("html","</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag",v).getRegex()},Be={...X,html:h(`^ *(?:comment *(?:\\n|\\s*$)|<(tag)[\\s\\S]+?</\\1> *(?:\\n{2,}|\\s*$)|<tag(?:"[^"]*"|'[^']*'|\\s[^'"/>\\s]*)*?/?> *(?:\\n{2,}|\\s*$))`).replace("comment",K).replace(/tag/g,"(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:|[^\\w\\s@]*@)\\b").getRegex(),def:/^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +(["(][^\n]+[")]))? *(?:\n+|$)/,heading:/^(#{1,6})(.*)(?:\n+|$)/,fences:I,lheading:/^(.+?)\n {0,3}(=+|-+) *(?:\n+|$)/,paragraph:h(Q).replace("hr",O).replace("heading",` *#{1,6} *[^
+]`).replace("lheading",oe).replace("|table","").replace("blockquote"," {0,3}>").replace("|fences","").replace("|list","").replace("|html","").replace("|tag","").getRegex()},qe=/^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/,ve=/^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/,ae=/^( {2,}|\\)\n(?!\s*$)/,De=/^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/,D=/[\p{P}\p{S}]/u,W=/[\s\p{P}\p{S}]/u,ce=/[^\s\p{P}\p{S}]/u,Ze=h(/^((?![*_])punctSpace)/,"u").replace(/punctSpace/g,W).getRegex(),pe=/(?!~)[\p{P}\p{S}]/u,Ge=/(?!~)[\s\p{P}\p{S}]/u,He=/(?:[^\s\p{P}\p{S}]|~)/u,Ne=/\[[^[\]]*?\]\((?:\\.|[^\\\(\)]|\((?:\\.|[^\\\(\)])*\))*\)|`[^`]*?`|<[^<>]*?>/g,ue=/^(?:\*+(?:((?!\*)punct)|[^\s*]))|^_+(?:((?!_)punct)|([^\s_]))/,je=h(ue,"u").replace(/punct/g,D).getRegex(),Fe=h(ue,"u").replace(/punct/g,pe).getRegex(),he="^[^_*]*?__[^_*]*?\\*[^_*]*?(?=__)|[^*]+(?=[^*])|(?!\\*)punct(\\*+)(?=[\\s]|$)|notPunctSpace(\\*+)(?!\\*)(?=punctSpace|$)|(?!\\*)punctSpace(\\*+)(?=notPunctSpace)|[\\s](\\*+)(?!\\*)(?=punct)|(?!\\*)punct(\\*+)(?!\\*)(?=punct)|notPunctSpace(\\*+)(?=notPunctSpace)",Qe=h(he,"gu").replace(/notPunctSpace/g,ce).replace(/punctSpace/g,W).replace(/punct/g,D).getRegex(),Ue=h(he,"gu").replace(/notPunctSpace/g,He).replace(/punctSpace/g,Ge).replace(/punct/g,pe).getRegex(),Ke=h("^[^_*]*?\\*\\*[^_*]*?_[^_*]*?(?=\\*\\*)|[^_]+(?=[^_])|(?!_)punct(_+)(?=[\\s]|$)|notPunctSpace(_+)(?!_)(?=punctSpace|$)|(?!_)punctSpace(_+)(?=notPunctSpace)|[\\s](_+)(?!_)(?=punct)|(?!_)punct(_+)(?!_)(?=punct)","gu").replace(/notPunctSpace/g,ce).replace(/punctSpace/g,W).replace(/punct/g,D).getRegex(),Xe=h(/\\(punct)/,"gu").replace(/punct/g,D).getRegex(),We=h(/^<(scheme:[^\s\x00-\x1f<>]*|email)>/).replace("scheme",/[a-zA-Z][a-zA-Z0-9+.-]{1,31}/).replace("email",/[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/).getRegex(),Je=h(K).replace("(?:-->|$)","-->").getRegex(),Ve=h("^comment|^</[a-zA-Z][\\w:-]*\\s*>|^<[a-zA-Z][\\w-]*(?:attribute)*?\\s*/?>|^<\\?[\\s\\S]*?\\?>|^<![a-zA-Z]+\\s[\\s\\S]*?>|^<!\\[CDATA\\[[\\s\\S]*?\\]\\]>").replace("comment",Je).replace("attribute",/\s+[a-zA-Z:_][\w.:-]*(?:\s*=\s*"[^"]*"|\s*=\s*'[^']*'|\s*=\s*[^\s"'=<>`]+)?/).getRegex(),q=/(?:\[(?:\\.|[^\[\]\\])*\]|\\.|`[^`]*`|[^\[\]\\`])*?/,Ye=h(/^!?\[(label)\]\(\s*(href)(?:(?:[ \t]*(?:\n[ \t]*)?)(title))?\s*\)/).replace("label",q).replace("href",/<(?:\\.|[^\n<>\\])+>|[^ \t\n\x00-\x1f]*/).replace("title",/"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/).getRegex(),ke=h(/^!?\[(label)\]\[(ref)\]/).replace("label",q).replace("ref",U).getRegex(),ge=h(/^!?\[(ref)\](?:\[\])?/).replace("ref",U).getRegex(),et=h("reflink|nolink(?!\\()","g").replace("reflink",ke).replace("nolink",ge).getRegex(),J={_backpedal:I,anyPunctuation:Xe,autolink:We,blockSkip:Ne,br:ae,code:ve,del:I,emStrongLDelim:je,emStrongRDelimAst:Qe,emStrongRDelimUnd:Ke,escape:qe,link:Ye,nolink:ge,punctuation:Ze,reflink:ke,reflinkSearch:et,tag:Ve,text:De,url:I},tt={...J,link:h(/^!?\[(label)\]\((.*?)\)/).replace("label",q).getRegex(),reflink:h(/^!?\[(label)\]\s*\[([^\]]*)\]/).replace("label",q).getRegex()},j={...J,emStrongRDelimAst:Ue,emStrongLDelim:Fe,url:h(/^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/,"i").replace("email",/[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/).getRegex(),_backpedal:/(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/,del:/^(~~?)(?=[^\s~])((?:\\.|[^\\])*?(?:\\.|[^\s~\\]))\1(?=[^~]|$)/,text:/^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/},nt={...j,br:h(ae).replace("{2,}","*").getRegex(),text:h(j.text).replace("\\b_","\\b_| {2,}\\n").replace(/\{2,\}/g,"*").getRegex()},B={normal:X,gfm:Oe,pedantic:Be},P={normal:J,gfm:j,breaks:nt,pedantic:tt};var st={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"},fe=l=>st[l];function R(l,e){if(e){if(m.escapeTest.test(l))return l.replace(m.escapeReplace,fe)}else if(m.escapeTestNoEncode.test(l))return l.replace(m.escapeReplaceNoEncode,fe);return l}function V(l){try{l=encodeURI(l).replace(m.percentDecode,"%")}catch{return null}return l}function Y(l,e){let t=l.replace(m.findPipe,(i,r,o)=>{let a=!1,c=r;for(;--c>=0&&o[c]==="\\";)a=!a;return a?"|":" |"}),n=t.split(m.splitPipe),s=0;if(n[0].trim()||n.shift(),n.length>0&&!n.at(-1)?.trim()&&n.pop(),e)if(n.length>e)n.splice(e);else for(;n.length<e;)n.push("");for(;s<n.length;s++)n[s]=n[s].trim().replace(m.slashPipe,"|");return n}function A(l,e,t){let n=l.length;if(n===0)return"";let s=0;for(;s<n;){let i=l.charAt(n-s-1);if(i===e&&!t)s++;else if(i!==e&&t)s++;else break}return l.slice(0,n-s)}function de(l,e){if(l.indexOf(e[1])===-1)return-1;let t=0;for(let n=0;n<l.length;n++)if(l[n]==="\\")n++;else if(l[n]===e[0])t++;else if(l[n]===e[1]&&(t--,t<0))return n;return t>0?-2:-1}function me(l,e,t,n,s){let i=e.href,r=e.title||null,o=l[1].replace(s.other.outputLinkReplace,"$1");n.state.inLink=!0;let a={type:l[0].charAt(0)==="!"?"image":"link",raw:t,href:i,title:r,text:o,tokens:n.inlineTokens(o)};return n.state.inLink=!1,a}function rt(l,e,t){let n=l.match(t.other.indentCodeCompensation);if(n===null)return e;let s=n[1];return e.split(`
+`).map(i=>{let r=i.match(t.other.beginningSpace);if(r===null)return i;let[o]=r;return o.length>=s.length?i.slice(s.length):i}).join(`
+`)}var S=class{options;rules;lexer;constructor(e){this.options=e||w}space(e){let t=this.rules.block.newline.exec(e);if(t&&t[0].length>0)return{type:"space",raw:t[0]}}code(e){let t=this.rules.block.code.exec(e);if(t){let n=t[0].replace(this.rules.other.codeRemoveIndent,"");return{type:"code",raw:t[0],codeBlockStyle:"indented",text:this.options.pedantic?n:A(n,`
+`)}}}fences(e){let t=this.rules.block.fences.exec(e);if(t){let n=t[0],s=rt(n,t[3]||"",this.rules);return{type:"code",raw:n,lang:t[2]?t[2].trim().replace(this.rules.inline.anyPunctuation,"$1"):t[2],text:s}}}heading(e){let t=this.rules.block.heading.exec(e);if(t){let n=t[2].trim();if(this.rules.other.endingHash.test(n)){let s=A(n,"#");(this.options.pedantic||!s||this.rules.other.endingSpaceChar.test(s))&&(n=s.trim())}return{type:"heading",raw:t[0],depth:t[1].length,text:n,tokens:this.lexer.inline(n)}}}hr(e){let t=this.rules.block.hr.exec(e);if(t)return{type:"hr",raw:A(t[0],`
+`)}}blockquote(e){let t=this.rules.block.blockquote.exec(e);if(t){let n=A(t[0],`
+`).split(`
+`),s="",i="",r=[];for(;n.length>0;){let o=!1,a=[],c;for(c=0;c<n.length;c++)if(this.rules.other.blockquoteStart.test(n[c]))a.push(n[c]),o=!0;else if(!o)a.push(n[c]);else break;n=n.slice(c);let p=a.join(`
+`),u=p.replace(this.rules.other.blockquoteSetextReplace,`
+    $1`).replace(this.rules.other.blockquoteSetextReplace2,"");s=s?`${s}
+${p}`:p,i=i?`${i}
+${u}`:u;let d=this.lexer.state.top;if(this.lexer.state.top=!0,this.lexer.blockTokens(u,r,!0),this.lexer.state.top=d,n.length===0)break;let g=r.at(-1);if(g?.type==="code")break;if(g?.type==="blockquote"){let T=g,f=T.raw+`
+`+n.join(`
+`),y=this.blockquote(f);r[r.length-1]=y,s=s.substring(0,s.length-T.raw.length)+y.raw,i=i.substring(0,i.length-T.text.length)+y.text;break}else if(g?.type==="list"){let T=g,f=T.raw+`
+`+n.join(`
+`),y=this.list(f);r[r.length-1]=y,s=s.substring(0,s.length-g.raw.length)+y.raw,i=i.substring(0,i.length-T.raw.length)+y.raw,n=f.substring(r.at(-1).raw.length).split(`
+`);continue}}return{type:"blockquote",raw:s,tokens:r,text:i}}}list(e){let t=this.rules.block.list.exec(e);if(t){let n=t[1].trim(),s=n.length>1,i={type:"list",raw:"",ordered:s,start:s?+n.slice(0,-1):"",loose:!1,items:[]};n=s?`\\d{1,9}\\${n.slice(-1)}`:`\\${n}`,this.options.pedantic&&(n=s?n:"[*+-]");let r=this.rules.other.listItemRegex(n),o=!1;for(;e;){let c=!1,p="",u="";if(!(t=r.exec(e))||this.rules.block.hr.test(e))break;p=t[0],e=e.substring(p.length);let d=t[2].split(`
+`,1)[0].replace(this.rules.other.listReplaceTabs,Z=>" ".repeat(3*Z.length)),g=e.split(`
+`,1)[0],T=!d.trim(),f=0;if(this.options.pedantic?(f=2,u=d.trimStart()):T?f=t[1].length+1:(f=t[2].search(this.rules.other.nonSpaceChar),f=f>4?1:f,u=d.slice(f),f+=t[1].length),T&&this.rules.other.blankLine.test(g)&&(p+=g+`
+`,e=e.substring(g.length+1),c=!0),!c){let Z=this.rules.other.nextBulletRegex(f),te=this.rules.other.hrRegex(f),ne=this.rules.other.fencesBeginRegex(f),se=this.rules.other.headingBeginRegex(f),xe=this.rules.other.htmlBeginRegex(f);for(;e;){let G=e.split(`
+`,1)[0],C;if(g=G,this.options.pedantic?(g=g.replace(this.rules.other.listReplaceNesting,"  "),C=g):C=g.replace(this.rules.other.tabCharGlobal,"    "),ne.test(g)||se.test(g)||xe.test(g)||Z.test(g)||te.test(g))break;if(C.search(this.rules.other.nonSpaceChar)>=f||!g.trim())u+=`
+`+C.slice(f);else{if(T||d.replace(this.rules.other.tabCharGlobal,"    ").search(this.rules.other.nonSpaceChar)>=4||ne.test(d)||se.test(d)||te.test(d))break;u+=`
+`+g}!T&&!g.trim()&&(T=!0),p+=G+`
+`,e=e.substring(G.length+1),d=C.slice(f)}}i.loose||(o?i.loose=!0:this.rules.other.doubleBlankLine.test(p)&&(o=!0));let y=null,ee;this.options.gfm&&(y=this.rules.other.listIsTask.exec(u),y&&(ee=y[0]!=="[ ] ",u=u.replace(this.rules.other.listReplaceTask,""))),i.items.push({type:"list_item",raw:p,task:!!y,checked:ee,loose:!1,text:u,tokens:[]}),i.raw+=p}let a=i.items.at(-1);if(a)a.raw=a.raw.trimEnd(),a.text=a.text.trimEnd();else return;i.raw=i.raw.trimEnd();for(let c=0;c<i.items.length;c++)if(this.lexer.state.top=!1,i.items[c].tokens=this.lexer.blockTokens(i.items[c].text,[]),!i.loose){let p=i.items[c].tokens.filter(d=>d.type==="space"),u=p.length>0&&p.some(d=>this.rules.other.anyLine.test(d.raw));i.loose=u}if(i.loose)for(let c=0;c<i.items.length;c++)i.items[c].loose=!0;return i}}html(e){let t=this.rules.block.html.exec(e);if(t)return{type:"html",block:!0,raw:t[0],pre:t[1]==="pre"||t[1]==="script"||t[1]==="style",text:t[0]}}def(e){let t=this.rules.block.def.exec(e);if(t){let n=t[1].toLowerCase().replace(this.rules.other.multipleSpaceGlobal," "),s=t[2]?t[2].replace(this.rules.other.hrefBrackets,"$1").replace(this.rules.inline.anyPunctuation,"$1"):"",i=t[3]?t[3].substring(1,t[3].length-1).replace(this.rules.inline.anyPunctuation,"$1"):t[3];return{type:"def",tag:n,raw:t[0],href:s,title:i}}}table(e){let t=this.rules.block.table.exec(e);if(!t||!this.rules.other.tableDelimiter.test(t[2]))return;let n=Y(t[1]),s=t[2].replace(this.rules.other.tableAlignChars,"").split("|"),i=t[3]?.trim()?t[3].replace(this.rules.other.tableRowBlankLine,"").split(`
+`):[],r={type:"table",raw:t[0],header:[],align:[],rows:[]};if(n.length===s.length){for(let o of s)this.rules.other.tableAlignRight.test(o)?r.align.push("right"):this.rules.other.tableAlignCenter.test(o)?r.align.push("center"):this.rules.other.tableAlignLeft.test(o)?r.align.push("left"):r.align.push(null);for(let o=0;o<n.length;o++)r.header.push({text:n[o],tokens:this.lexer.inline(n[o]),header:!0,align:r.align[o]});for(let o of i)r.rows.push(Y(o,r.header.length).map((a,c)=>({text:a,tokens:this.lexer.inline(a),header:!1,align:r.align[c]})));return r}}lheading(e){let t=this.rules.block.lheading.exec(e);if(t)return{type:"heading",raw:t[0],depth:t[2].charAt(0)==="="?1:2,text:t[1],tokens:this.lexer.inline(t[1])}}paragraph(e){let t=this.rules.block.paragraph.exec(e);if(t){let n=t[1].charAt(t[1].length-1)===`
+`?t[1].slice(0,-1):t[1];return{type:"paragraph",raw:t[0],text:n,tokens:this.lexer.inline(n)}}}text(e){let t=this.rules.block.text.exec(e);if(t)return{type:"text",raw:t[0],text:t[0],tokens:this.lexer.inline(t[0])}}escape(e){let t=this.rules.inline.escape.exec(e);if(t)return{type:"escape",raw:t[0],text:t[1]}}tag(e){let t=this.rules.inline.tag.exec(e);if(t)return!this.lexer.state.inLink&&this.rules.other.startATag.test(t[0])?this.lexer.state.inLink=!0:this.lexer.state.inLink&&this.rules.other.endATag.test(t[0])&&(this.lexer.state.inLink=!1),!this.lexer.state.inRawBlock&&this.rules.other.startPreScriptTag.test(t[0])?this.lexer.state.inRawBlock=!0:this.lexer.state.inRawBlock&&this.rules.other.endPreScriptTag.test(t[0])&&(this.lexer.state.inRawBlock=!1),{type:"html",raw:t[0],inLink:this.lexer.state.inLink,inRawBlock:this.lexer.state.inRawBlock,block:!1,text:t[0]}}link(e){let t=this.rules.inline.link.exec(e);if(t){let n=t[2].trim();if(!this.options.pedantic&&this.rules.other.startAngleBracket.test(n)){if(!this.rules.other.endAngleBracket.test(n))return;let r=A(n.slice(0,-1),"\\");if((n.length-r.length)%2===0)return}else{let r=de(t[2],"()");if(r===-2)return;if(r>-1){let a=(t[0].indexOf("!")===0?5:4)+t[1].length+r;t[2]=t[2].substring(0,r),t[0]=t[0].substring(0,a).trim(),t[3]=""}}let s=t[2],i="";if(this.options.pedantic){let r=this.rules.other.pedanticHrefTitle.exec(s);r&&(s=r[1],i=r[3])}else i=t[3]?t[3].slice(1,-1):"";return s=s.trim(),this.rules.other.startAngleBracket.test(s)&&(this.options.pedantic&&!this.rules.other.endAngleBracket.test(n)?s=s.slice(1):s=s.slice(1,-1)),me(t,{href:s&&s.replace(this.rules.inline.anyPunctuation,"$1"),title:i&&i.replace(this.rules.inline.anyPunctuation,"$1")},t[0],this.lexer,this.rules)}}reflink(e,t){let n;if((n=this.rules.inline.reflink.exec(e))||(n=this.rules.inline.nolink.exec(e))){let s=(n[2]||n[1]).replace(this.rules.other.multipleSpaceGlobal," "),i=t[s.toLowerCase()];if(!i){let r=n[0].charAt(0);return{type:"text",raw:r,text:r}}return me(n,i,n[0],this.lexer,this.rules)}}emStrong(e,t,n=""){let s=this.rules.inline.emStrongLDelim.exec(e);if(!s||s[3]&&n.match(this.rules.other.unicodeAlphaNumeric))return;if(!(s[1]||s[2]||"")||!n||this.rules.inline.punctuation.exec(n)){let r=[...s[0]].length-1,o,a,c=r,p=0,u=s[0][0]==="*"?this.rules.inline.emStrongRDelimAst:this.rules.inline.emStrongRDelimUnd;for(u.lastIndex=0,t=t.slice(-1*e.length+r);(s=u.exec(t))!=null;){if(o=s[1]||s[2]||s[3]||s[4]||s[5]||s[6],!o)continue;if(a=[...o].length,s[3]||s[4]){c+=a;continue}else if((s[5]||s[6])&&r%3&&!((r+a)%3)){p+=a;continue}if(c-=a,c>0)continue;a=Math.min(a,a+c+p);let d=[...s[0]][0].length,g=e.slice(0,r+s.index+d+a);if(Math.min(r,a)%2){let f=g.slice(1,-1);return{type:"em",raw:g,text:f,tokens:this.lexer.inlineTokens(f)}}let T=g.slice(2,-2);return{type:"strong",raw:g,text:T,tokens:this.lexer.inlineTokens(T)}}}}codespan(e){let t=this.rules.inline.code.exec(e);if(t){let n=t[2].replace(this.rules.other.newLineCharGlobal," "),s=this.rules.other.nonSpaceChar.test(n),i=this.rules.other.startingSpaceChar.test(n)&&this.rules.other.endingSpaceChar.test(n);return s&&i&&(n=n.substring(1,n.length-1)),{type:"codespan",raw:t[0],text:n}}}br(e){let t=this.rules.inline.br.exec(e);if(t)return{type:"br",raw:t[0]}}del(e){let t=this.rules.inline.del.exec(e);if(t)return{type:"del",raw:t[0],text:t[2],tokens:this.lexer.inlineTokens(t[2])}}autolink(e){let t=this.rules.inline.autolink.exec(e);if(t){let n,s;return t[2]==="@"?(n=t[1],s="mailto:"+n):(n=t[1],s=n),{type:"link",raw:t[0],text:n,href:s,tokens:[{type:"text",raw:n,text:n}]}}}url(e){let t;if(t=this.rules.inline.url.exec(e)){let n,s;if(t[2]==="@")n=t[0],s="mailto:"+n;else{let i;do i=t[0],t[0]=this.rules.inline._backpedal.exec(t[0])?.[0]??"";while(i!==t[0]);n=t[0],t[1]==="www."?s="http://"+t[0]:s=t[0]}return{type:"link",raw:t[0],text:n,href:s,tokens:[{type:"text",raw:n,text:n}]}}}inlineText(e){let t=this.rules.inline.text.exec(e);if(t){let n=this.lexer.state.inRawBlock;return{type:"text",raw:t[0],text:t[0],escaped:n}}}};var x=class l{tokens;options;state;tokenizer;inlineQueue;constructor(e){this.tokens=[],this.tokens.links=Object.create(null),this.options=e||w,this.options.tokenizer=this.options.tokenizer||new S,this.tokenizer=this.options.tokenizer,this.tokenizer.options=this.options,this.tokenizer.lexer=this,this.inlineQueue=[],this.state={inLink:!1,inRawBlock:!1,top:!0};let t={other:m,block:B.normal,inline:P.normal};this.options.pedantic?(t.block=B.pedantic,t.inline=P.pedantic):this.options.gfm&&(t.block=B.gfm,this.options.breaks?t.inline=P.breaks:t.inline=P.gfm),this.tokenizer.rules=t}static get rules(){return{block:B,inline:P}}static lex(e,t){return new l(t).lex(e)}static lexInline(e,t){return new l(t).inlineTokens(e)}lex(e){e=e.replace(m.carriageReturn,`
+`),this.blockTokens(e,this.tokens);for(let t=0;t<this.inlineQueue.length;t++){let n=this.inlineQueue[t];this.inlineTokens(n.src,n.tokens)}return this.inlineQueue=[],this.tokens}blockTokens(e,t=[],n=!1){for(this.options.pedantic&&(e=e.replace(m.tabCharGlobal,"    ").replace(m.spaceLine,""));e;){let s;if(this.options.extensions?.block?.some(r=>(s=r.call({lexer:this},e,t))?(e=e.substring(s.raw.length),t.push(s),!0):!1))continue;if(s=this.tokenizer.space(e)){e=e.substring(s.raw.length);let r=t.at(-1);s.raw.length===1&&r!==void 0?r.raw+=`
+`:t.push(s);continue}if(s=this.tokenizer.code(e)){e=e.substring(s.raw.length);let r=t.at(-1);r?.type==="paragraph"||r?.type==="text"?(r.raw+=`
+`+s.raw,r.text+=`
+`+s.text,this.inlineQueue.at(-1).src=r.text):t.push(s);continue}if(s=this.tokenizer.fences(e)){e=e.substring(s.raw.length),t.push(s);continue}if(s=this.tokenizer.heading(e)){e=e.substring(s.raw.length),t.push(s);continue}if(s=this.tokenizer.hr(e)){e=e.substring(s.raw.length),t.push(s);continue}if(s=this.tokenizer.blockquote(e)){e=e.substring(s.raw.length),t.push(s);continue}if(s=this.tokenizer.list(e)){e=e.substring(s.raw.length),t.push(s);continue}if(s=this.tokenizer.html(e)){e=e.substring(s.raw.length),t.push(s);continue}if(s=this.tokenizer.def(e)){e=e.substring(s.raw.length);let r=t.at(-1);r?.type==="paragraph"||r?.type==="text"?(r.raw+=`
+`+s.raw,r.text+=`
+`+s.raw,this.inlineQueue.at(-1).src=r.text):this.tokens.links[s.tag]||(this.tokens.links[s.tag]={href:s.href,title:s.title});continue}if(s=this.tokenizer.table(e)){e=e.substring(s.raw.length),t.push(s);continue}if(s=this.tokenizer.lheading(e)){e=e.substring(s.raw.length),t.push(s);continue}let i=e;if(this.options.extensions?.startBlock){let r=1/0,o=e.slice(1),a;this.options.extensions.startBlock.forEach(c=>{a=c.call({lexer:this},o),typeof a=="number"&&a>=0&&(r=Math.min(r,a))}),r<1/0&&r>=0&&(i=e.substring(0,r+1))}if(this.state.top&&(s=this.tokenizer.paragraph(i))){let r=t.at(-1);n&&r?.type==="paragraph"?(r.raw+=`
+`+s.raw,r.text+=`
+`+s.text,this.inlineQueue.pop(),this.inlineQueue.at(-1).src=r.text):t.push(s),n=i.length!==e.length,e=e.substring(s.raw.length);continue}if(s=this.tokenizer.text(e)){e=e.substring(s.raw.length);let r=t.at(-1);r?.type==="text"?(r.raw+=`
+`+s.raw,r.text+=`
+`+s.text,this.inlineQueue.pop(),this.inlineQueue.at(-1).src=r.text):t.push(s);continue}if(e){let r="Infinite loop on byte: "+e.charCodeAt(0);if(this.options.silent){console.error(r);break}else throw new Error(r)}}return this.state.top=!0,t}inline(e,t=[]){return this.inlineQueue.push({src:e,tokens:t}),t}inlineTokens(e,t=[]){let n=e,s=null;if(this.tokens.links){let o=Object.keys(this.tokens.links);if(o.length>0)for(;(s=this.tokenizer.rules.inline.reflinkSearch.exec(n))!=null;)o.includes(s[0].slice(s[0].lastIndexOf("[")+1,-1))&&(n=n.slice(0,s.index)+"["+"a".repeat(s[0].length-2)+"]"+n.slice(this.tokenizer.rules.inline.reflinkSearch.lastIndex))}for(;(s=this.tokenizer.rules.inline.anyPunctuation.exec(n))!=null;)n=n.slice(0,s.index)+"++"+n.slice(this.tokenizer.rules.inline.anyPunctuation.lastIndex);for(;(s=this.tokenizer.rules.inline.blockSkip.exec(n))!=null;)n=n.slice(0,s.index)+"["+"a".repeat(s[0].length-2)+"]"+n.slice(this.tokenizer.rules.inline.blockSkip.lastIndex);let i=!1,r="";for(;e;){i||(r=""),i=!1;let o;if(this.options.extensions?.inline?.some(c=>(o=c.call({lexer:this},e,t))?(e=e.substring(o.raw.length),t.push(o),!0):!1))continue;if(o=this.tokenizer.escape(e)){e=e.substring(o.raw.length),t.push(o);continue}if(o=this.tokenizer.tag(e)){e=e.substring(o.raw.length),t.push(o);continue}if(o=this.tokenizer.link(e)){e=e.substring(o.raw.length),t.push(o);continue}if(o=this.tokenizer.reflink(e,this.tokens.links)){e=e.substring(o.raw.length);let c=t.at(-1);o.type==="text"&&c?.type==="text"?(c.raw+=o.raw,c.text+=o.text):t.push(o);continue}if(o=this.tokenizer.emStrong(e,n,r)){e=e.substring(o.raw.length),t.push(o);continue}if(o=this.tokenizer.codespan(e)){e=e.substring(o.raw.length),t.push(o);continue}if(o=this.tokenizer.br(e)){e=e.substring(o.raw.length),t.push(o);continue}if(o=this.tokenizer.del(e)){e=e.substring(o.raw.length),t.push(o);continue}if(o=this.tokenizer.autolink(e)){e=e.substring(o.raw.length),t.push(o);continue}if(!this.state.inLink&&(o=this.tokenizer.url(e))){e=e.substring(o.raw.length),t.push(o);continue}let a=e;if(this.options.extensions?.startInline){let c=1/0,p=e.slice(1),u;this.options.extensions.startInline.forEach(d=>{u=d.call({lexer:this},p),typeof u=="number"&&u>=0&&(c=Math.min(c,u))}),c<1/0&&c>=0&&(a=e.substring(0,c+1))}if(o=this.tokenizer.inlineText(a)){e=e.substring(o.raw.length),o.raw.slice(-1)!=="_"&&(r=o.raw.slice(-1)),i=!0;let c=t.at(-1);c?.type==="text"?(c.raw+=o.raw,c.text+=o.text):t.push(o);continue}if(e){let c="Infinite loop on byte: "+e.charCodeAt(0);if(this.options.silent){console.error(c);break}else throw new Error(c)}}return t}};var $=class{options;parser;constructor(e){this.options=e||w}space(e){return""}code({text:e,lang:t,escaped:n}){let s=(t||"").match(m.notSpaceStart)?.[0],i=e.replace(m.endingNewline,"")+`
+`;return s?'<pre><code class="language-'+R(s)+'">'+(n?i:R(i,!0))+`</code></pre>
+`:"<pre><code>"+(n?i:R(i,!0))+`</code></pre>
+`}blockquote({tokens:e}){return`<blockquote>
+${this.parser.parse(e)}</blockquote>
+`}html({text:e}){return e}heading({tokens:e,depth:t}){return`<h${t}>${this.parser.parseInline(e)}</h${t}>
+`}hr(e){return`<hr>
+`}list(e){let t=e.ordered,n=e.start,s="";for(let o=0;o<e.items.length;o++){let a=e.items[o];s+=this.listitem(a)}let i=t?"ol":"ul",r=t&&n!==1?' start="'+n+'"':"";return"<"+i+r+`>
+`+s+"</"+i+`>
+`}listitem(e){let t="";if(e.task){let n=this.checkbox({checked:!!e.checked});e.loose?e.tokens[0]?.type==="paragraph"?(e.tokens[0].text=n+" "+e.tokens[0].text,e.tokens[0].tokens&&e.tokens[0].tokens.length>0&&e.tokens[0].tokens[0].type==="text"&&(e.tokens[0].tokens[0].text=n+" "+R(e.tokens[0].tokens[0].text),e.tokens[0].tokens[0].escaped=!0)):e.tokens.unshift({type:"text",raw:n+" ",text:n+" ",escaped:!0}):t+=n+" "}return t+=this.parser.parse(e.tokens,!!e.loose),`<li>${t}</li>
+`}checkbox({checked:e}){return"<input "+(e?'checked="" ':"")+'disabled="" type="checkbox">'}paragraph({tokens:e}){return`<p>${this.parser.parseInline(e)}</p>
+`}table(e){let t="",n="";for(let i=0;i<e.header.length;i++)n+=this.tablecell(e.header[i]);t+=this.tablerow({text:n});let s="";for(let i=0;i<e.rows.length;i++){let r=e.rows[i];n="";for(let o=0;o<r.length;o++)n+=this.tablecell(r[o]);s+=this.tablerow({text:n})}return s&&(s=`<tbody>${s}</tbody>`),`<table>
+<thead>
+`+t+`</thead>
+`+s+`</table>
+`}tablerow({text:e}){return`<tr>
+${e}</tr>
+`}tablecell(e){let t=this.parser.parseInline(e.tokens),n=e.header?"th":"td";return(e.align?`<${n} align="${e.align}">`:`<${n}>`)+t+`</${n}>
+`}strong({tokens:e}){return`<strong>${this.parser.parseInline(e)}</strong>`}em({tokens:e}){return`<em>${this.parser.parseInline(e)}</em>`}codespan({text:e}){return`<code>${R(e,!0)}</code>`}br(e){return"<br>"}del({tokens:e}){return`<del>${this.parser.parseInline(e)}</del>`}link({href:e,title:t,tokens:n}){let s=this.parser.parseInline(n),i=V(e);if(i===null)return s;e=i;let r='<a href="'+e+'"';return t&&(r+=' title="'+R(t)+'"'),r+=">"+s+"</a>",r}image({href:e,title:t,text:n,tokens:s}){s&&(n=this.parser.parseInline(s,this.parser.textRenderer));let i=V(e);if(i===null)return R(n);e=i;let r=`<img src="${e}" alt="${n}"`;return t&&(r+=` title="${R(t)}"`),r+=">",r}text(e){return"tokens"in e&&e.tokens?this.parser.parseInline(e.tokens):"escaped"in e&&e.escaped?e.text:R(e.text)}};var _=class{strong({text:e}){return e}em({text:e}){return e}codespan({text:e}){return e}del({text:e}){return e}html({text:e}){return e}text({text:e}){return e}link({text:e}){return""+e}image({text:e}){return""+e}br(){return""}};var b=class l{options;renderer;textRenderer;constructor(e){this.options=e||w,this.options.renderer=this.options.renderer||new $,this.renderer=this.options.renderer,this.renderer.options=this.options,this.renderer.parser=this,this.textRenderer=new _}static parse(e,t){return new l(t).parse(e)}static parseInline(e,t){return new l(t).parseInline(e)}parse(e,t=!0){let n="";for(let s=0;s<e.length;s++){let i=e[s];if(this.options.extensions?.renderers?.[i.type]){let o=i,a=this.options.extensions.renderers[o.type].call({parser:this},o);if(a!==!1||!["space","hr","heading","code","table","blockquote","list","html","paragraph","text"].includes(o.type)){n+=a||"";continue}}let r=i;switch(r.type){case"space":{n+=this.renderer.space(r);continue}case"hr":{n+=this.renderer.hr(r);continue}case"heading":{n+=this.renderer.heading(r);continue}case"code":{n+=this.renderer.code(r);continue}case"table":{n+=this.renderer.table(r);continue}case"blockquote":{n+=this.renderer.blockquote(r);continue}case"list":{n+=this.renderer.list(r);continue}case"html":{n+=this.renderer.html(r);continue}case"paragraph":{n+=this.renderer.paragraph(r);continue}case"text":{let o=r,a=this.renderer.text(o);for(;s+1<e.length&&e[s+1].type==="text";)o=e[++s],a+=`
+`+this.renderer.text(o);t?n+=this.renderer.paragraph({type:"paragraph",raw:a,text:a,tokens:[{type:"text",raw:a,text:a,escaped:!0}]}):n+=a;continue}default:{let o='Token with "'+r.type+'" type was not found.';if(this.options.silent)return console.error(o),"";throw new Error(o)}}}return n}parseInline(e,t=this.renderer){let n="";for(let s=0;s<e.length;s++){let i=e[s];if(this.options.extensions?.renderers?.[i.type]){let o=this.options.extensions.renderers[i.type].call({parser:this},i);if(o!==!1||!["escape","html","link","image","strong","em","codespan","br","del","text"].includes(i.type)){n+=o||"";continue}}let r=i;switch(r.type){case"escape":{n+=t.text(r);break}case"html":{n+=t.html(r);break}case"link":{n+=t.link(r);break}case"image":{n+=t.image(r);break}case"strong":{n+=t.strong(r);break}case"em":{n+=t.em(r);break}case"codespan":{n+=t.codespan(r);break}case"br":{n+=t.br(r);break}case"del":{n+=t.del(r);break}case"text":{n+=t.text(r);break}default:{let o='Token with "'+r.type+'" type was not found.';if(this.options.silent)return console.error(o),"";throw new Error(o)}}}return n}};var L=class{options;block;constructor(e){this.options=e||w}static passThroughHooks=new Set(["preprocess","postprocess","processAllTokens"]);preprocess(e){return e}postprocess(e){return e}processAllTokens(e){return e}provideLexer(){return this.block?x.lex:x.lexInline}provideParser(){return this.block?b.parse:b.parseInline}};var E=class{defaults=z();options=this.setOptions;parse=this.parseMarkdown(!0);parseInline=this.parseMarkdown(!1);Parser=b;Renderer=$;TextRenderer=_;Lexer=x;Tokenizer=S;Hooks=L;constructor(...e){this.use(...e)}walkTokens(e,t){let n=[];for(let s of e)switch(n=n.concat(t.call(this,s)),s.type){case"table":{let i=s;for(let r of i.header)n=n.concat(this.walkTokens(r.tokens,t));for(let r of i.rows)for(let o of r)n=n.concat(this.walkTokens(o.tokens,t));break}case"list":{let i=s;n=n.concat(this.walkTokens(i.items,t));break}default:{let i=s;this.defaults.extensions?.childTokens?.[i.type]?this.defaults.extensions.childTokens[i.type].forEach(r=>{let o=i[r].flat(1/0);n=n.concat(this.walkTokens(o,t))}):i.tokens&&(n=n.concat(this.walkTokens(i.tokens,t)))}}return n}use(...e){let t=this.defaults.extensions||{renderers:{},childTokens:{}};return e.forEach(n=>{let s={...n};if(s.async=this.defaults.async||s.async||!1,n.extensions&&(n.extensions.forEach(i=>{if(!i.name)throw new Error("extension name required");if("renderer"in i){let r=t.renderers[i.name];r?t.renderers[i.name]=function(...o){let a=i.renderer.apply(this,o);return a===!1&&(a=r.apply(this,o)),a}:t.renderers[i.name]=i.renderer}if("tokenizer"in i){if(!i.level||i.level!=="block"&&i.level!=="inline")throw new Error("extension level must be 'block' or 'inline'");let r=t[i.level];r?r.unshift(i.tokenizer):t[i.level]=[i.tokenizer],i.start&&(i.level==="block"?t.startBlock?t.startBlock.push(i.start):t.startBlock=[i.start]:i.level==="inline"&&(t.startInline?t.startInline.push(i.start):t.startInline=[i.start]))}"childTokens"in i&&i.childTokens&&(t.childTokens[i.name]=i.childTokens)}),s.extensions=t),n.renderer){let i=this.defaults.renderer||new $(this.defaults);for(let r in n.renderer){if(!(r in i))throw new Error(`renderer '${r}' does not exist`);if(["options","parser"].includes(r))continue;let o=r,a=n.renderer[o],c=i[o];i[o]=(...p)=>{let u=a.apply(i,p);return u===!1&&(u=c.apply(i,p)),u||""}}s.renderer=i}if(n.tokenizer){let i=this.defaults.tokenizer||new S(this.defaults);for(let r in n.tokenizer){if(!(r in i))throw new Error(`tokenizer '${r}' does not exist`);if(["options","rules","lexer"].includes(r))continue;let o=r,a=n.tokenizer[o],c=i[o];i[o]=(...p)=>{let u=a.apply(i,p);return u===!1&&(u=c.apply(i,p)),u}}s.tokenizer=i}if(n.hooks){let i=this.defaults.hooks||new L;for(let r in n.hooks){if(!(r in i))throw new Error(`hook '${r}' does not exist`);if(["options","block"].includes(r))continue;let o=r,a=n.hooks[o],c=i[o];L.passThroughHooks.has(r)?i[o]=p=>{if(this.defaults.async)return Promise.resolve(a.call(i,p)).then(d=>c.call(i,d));let u=a.call(i,p);return c.call(i,u)}:i[o]=(...p)=>{let u=a.apply(i,p);return u===!1&&(u=c.apply(i,p)),u}}s.hooks=i}if(n.walkTokens){let i=this.defaults.walkTokens,r=n.walkTokens;s.walkTokens=function(o){let a=[];return a.push(r.call(this,o)),i&&(a=a.concat(i.call(this,o))),a}}this.defaults={...this.defaults,...s}}),this}setOptions(e){return this.defaults={...this.defaults,...e},this}lexer(e,t){return x.lex(e,t??this.defaults)}parser(e,t){return b.parse(e,t??this.defaults)}parseMarkdown(e){return(n,s)=>{let i={...s},r={...this.defaults,...i},o=this.onError(!!r.silent,!!r.async);if(this.defaults.async===!0&&i.async===!1)return o(new Error("marked(): The async option was set to true by an extension. Remove async: false from the parse options object to return a Promise."));if(typeof n>"u"||n===null)return o(new Error("marked(): input parameter is undefined or null"));if(typeof n!="string")return o(new Error("marked(): input parameter is of type "+Object.prototype.toString.call(n)+", string expected"));r.hooks&&(r.hooks.options=r,r.hooks.block=e);let a=r.hooks?r.hooks.provideLexer():e?x.lex:x.lexInline,c=r.hooks?r.hooks.provideParser():e?b.parse:b.parseInline;if(r.async)return Promise.resolve(r.hooks?r.hooks.preprocess(n):n).then(p=>a(p,r)).then(p=>r.hooks?r.hooks.processAllTokens(p):p).then(p=>r.walkTokens?Promise.all(this.walkTokens(p,r.walkTokens)).then(()=>p):p).then(p=>c(p,r)).then(p=>r.hooks?r.hooks.postprocess(p):p).catch(o);try{r.hooks&&(n=r.hooks.preprocess(n));let p=a(n,r);r.hooks&&(p=r.hooks.processAllTokens(p)),r.walkTokens&&this.walkTokens(p,r.walkTokens);let u=c(p,r);return r.hooks&&(u=r.hooks.postprocess(u)),u}catch(p){return o(p)}}}onError(e,t){return n=>{if(n.message+=`
+Please report this to https://github.com/markedjs/marked.`,e){let s="<p>An error occurred:</p><pre>"+R(n.message+"",!0)+"</pre>";return t?Promise.resolve(s):s}if(t)return Promise.reject(n);throw n}}};var M=new E;function k(l,e){return M.parse(l,e)}k.options=k.setOptions=function(l){return M.setOptions(l),k.defaults=M.defaults,N(k.defaults),k};k.getDefaults=z;k.defaults=w;k.use=function(...l){return M.use(...l),k.defaults=M.defaults,N(k.defaults),k};k.walkTokens=function(l,e){return M.walkTokens(l,e)};k.parseInline=M.parseInline;k.Parser=b;k.parser=b.parse;k.Renderer=$;k.TextRenderer=_;k.Lexer=x;k.lexer=x.lex;k.Tokenizer=S;k.Hooks=L;k.parse=k;var it=k.options,ot=k.setOptions,lt=k.use,at=k.walkTokens,ct=k.parseInline,pt=k,ut=b.parse,ht=x.lex;
+
+if(__exports != exports)module.exports = exports;return module.exports}));
+
+const markdownContent = `# 🧬 BẢN ĐỐI CHIẾU SO SÁNH VÀ ĐÁP ÁN - LỜI GIẢI CHI TIẾT
+## ĐỀ THI CHÍNH THỨC GIỮA KÌ I MÔN SINH HỌC 12 - THPT CỔ LOA (NĂM HỌC 2024 - 2025)
+*Đối chiếu chuyên sâu với 2 Đề Ôn Luyện Sinh Học 12 (Đề 1 & Đề 2)*
+
+---
+
+# PHẦN I: TỔNG QUAN VÀ BẢN ĐỒ SO SÁNH ĐỐI CHIẾU TOÀN DIỆN
+
+### 1. Bối Cảnh Và Nguồn Gốc Bộ Đề
+* **Đề thi chính thức:** Thu thập từ các lớp khác cùng khối 12 trường THPT Cổ Loa trong kì thi Giữa kì 1 năm học 2024 - 2025. Gồm 5 mã đề hoán vị: **Mã 497**, **Mã 121**, **Mã 122**, **Mã 123**, **Mã 124**.
+* **Đề ôn luyện (Đề 1 & Đề 2):** Là 2 bộ đề ma trận nguồn được biên soạn bám sát ngân hàng câu hỏi ôn tập của tổ Sinh học THPT Cổ Loa.
+
+---
+
+### 2. Bảng Đối Chiếu Ma Trận Kiến Thức
+
+| Nhóm Kiến Thức Cốt Lõi | Tỉ Lệ Đề Chính Thức | Tỉ Lệ Đề 1 & Đề 2 | Đánh Giá Tương Đồng & Khác Biệt |
+| :--- | :---: | :---: | :--- |
+| **1. Cấu trúc DNA & Cơ chế Tái bản** | ~28% | ~30% | **Trùng lặp 90%:** Nguyên tắc bán bảo toàn, enzyme DNA pol, ligase, điểm ori nhân thực vs nhân sơ, cấu tạo hóa học nucleotide (đường deoxyribose C5H10O4, 0.34nm). |
+| **2. Cấu trúc RNA & Cơ chế Phiên mã** | ~25% | ~25% | **Trùng lặp 85%:** Vùng điều hòa (promoter), phân biệt pre-mRNA và mRNA trưởng thành, cắt intron nối exon ở nhân thực, mạch khuôn 3'->5'. |
+| **3. Mã Di Truyền & Cơ chế Dịch mã** | ~25% | ~25% | **Trùng lặp 85%:** 3 đặc tính mã di truyền (thoái hóa, phổ biến, đặc hiệu), codon mở đầu/kết thúc, phân biệt anticodon tRNA vs codon mRNA, vai trò polyribosome. |
+| **4. Điều hòa biểu hiện Gene & Operon Lac** | ~22% | ~20% | **Trùng lặp 80%:** Vai trò gene LacI, vùng P, vùng O, nhóm gene Z-Y-A, polycistronic mRNA, cơ chế cảm ứng khi có/không có lactose. |
+
+---
+
+### 3. Phân Tích Sự Giống Nhau, Khác Biệt Và Các Câu Mới Đột Phá
+
+#### A. Những Câu Giống Nhau Hoàn Toàn (Trúng Tủ 100%):
+1. **Câu hỏi cấu tạo hóa học của nucleotide:** Hình vẽ nucleotide và khẳng định sai về RNA/đường C5H10O5/kích thước 3.4nm (Câu 13 Mã 497 \$\\equiv\$ Câu 13 Đề 1).
+2. **Đặc điểm phân biệt tái bản nhân thực và nhân sơ:** Nhân thực có nhiều điểm khởi đầu tái bản (ori) (Câu 4 Mã 497 \$\\equiv\$ Câu 5 Đề 2).
+3. **Ý nghĩa của hiện tượng polyribosome:** Tăng hiệu suất tổng hợp cùng một loại chuỗi polypeptide (Câu 13 Mã 121 \$\\equiv\$ Câu 13 Đề 2).
+4. **Các giai đoạn của dịch mã:** Gồm 2 giai đoạn: Hoạt hóa amino acid và Tổng hợp chuỗi polypeptide trên ribosome (Câu 1 Mã 497 \$\\equiv\$ Câu 2 Đề 2).
+5. **Cơ chế truyền đạt thông tin nguyên vẹn qua các thế hệ tế bào:** Nhờ quá trình tái bản DNA theo nguyên tắc bổ sung và bán bảo toàn (Câu 2 Mã 497 \$\\equiv\$ Câu 7 Đề 1).
+
+#### B. Những Câu Biến Thể Tinh Vi (Cùng Dạng Nhưng Đổi Góc Nhìn & Cài Bẫy):
+1. **Bẫy Mạch Mã Hóa vs Mạch Bổ Sung:**
+   - *Ở Đề Ôn Luyện:* Cho trực tiếp mạch khuôn 3'...TAC...5' để học sinh phiên mã ra mRNA.
+   - *Ở Đề Chính Thức (Câu 8 Mã 497, Câu 17 Mã 122):* Cho **mạch bổ sung 5'...ATGTCT...3'**. Học sinh vội vàng dùng mạch này làm mạch khuôn sẽ bị sai hoàn toàn! Cách giải đúng: Trình tự mRNA giống hệt mạch bổ sung theo chiều 5'->3', chỉ thay T bằng U!
+2. **Bẫy Codon Kết Thúc:**
+   - *Ở Đề Ôn Luyện:* Tính số codon tạo từ 3 loại nu A, U, G.
+   - *Ở Đề Chính Thức (Câu 1 Phần III Mã 497):* Hỏi số loại codon **mã hóa amino acid tối đa** -> Bắt buộc phải lấy \$3^3 = 27\$ rồi **trừ đi 3 codon kết thúc (UAA, UAG, UGA)** = 24!
+   - *Ở Mã 122:* Đổi 3 loại nu thành A, U, C -> Từ A, U, C tạo được \$3^3 = 27\$ bộ ba, nhưng chỉ có **1 codon kết thúc là UAA** (vì UAG có G, UGA có G không tạo được) -> Số codon mã hóa là \$27 - 1 = 26\$!
+
+#### C. Những Câu Mới Toàn Diện Trong Đề Chính Thức (Điểm 9 - 10):
+1. **Bài toán Y sinh thực tế về thuốc điều trị COVID-19 (Câu 2 Phần II Mã 122/124):** Phân tích biểu đồ hàm lượng mRNA và Protein virus dưới tác động của Thuốc 1 (ức chế phiên mã/phân hủy mRNA) và Thuốc 2 (ức chế dịch mã/phân hủy protein).
+2. **Thí nghiệm Monod & Jacob đo % amino acid phóng xạ (Câu 1 Phần II Mã 497):** Đánh giá kiểu hình của 4 chủng E.coli đột biến ở vùng P, vùng O hoặc gene điều hòa LacI.
+3. **Phân tích biểu đồ liên kết Hydrogen của 4 phân tử DNA bằng nhau về kích thước (Câu 5 Phần III Mã 497):** Suy luận phân tử nào có số lượng nucleotide Cytosine (C) nhiều nhất dựa vào hệ thức \$H = N + C\$.
+4. **Câu hỏi Tự luận bản chất cơ chế Operon Lac:** Dự đoán các vị trí đột biến (gene điều hòa \$LacI\$ hoặc vùng vận hành \$O\$) khi operon lac hoạt động liên tục dù không có lactose.
+
+---
+
+# PHẦN II: HỆ THỐNG ĐÁP ÁN & LỜI GIẢI CHI TIẾT ĐỀ THI CHÍNH THỨC (MÃ ĐỀ 497)
+
+## PHẦN 1: TRẮC NGHIỆM NHIỀU LỰA CHỌN (18 CÂU)
+
+### **Câu 1**
+**Đề bài:** Quá trình dịch mã gồm các giai đoạn nào?  
+A. Phiên mã, hoạt hóa các amino acid và tổng hợp chuỗi polypeptide  
+B. Phiên mã, tổng hợp các loại RNA và tổng hợp chuỗi polypeptide  
+C. Phiên mã, dịch mã và tổng hợp chuỗi polypeptide  
+D. Hoạt hóa các amino acid và tổng hợp chuỗi polypeptide  
+
+* **Đáp án đúng:** **D. Hoạt hóa các amino acid và tổng hợp chuỗi polypeptide**
+* **Phương pháp giải:** Quá trình dịch mã gồm 2 giai đoạn:
+  1. Giai đoạn 1: Hoạt hóa amino acid: \$\\text{Amino acid} + \\text{ATP} + \\text{tRNA} \\xrightarrow{\\text{enzyme}} \\text{Phức hợp Aminoacyl-tRNA}\$.
+  2. Giai đoạn 2: Tổng hợp chuỗi polypeptide trên ribosome (Mở đầu \$\\rightarrow\$ Kéo dài \$\\rightarrow\$ Kết thúc).
+* **Cạm bẫy:** Phiên mã là quá trình xảy ra trước đó, không nằm trong dịch mã.
+
+---
+
+### **Câu 2**
+**Đề bài:** DNA có chức năng truyền đạt thông tin di truyền gần như nguyên vẹn qua các thế hệ tế bào là nhờ cơ chế  
+A. phân bào.  
+B. phiên mã.  
+C. tái bản DNA.  
+D. dịch mã.  
+
+* **Đáp án đúng:** **C. tái bản DNA.**
+* **Phương pháp giải:** Quá trình nhân đôi (tái bản) DNA diễn ra theo 2 nguyên tắc cốt lõi: nguyên tắc bổ sung (\$A-T, G-C\$) và nguyên tắc bán bảo toàn (giữ lại 1 mạch cũ), giúp thông tin di truyền được sao chép chính xác từ tế bào mẹ sang tế bào con.
+
+---
+
+### **Câu 3**
+**Đề bài:** Codon nào sau đây mang tín hiệu kết thúc quá trình dịch mã?  
+A. 5'UGA3'.  
+B. 5'AGC3'.  
+C. 5'AGG3'.  
+D. 5'ACC3'.  
+
+* **Đáp án đúng:** **A. 5'UGA3'.**
+* **Phương pháp giải:** Trên mRNA có 3 codon kết thúc báo hiệu dừng dịch mã: **5'UAA3'**, **5'UAG3'**, **5'UGA3'**.
+
+---
+
+### **Câu 4**
+**Đề bài:** Đặc điểm nào sau đây chỉ có ở quá trình tái bản DNA của sinh vật nhân thực mà không có ở quá trình tái bản DNA của sinh vật nhân sơ?  
+A. Mạch mới được tổng hợp bằng cách gắn thêm nucleotide vào đầu 3' của đoạn RNA mồi.  
+B. Một mạch mới được tổng hợp liên tục, mạch mới còn lại được tổng hợp thành từng phân đoạn okazaki.  
+C. DNA có nhiều điểm khởi đầu tái bản, nên quá trình tái bản xảy ra ở nhiều vùng trên một phân tử.  
+D. DNA được tái bản theo nguyên tắc bổ sung và nguyên tắc bán bảo toàn.  
+
+* **Đáp án đúng:** **C. DNA có nhiều điểm khởi đầu tái bản, nên quá trình tái bản xảy ra ở nhiều vùng trên một phân tử.**
+* **Phương pháp giải:** Sinh vật nhân sơ DNA dạng vòng nhỏ chỉ có 1 điểm khởi đầu tái bản (ori). Sinh vật nhân thực DNA dạng thẳng rất dài, có **nhiều điểm khởi đầu tái bản** tạo nhiều đơn vị tái bản (replicon) cùng hoạt động giúp tiết kiệm thời gian nhân đôi.
+
+---
+
+### **Câu 5**
+**Đề bài:** Vùng điều hoà là vùng  
+A. mang tín hiệu khởi động và kiểm soát quá trình phiên mã.  
+B. mang thông tin mã hoá các amino acid.  
+C. quy định trình tự sắp xếp các amino acid trong phân tử protein.  
+D. mang tín hiệu kết thúc phiên mã.  
+
+* **Đáp án đúng:** **A. mang tín hiệu khởi động và kiểm soát quá trình phiên mã.**
+* **Phương pháp giải:** Vùng điều hòa nằm ở đầu 3' của mạch khuôn, chứa trình tự promoter để enzyme RNA polymerase nhận biết và liên kết để khởi động phiên mã, đồng thời chứa trình tự điều hòa tốc độ phiên mã.
+
+---
+
+### **Câu 6**
+**Đề bài:** Đặc điểm nào dưới đây đúng với mRNA?  
+A. Có cấu trúc mạch đơn, dạng thẳng, gồm 4 loại đơn phân A, U, G, C.  
+B. Mang anticodon, làm khuôn tổng hợp protein.  
+C. Kết hợp với các protein để hình thành nhiễm sắc thể.  
+D. Đóng vai trò vận chuyển amino acid.  
+
+* **Đáp án đúng:** **A. Có cấu trúc mạch đơn, dạng thẳng, gồm 4 loại đơn phân A, U, G, C.**
+* **Phương pháp giải:** mRNA (RNA thông tin) có cấu trúc mạch đơn, không cuộn xoắn gấp khúc như tRNA/rRNA, gồm 4 loại ribonucleotide A, U, G, C và mang các codon (bộ ba mã sao) làm khuôn dịch mã.
+
+---
+
+### **Câu 7**
+**Đề bài:** Mỗi DNA con sau nhân đôi đều có một mạch của DNA mẹ, mạch còn lại được hình thành từ các nucleotide tự do của môi trường. Đây là cơ sở của nguyên tắc  
+A. bổ sung.  
+B. bổ sung và bảo toàn.  
+C. bổ sung và bán bảo toàn.  
+D. bán bảo toàn.  
+
+* **Đáp án đúng:** **D. bán bảo toàn.**
+* **Phương pháp giải:** "Bán bảo toàn" nghĩa là giữ lại một nửa mạch gốc từ phân tử mẹ ban đầu.
+
+---
+
+### **Câu 8**
+**Đề bài:** Cho biết một số codon và amino acid mà chúng mã hoá trong bảng dưới đây:
+* UUA, UUG: Leu | UCU, UCG: Ser | UGG: Trp | CAU, CAC: His | CCC, CCA: Pro
+Một gene ở sinh vật nhân thực có trình tự nucleotide ở mạch bổ sung như sau:  
+\`5' ... ATGTCTTTTACCA ... 3'\`  
+Theo lí thuyết, trình tự amino acid nào sau đây được mã hoá bởi đoạn gene trên?  
+A. Met - Trp - His - Pro.  
+B. Ser - Leu - Pro.  
+C. Met - Ser - Leu - Pro.  
+D. His - Trp - Leu.  
+
+* **Đáp án đúng:** **C. Met - Ser - Leu - Pro.**
+* **Phương pháp giải & Cạm bẫy:**
+  - **BẪY:** Đề bài cho **mạch bổ sung (coding strand)** theo chiều 5' \$\\rightarrow\$ 3'!
+  - Trình tự mạch bổ sung: \`5'... ATG - TCT - TTA - CCA ... 3'\`
+  - Trình tự mRNA được phiên mã có chiều 5' \$\\rightarrow\$ 3' giống hệt mạch bổ sung, chỉ thay \$T\$ bằng \$U\$:
+    \`5'... AUG - UCU - UUA - CCA ... 3'\`
+  - Tra bảng mã:
+    * \`AUG\`: Met (mở đầu)
+    * \`UCU\`: Ser
+    * \`UUA\`: Leu
+    * \`CCA\`: Pro
+  - Chuỗi amino acid: **Met - Ser - Leu - Pro**.
+
+---
+
+### **Câu 9**
+**Đề bài:** Enzyme xúc tác để tổng hợp mạch mới trong quá trình tái bản DNA là  
+A. primase.  
+B. nuclease.  
+C. DNA polymerase.  
+D. ligase.  
+
+* **Đáp án đúng:** **C. DNA polymerase.**
+* **Phương pháp giải:** DNA polymerase có chức năng gắn các nucleotide tự do của môi trường vào đầu 3'-OH của mạch mới theo nguyên tắc bổ sung.
+
+---
+
+### **Câu 10**
+**Đề bài:** Phát biểu nào sau đây không đúng khi nói về ý nghĩa của sự điều hòa biểu hiện gene đối với tế bào?  
+A. tạo ra tính đặc thù của các mô, cơ quan trong cơ thể.  
+B. tiết kiệm được năng lượng và thích nghi được với sự thay đổi của môi trường.  
+C. giúp tạo ra các gene mới, cung cấp nguyên liệu cho chọn giống và tiến hóa.  
+D. giúp các gene biểu hiện sản phẩm phù hợp với giai đoạn phát triển của cơ thể.  
+
+* **Đáp án đúng:** **C. giúp tạo ra các gene mới, cung cấp nguyên liệu cho chọn giống và tiến hóa.**
+* **Phương pháp giải:** Điều hòa biểu hiện gene chỉ quyết định gene nào được phiên mã/dịch mã ở thời điểm nào, KHÔNG tạo ra gene mới. Quá trình tạo gene mới là do đột biến gene.
+
+---
+
+### **Câu 11**
+**Đề bài:** Thông tin di truyền được trực tiếp sử dụng trong tổng hợp protein là thông tin chứa trong phân tử  
+A. rRNA.  
+B. DNA.  
+C. tRNA.  
+D. mRNA.  
+
+* **Đáp án đúng:** **D. mRNA.**
+* **Phương pháp giải:** mRNA đóng vai trò là khuôn trực tiếp mang các bộ ba codon để ribosome và tRNA đọc mã tổng hợp chuỗi polypeptide.
+
+---
+
+### **Câu 12**
+**Đề bài:** Trong sự điều hòa sinh tổng hợp protein ở vi khuẩn E. coli, khi môi trường có lactose (chất cảm ứng) thì những cơ chế nào được diễn ra?  
+I. Gene điều hòa chỉ huy tổng hợp một loại protein ức chế gắn vào vùng O.  
+II. Chất cảm ứng kết hợp với protein ức chế, làm vô hiệu hóa các chất ức chế.  
+III. Vùng O được khởi động, các gene cấu trúc hoạt động và không tổng hợp được protein.  
+IV. Quá trình phiên mã các gene cấu trúc bị ức chế do đó không tổng hợp được mRNA.  
+V. Vùng O được khởi động, các gene cấu trúc hoạt động và tổng hợp được protein.  
+A. II và V.  
+B. I và IV.  
+C. I và II.  
+D. III và IV.  
+
+* **Đáp án đúng:** **A. II và V.**
+* **Phương pháp giải:** Khi có lactose, lactose liên kết với protein ức chế làm biến đổi cấu hình không gian (vô hiệu hóa protein ức chế - II đúng). Vùng vận hành O được tự do, RNA polymerase bám vào promoter P phiên mã cụm gene Z, Y, A để tổng hợp các enzyme chuyển hóa lactose (V đúng).
+
+---
+
+### **Câu 13**
+**Đề bài:** Hình vẽ mô tả cấu tạo chung của một nucleotide. Hãy cho biết có bao nhiêu phát biểu sau đây đúng?  
+I. Đây là đơn phân cấu tạo nên RNA và trong một đơn phân này có chứa 4 loại base nitrogenous là A, C, G và T.  
+II. Các nucleotide khác nhau chỉ khác nhau ở thành phần base nitrogenous.  
+III. Đường deoxyribose có công thức phân tử là C5H10O5; base nitrogenous gồm có 4 loại: A, C, G, U.  
+IV. Một nucleotide gồm ba thành phần: acid photphoric, đường deoxyribose, base nitrogenous và có kích thước 3,4 nm.  
+A. 1.  
+B. 2.  
+C. 3.  
+D. 4.  
+
+* **Đáp án đúng:** **A. 1 (chỉ có phát biểu II đúng).**
+* **Phân tích bẫy:**
+  - I SAI: Hình vẽ có đường Deoxyribose (C2' gắn -H) là đơn phân DNA, không phải RNA. Ngoài ra mỗi nucleotide chỉ chứa 1 base đơn vị.
+  - II ĐÚNG: Đều có nhóm phosphate và đường giống nhau, khác nhau ở gốc base (A, T, G, C).
+  - III SAI: Đường deoxyribose là C5H10O4 (mất 1 nguyên tử O).
+  - IV SAI: Chiều dài 1 nucleotide là 0.34 nm (3.4 Angstrom). 3.4 nm là 1 chu kì xoắn (10 cặp nu).
+
+---
+
+### **Câu 14**
+**Đề bài:** Trong cơ chế điều hoà biểu hiện gene ở operon Lac, lactose được xem là chất giúp cho gene được biểu hiện vì  
+A. lactose xuất hiện liên kết với RNA polymerase ức chế quá trình phiên mã gene cấu trúc.  
+B. việc phiên mã gene cấu trúc phụ thuộc vào sự có mặt hay không có mặt của lactose.  
+C. lactose xuất hiện liên kết với RNA polymerase kích hoạt quá trình phiên mã gene cấu trúc.  
+D. việc hoạt động gene điều hòa LacI phụ thuộc vào lactose.  
+
+* **Đáp án đúng:** **B. việc phiên mã gene cấu trúc phụ thuộc vào sự có mặt hay không có mặt của lactose.**
+* **Phương pháp giải:** Lactose đóng vai trò là chất cảm ứng (inducer). Có lactose thì operon mở, không có lactose thì operon đóng.
+
+---
+
+### **Câu 15**
+**Đề bài:** Nhận định nào sau đây không đúng khi nói về cơ chế dịch mã ở sinh vật nhân thực?  
+A. Khi dịch mã ribosome dịch chuyển theo chiều 3' - 5' trên phân tử mRNA  
+B. Amino acid mở đầu trong quá trình dịch mã là methionine.  
+C. Khi ribosome tiếp xúc với mã UGA thì quá trình dịch mã dừng lại.  
+D. Mỗi phân tử mRNA có thể tổng hợp được từ một đến nhiều chuỗi polypeptide cùng loại.  
+
+* **Đáp án đúng:** **A. Khi dịch mã ribosome dịch chuyển theo chiều 3' - 5' trên phân tử mRNA**
+* **Phương pháp giải:** Ribosome luôn dịch chuyển theo chiều **5' \$\\rightarrow\$ 3'** trên mRNA.
+
+---
+
+### **Câu 16**
+**Đề bài:** Phiên mã là quá trình tổng hợp nên phân tử  
+A. DNA  
+B. cDNA.  
+C. protein.  
+D. RNA.  
+
+* **Đáp án đúng:** **D. RNA.**
+* **Phương pháp giải:** Phiên mã là quá trình tổng hợp các phân tử RNA (mRNA, tRNA, rRNA) dựa trên mạch khuôn DNA.
+
+---
+
+### **Câu 17**
+**Đề bài:** Ở vi khuẩn E.coli, khi nói về hoạt động của các gene cấu trúc trong operon Lac, có bao nhiêu phát biểu sau đây không đúng?  
+I. Nếu gene lacA nhân đôi 3 lần thì gene điều hòa cũng nhân đôi 3 lần.  
+II. Nếu gene lacZ nhân đôi 4 lần thì gene Y sẽ nhân đôi 2 lần.  
+III. Nếu gene Y phiên mã 5 lần thì gene điều hòa cũng phiên mã 5 lần.  
+IV. Khi môi trường có lactose, các gene cấu trúc phiên mã tạo ra 3 loại mRNA.  
+A. 2.  
+B. 4.  
+C. 3.  
+D. 1.  
+
+* **Đáp án đúng:** **C. 3 phát biểu không đúng (II, III, IV sai; I đúng).**
+* **Phân tích chi tiết:**
+  - I ĐÚNG: Nằm trên cùng một phân tử DNA vi khuẩn nên nhân đôi cùng số lần.
+  - II SAI: lacZ và lacY trên cùng 1 phân tử DNA nên nhân đôi số lần bằng nhau (đều là 4 lần).
+  - III SAI: Gene điều hòa phiên mã liên tục và độc lập với các gene cấu trúc, số lần phiên mã không bắt buộc bằng nhau.
+  - IV SAI: Các gene cấu trúc Z, Y, A được phiên mã chung thành **1 phân tử polycistronic mRNA duy nhất**.
+
+---
+
+### **Câu 18**
+**Đề bài:** Yếu tố nào sau đây cần cho quá trình tái bản DNA?  
+A. Ribosome.  
+B. tRNA.  
+C. mRNA.  
+D. Nucleotide.  
+
+* **Đáp án đúng:** **D. Nucleotide.**
+* **Phương pháp giải:** Quá trình tái bản DNA cần các đơn phân dNTP (dATP, dTTP, dGTP, dCTP) tự do của môi trường để tổng hợp mạch bổ sung mới.
+
+---
+
+## PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI (4 CÂU LỚN)
+
+### **Câu 1 (Thí nghiệm Monod & Jacob về Operon Lac)**
+* **a) Chủng vi khuẩn E. coli 1 là chủng có cơ chế điều hòa hoạt động của operon Lac diễn ra bình thường nhất khi môi trường xuất hiện đường lactose.**  
+  \$\\rightarrow\$ **ĐÚNG.** Khi có lactose, cả 3 enzyme đều tăng biểu hiện tối đa và đồng bộ (đạt 100%).
+* **b) Kết quả ở chủng vi khuẩn E. coli 4 cho thấy chủng này có thể đã bị đột biến làm mất chức năng của vùng khởi động (P) hoặc xảy ra đột biến làm gen điều hòa (R/lacI) tổng hợp siêu protein ức chế bám chặt không rời vùng vận hành (O).**  
+  \$\\rightarrow\$ **ĐÚNG.** Vì ở chủng 4, cả 3 enzyme đều không được tạo ra (~0%) dù môi trường có lactose.
+* **c) Ở chủng vi khuẩn E. coli 2 và chủng 3, do tỷ lệ biểu hiện của 3 loại enzyme cấu trúc không đồng đều nhau, chứng tỏ cụm gen cấu trúc (Z, Y, A) ở hai chủng này đã không còn được phiên mã chung trên một phân tử mRNA như thông thường.**  
+  \$\\rightarrow\$ **SAI.** Ở vi khuẩn E.coli, cụm gene Z-Y-A luôn được phiên mã trên 1 phân tử polycistronic mRNA duy nhất. Tỷ lệ protein khác nhau là do đột biến cấu trúc gene gây ảnh hưởng đến hiệu quả dịch mã hoặc tính bền vững của từng protein.
+* **d) Nếu đưa chủng vi khuẩn E. coli 1 về nuôi cấy trong môi trường hoàn toàn không có đường lactose, hoạt động phiên mã của Operon Lac sẽ bị kìm hãm và hàm lượng amino acid phóng xạ tích hợp vào các enzyme sẽ giảm mạnh về mức nền rất thấp (tương tự như trạng thái của lô đối chứng).**  
+  \$\\rightarrow\$ **ĐÚNG.** Vì đây là chủng bình thường, mất lactose thì protein ức chế lại gắn vào vùng O khóa phiên mã.
+
+---
+
+### **Câu 2 (Phiên mã & Chế biến mRNA ở Sinh vật Nhân thực)**
+* **a) Quá trình này diễn ra ở kì trung gian của tất cả tế bào.**  
+  \$\\rightarrow\$ **SAI.** Quá trình cắt nối intron chỉ xảy ra ở sinh vật nhân thực. Sinh vật nhân sơ gene không phân mảnh nên không có quá trình này.
+* **b) mRNA sơ khai được tổng hợp từ đoạn mạch khuôn 3'->5'.**  
+  \$\\rightarrow\$ **ĐÚNG.** Mạch khuôn được RNA polymerase đọc theo chiều 3' \$\\rightarrow\$ 5' để tổng hợp mRNA theo chiều 5' \$\\rightarrow\$ 3'.
+* **c) Quá trình hoàn thiện mRNA xảy ra trong nhân tế bào nhân thực.**  
+  \$\\rightarrow\$ **ĐÚNG.** Quá trình gắn mũ 5' cap, gắn đuôi polyA và cắt intron nối exon diễn ra hoàn toàn trong nhân tế bào trước khi mRNA được đưa ra tế bào chất.
+* **d) Các đoạn intron không có chức năng sinh học trong việc mã hóa chuỗi polypeptide.**  
+  \$\\rightarrow\$ **ĐÚNG.** Intron là các đoạn không mang thông tin mã hóa amino acid và bị loại bỏ trong quá trình hoàn thiện.
+
+---
+
+### **Câu 3 (Dịch mã & Bảng mã Di truyền)**
+* **a) Hình trên mô tả quá trình tổng hợp chuỗi polypeptide.**  
+  \$\\rightarrow\$ **ĐÚNG.** Đây là quá trình dịch mã diễn ra trên ribosome.
+* **b) Phân tử tRNA 3 đã vận chuyển amino acid Gly.**  
+  \$\\rightarrow\$ **ĐÚNG.** Codon thứ 3 trên mRNA là \`GGA\` mã hóa cho Glycine (\`Gly\`).
+* **c) Trình tự mạch khuôn của gene mã hóa đoạn amino acid từ 1 đến 4 là 3'-TACAGT CCG TCC-5'.**  
+  \$\\rightarrow\$ **SAI.** mRNA là \`5'-AUG UCA GGA AGU-3'\` \$\\rightarrow\$ Mạch khuôn phải là \`3'-TAC AGT CCT TCA-5'\`.
+* **d) Trong chuỗi polypeptide, từ amino acid số 1 đến amino acid số 8 có 2 amino acid cùng loại.**  
+  \$\\rightarrow\$ **ĐÚNG.** Codon 2 (\`UCA\`) và codon 4 (\`AGU\`) cùng mã hóa amino acid Serine (\`Ser\`).
+
+---
+
+### **Câu 4 (Biến thể Mã 122/124: Cơ chế tác động của 2 loại thuốc Covid-19)**
+* **a) Thuốc 1 can thiệp vào quá trình phiên mã tạo ra mRNA của virus hoặc tác động làm phân hủy mRNA của virus.**  
+  \$\\rightarrow\$ **ĐÚNG.** Vì mẫu dùng Thuốc 1 có hàm lượng mRNA giảm mạnh, kéo theo lượng protein cũng giảm tương ứng.
+* **b) Thuốc 2 làm giảm lượng mRNA so với không xử lí thuốc dẫn đến làm giảm hàm lượng protein do protein là sản phẩm sau dịch mã.**  
+  \$\\rightarrow\$ **SAI.** Ở mẫu dùng Thuốc 2, lượng mRNA vẫn ở mức 7.5 (ngang bằng với lô không thuốc), không hề bị giảm.
+* **c) Thuốc 2 can thiệp vào quá trình dịch mã từ mRNA virus hoặc tác động làm phân hủy một phần protein virus.**  
+  \$\\rightarrow\$ **ĐÚNG.** Do mRNA giữ nguyên nhưng protein giảm, chứng tỏ thuốc tác động vào giai đoạn dịch mã hoặc thúc đẩy phân hủy protein.
+* **d) Xử lí thuốc 2 không làm thay đổi hàm lượng mRNA do vậy nó can thiệp vào phiên mã...**  
+  \$\\rightarrow\$ **SAI.** Không làm thay đổi mRNA thì KHÔNG can thiệp vào phiên mã.
+
+---
+
+## PHẦN III: TRẢ LỜI NGẮN (6 CÂU)
+
+### **Câu 1**
+**Đề bài:** Giả sử phân tử mRNA được tạo ra từ 3 loại nucleotide A, U, G. Theo lí thuyết số loại codon mã hóa amino acid tối đa có trên phân tử mRNA là bao nhiêu?  
+* **Đáp số:** **24**
+* **Cách giải & Phân tích bẫy:**
+  - Từ 3 loại nu A, U, G tạo được: \$3^3 = 27\$ bộ ba codon.
+  - Trong 27 bộ ba này, có 3 bộ ba kết thúc là: \`UAA\`, \`UAG\`, \`UGA\` (cả 3 đều chỉ tạo từ A, U, G).
+  - 3 bộ ba này KHÔNG mã hóa amino acid.
+  - Số codon mã hóa amino acid tối đa: \$27 - 3 = 24\$.
+
+---
+
+### **Câu 2**
+**Đề bài:** Cho các thành phần: (1) Gene, (2) mRNA, (3) Amino acid, (4) tRNA, (5) Ribosome, (6) Nucleotide. Có bao nhiêu thành phần tham gia trực tiếp vào quá trình dịch mã?  
+* **Đáp số:** **4**
+* **Cách giải:** 4 thành phần gồm: (2) mRNA, (3) Amino acid, (4) tRNA, (5) Ribosome. Gene và nucleotide tham gia vào tái bản và phiên mã.
+
+---
+
+### **Câu 3**
+**Đề bài:** Cho các cấu trúc và các quá trình sau: mRNA, tRNA, rRNA, phiên mã, dịch mã. Bao nhiêu cấu trúc và quá trình có xuất hiện nguyên tắc bổ sung?  
+* **Đáp số:** **4**
+* **Cách giải:**
+  - tRNA: có cấu trúc thùy cuộn xoắn bổ sung (A-U, G-C).
+  - rRNA: có các đoạn xoắn kép bổ sung nội phân tử.
+  - Phiên mã: nguyên tắc bổ sung giữa mạch khuôn DNA và ribonucleotide tự do.
+  - Dịch mã: nguyên tắc bổ sung giữa codon (mRNA) và anticodon (tRNA).
+  *(mRNA mạch đơn thẳng không có nguyên tắc bổ sung).*
+
+---
+
+### **Câu 4**
+**Đề bài:** Ở vi khuẩn E.coli trong quá trình điều hòa hoạt động của operon Lac, khi môi trường có lactose, các gene cấu trúc lac Z, lac Y, lac A phiên mã tạo ra bao nhiêu loại chuỗi polypeptide?  
+* **Đáp số:** **3**
+* **Cách giải:** Phiên mã tạo 1 loại polycistronic mRNA, nhưng khi dịch mã tạo ra 3 loại chuỗi polypeptide riêng biệt tương ứng với 3 enzyme: beta-galactosidase (lac Z), permease (lac Y), transacetylase (lac A).
+
+---
+
+### **Câu 5**
+**Đề bài:** Bốn phân tử nucleic acid mạch kép có tổng số liên kết hydrogen được mô tả trong biểu đồ (DNA 1: 3100, DNA 2: 2000, DNA 3: 1400, DNA 4: 3900). Biết bốn phân tử này có tổng số nucleotide bằng nhau, cho biết phân tử DNA số mấy có loại nucleotide cytosine (C) là nhiều nhất?  
+* **Đáp số:** **4**
+* **Cách giải:**
+  - Vì tổng số nucleotide \$N = 2A + 2G = 2T + 2C\$ là bằng nhau giữa 4 phân tử.
+  - Số liên kết hydrogen: \$H = 2A + 3G = (2A + 2G) + G = N + C\$.
+  - Suy ra: \$C = H - N\$. Do \$N\$ không đổi, phân tử nào có số liên kết hydro \$H\$ lớn nhất sẽ có số nucleotide loại \$C\$ nhiều nhất.
+  - Phân tử DNA 4 có \$H = 3900\$ (cao nhất) \$\\rightarrow\$ chứa nhiều Cytosine nhất.
+
+---
+
+### **Câu 6**
+**Đề bài:** Hình bên mô tả cấu trúc ribosome khi tham gia quá trình dịch mã, hãy cho biết vị trí liên kết peptide hình thành giữa các amino acid là cấu trúc số mấy?  
+* **Đáp số:** **2**
+* **Cách giải:** Vị trí số 2 nằm tại trung tâm xúc tác peptidyl transferase của tiểu phần lớn ribosome, nơi hình thành liên kết peptide giữa nhóm amin của amino acid mới vào và nhóm carboxyl của amino acid trước đó.
+
+---
+
+## PHẦN IV: CÂU HỎI TỰ LUẬN
+**Đề bài:** Nếu môi trường nuôi cấy vi khuẩn E.coli không có lactose nhưng operon lac vẫn hoạt động thì có thể dự đoán vi khuẩn bị hỏng ở bộ phận nào của operon lac. Giải thích?  
+
+* **Lời giải chi tiết:**
+  Khi môi trường KHÔNG có lactose mà Operon Lac vẫn hoạt động phiên mã tạo enzyme liên tục (hiện tượng đột biến cấu thành), có thể dự đoán vi khuẩn bị đột biến ở 1 trong 2 vị trí sau:
+  1. **Đột biến ở Gene điều hòa (\$LacI\$):**
+     - Đột biến làm gene \$LacI\$ mất khả năng phiên mã/dịch mã, hoặc tạo ra protein ức chế bị biến đổi cấu hình không gian không thể nhận biết và liên kết được vào vùng vận hành (\$O\$).
+     - Hậu quả: Không có protein ức chế bám trên vùng \$O\$, RNA polymerase tự do bám vào vùng \$P\$ và phiên mã các gene cấu trúc liên tục.
+  2. **Đột biến ở Vùng vận hành (\$O\$ - Operator):**
+     - Vùng \$O\$ bị đột biến thay đổi trình tự nucleotide khiến protein ức chế bình thường không thể bám vào được.
+     - Hậu quả: Dù protein ức chế vẫn được tổng hợp bình thường nhưng không thể gắn vào vùng \$O\$, enzyme RNA polymerase không bị cản trở và phiên mã liên tục.
+`;
+document.getElementById('content').innerHTML = marked.parse(markdownContent);
+</script>
+
+</body>
+</html>
