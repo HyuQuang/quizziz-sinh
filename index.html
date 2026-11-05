@@ -226,7 +226,7 @@
     /* Main Navigation Tabs */
     .nav-tabs {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      grid-template-columns: repeat(7, 1fr);
       gap: 8px;
       margin-bottom: 22px;
       background: rgba(15, 23, 42, 0.6);
@@ -918,6 +918,11 @@
     }
 
     /* Mobile Responsive Optimizations */
+    @media (max-width: 992px) {
+      .nav-tabs {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
     @media (max-width: 680px) {
       .nav-tabs {
         grid-template-columns: repeat(3, 1fr);
@@ -987,17 +992,25 @@
 
     <!-- Main Navigation Tabs -->
     <nav class="nav-tabs">
-      <button class="tab-btn active" onclick="switchMainTab('official')">
+      <button class="tab-btn active" onclick="switchMainTab('theory')">
+        <span class="tab-icon">📖</span>
+        <span>Ôn Tập Lí Thuyết</span>
+      </button>
+      <button class="tab-btn" onclick="switchMainTab('decuong')">
+        <span class="tab-icon">📋</span>
+        <span>Đề Cương 56 Câu</span>
+      </button>
+      <button class="tab-btn" onclick="switchMainTab('official')">
         <span class="tab-icon">🎓</span>
         <span>Đề Chính Thức</span>
       </button>
       <button class="tab-btn" onclick="switchMainTab('practice')">
-        <span class="tab-icon">📘</span>
+        <span class="tab-icon">📝</span>
         <span>Đề Ôn 1 & 2</span>
       </button>
       <button class="tab-btn" onclick="switchMainTab('calc')">
         <span class="tab-icon">🎲</span>
-        <span>Random Bài Toán</span>
+        <span>Calculation Lab</span>
       </button>
       <button class="tab-btn" onclick="switchMainTab('traps')">
         <span class="tab-icon">⚡</span>
