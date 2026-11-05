@@ -226,7 +226,7 @@
     /* Main Navigation Tabs */
     .nav-tabs {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 8px;
       margin-bottom: 22px;
       background: rgba(15, 23, 42, 0.6);
@@ -985,13 +985,9 @@
       </p>
     </section>
 
-    <!-- Main Navigation Tabs: 6 Tabs -->
+    <!-- Main Navigation Tabs -->
     <nav class="nav-tabs">
-      <button class="tab-btn active" onclick="switchMainTab('theory')">
-        <span class="tab-icon">📚</span>
-        <span>Lí Thuyết & Video</span>
-      </button>
-      <button class="tab-btn" onclick="switchMainTab('official')">
+      <button class="tab-btn active" onclick="switchMainTab('official')">
         <span class="tab-icon">🎓</span>
         <span>Đề Chính Thức</span>
       </button>
@@ -1467,6 +1463,45 @@
 
     </div>
 
+    <!-- =========================================================================
+         TAB 2: ĐỀ CƯƠNG ÔN TẬP GIỮA KÌ I - 56 CÂU HỎI TRÚNG TỦ
+         ========================================================================= -->
+    <div id="tab-decuong" class="tab-content-panel" style="display: none;">
+      <div class="exam-header-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 78, 59, 0.4) 100%); border-color: rgba(52, 211, 153, 0.35);">
+        <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: #34d399; letter-spacing: 0.1em; margin-bottom: 4px;">
+          ⭐️ NGÂN HÀNG ĐỀ THI GỐC TRƯỜNG THPT CỔ LOA (NĂM HỌC 2026 - 2027) ⭐️
+        </div>
+        <h2 style="font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+          ĐỀ CƯƠNG ÔN TẬP KIỂM TRA GIỮA KÌ I - MÔN SINH HỌC 12
+        </h2>
+        <p style="font-size: 0.92rem; color: #cbd5e1; max-width: 900px; margin: 0 auto 12px; line-height: 1.5;">
+          Nguồn gốc trực tiếp xuất đề của cả <b>Đề 1</b> (lấy 18 câu MCQ đầu + 3 câu TF đầu + Tự luận 1), <b>Đề 2</b> (lấy 18 câu MCQ sau + 3 câu TF sau + Tự luận 2) và <b>Đề thi chính thức</b>! Ôn trọn vẹn 56 câu này giúp bạn nắm chắc điểm 10 tuyệt đối!
+        </p>
+
+        <!-- Live Score & Actions -->
+        <div class="exam-stats-bar" style="margin-top: 10px;">
+          <div class="stat-badge"><span class="stat-badge-num" id="dcScore">0/56</span><span class="stat-badge-lbl">Đã Hoàn Thành</span></div>
+          <div class="stat-badge"><span class="stat-badge-num" id="dcPct">0%</span><span class="stat-badge-lbl">Độ Chính Xác</span></div>
+          <button class="btn-top" onclick="resetDecuongQuiz()" style="background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); color: #fca5a5;">🔄 Làm Lại Từ Đầu</button>
+          <button class="btn-top" onclick="revealAllDecuong()" style="background: rgba(59, 130, 246, 0.2); border-color: rgba(59, 130, 246, 0.4); color: #93c5fd;">👁️ Hiện Toàn Bộ Đáp Án</button>
+        </div>
+      </div>
+
+      <!-- Decuong Sub Navigation Filters -->
+      <div class="subnav-bar" style="margin: 20px 0 16px;">
+        <button class="pill-btn active" onclick="filterDecuong('all')">Tất Cả (56 Câu)</button>
+        <button class="pill-btn" onclick="filterDecuong('mcq')">Phần I: Trắc Nghiệm 4 Phương Án (36 Câu)</button>
+        <button class="pill-btn" onclick="filterDecuong('tf')">Phần II: Đúng / Sai (6 Câu)</button>
+        <button class="pill-btn" onclick="filterDecuong('short')">Phần III: Trả Lời Ngắn (12 Câu)</button>
+        <button class="pill-btn" onclick="filterDecuong('essay')">Phần IV: Tự Luận (2 Câu)</button>
+      </div>
+
+      <!-- Decuong Questions Container -->
+      <div id="decuongQuestionsContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
     <div id="tab-official" class="tab-content-panel" style="display: none;">
       <div class="subnav-bar">
         <div class="filter-pills">
@@ -1761,6 +1796,26 @@
         </p>
       </div>
 
+      
+      <div class="explanation-box" style="margin-bottom: 24px; background: rgba(16, 185, 129, 0.12); border-color: rgba(52, 211, 153, 0.4);">
+        <div class="explanation-title" style="color: #34d399; font-size: 1.15rem;">
+          🔍 BẢN ĐỒ QUAN HỆ ĐỘC QUYỀN: ĐỀ CƯƠNG GỐC VÀ CÁC ĐỀ THI
+        </div>
+        <div class="explanation-body" style="font-size: 0.94rem; line-height: 1.7; color: #f1f5f9;">
+          Qua phân tích đối chiếu 100% câu chữ, <b>Đề Cương Ôn Tập Giữa Kì I (56 câu)</b> chính là <b>Ngân hàng đề gốc</b>:<br>
+          • <b>Đề Ôn Luyện Số 1</b>: Lấy chính xác nửa đầu của Đề cương:<br>
+          &nbsp;&nbsp;&nbsp;- 18 câu trắc nghiệm = Đúng <b>Câu 1 đến Câu 18</b> phần Trắc nghiệm Đề Cương.<br>
+          &nbsp;&nbsp;&nbsp;- 3 câu Đúng/Sai = Đúng <b>Câu 1, Câu 2, Câu 3</b> phần Đúng/Sai Đề Cương.<br>
+          &nbsp;&nbsp;&nbsp;- Câu tự luận = Đúng <b>Câu 1 Tự Luận</b> Đề Cương (Cấu trúc gene nhân sơ vs nhân thực).<br><br>
+          • <b>Đề Ôn Luyện Số 2</b>: Lấy chính xác nửa sau của Đề cương:<br>
+          &nbsp;&nbsp;&nbsp;- 18 câu trắc nghiệm = Đúng <b>Câu 19 đến Câu 36</b> phần Trắc nghiệm Đề Cương.<br>
+          &nbsp;&nbsp;&nbsp;- 3 câu Đúng/Sai = Đúng <b>Câu 4, Câu 5, Câu 6</b> phần Đúng/Sai Đề Cương.<br>
+          &nbsp;&nbsp;&nbsp;- Câu tự luận = Đúng <b>Câu 2 Tự Luận</b> Đề Cương (Đột biến Operon Lac không có lactose).<br><br>
+          • <b>Đề Thi Chính Thức THPT Cổ Loa (Mã 497)</b>: Trộn ngẫu nhiên (shuffle) 18 câu từ chính 36 câu trắc nghiệm của Đề cương kết hợp các câu thực nghiệm và đồ thị.<br>
+          👉 <b>Lời khuyên ôn tập</b>: Học thuộc và làm chủ <b>Tab Đề Cương (56 câu)</b> là bạn nắm chắc điểm 10 trong tay!
+        </div>
+      </div>
+
       <div class="download-grid">
         <div class="download-card">
           <div>
@@ -1859,7 +1914,7 @@
     <div class="bottom-bar-inner">
       <button class="btn-nav" onclick="scrollToTop()">⬆️ Lên Đầu Trang</button>
       <div style="font-size: 0.82rem; color: var(--text-muted); text-align: center;">
-        <span id="globalActiveTabLabel">Học Lí Thuyết & Video Hoạt Hình</span>
+        <span id="globalActiveTabLabel">Đề Chính Thức THPT Cổ Loa</span>
       </div>
       <button class="btn-nav primary" onclick="shuffleCurrentExam()">🔀 Xáo Đề Mới</button>
     </div>
@@ -1951,12 +2006,14 @@
     }
 
     
-    /* Injected JSON Databases */
+    /* ==========================================================================
+       INJECTED JSON DATABASES
+       ========================================================================== */
     const officialExam = {"mcq": [{"id": "off_1", "part": "p1", "num": 1, "type": "mcq", "title": "Các giai đoạn của quá trình dịch mã", "text": "Quá trình dịch mã gồm các giai đoạn nào?", "options": ["Phiên mã, hoạt hóa các amino acid và tổng hợp chuỗi polypeptide", "Phiên mã, tổng hợp các loại RNA và tổng hợp chuỗi polypeptide", "Phiên mã, dịch mã và tổng hợp chuỗi polypeptide", "Hoạt hóa các amino acid và tổng hợp chuỗi polypeptide"], "correct": 3, "explain": "Quá trình dịch mã diễn ra qua 2 giai đoạn: (1) Hoạt hóa amino acid và gắn vào tRNA tạo aminoacyl-tRNA; (2) Tổng hợp chuỗi polypeptide trên ribosome (gồm mở đầu, kéo dài và kết thúc). Phiên mã là quá trình riêng biệt diễn ra trước đó.", "trap": "Cẩn thận nhầm lẫn: Phiên mã là quá trình tổng hợp RNA từ mạch khuôn DNA, KHÔNG thuộc quá trình dịch mã!"}, {"id": "off_2", "part": "p1", "num": 2, "type": "mcq", "title": "Chức năng truyền đạt thông tin của DNA", "text": "DNA có chức năng truyền đạt thông tin di truyền gần như nguyên vẹn qua các thế hệ tế bào là nhờ cơ chế", "options": ["phân bào.", "phiên mã.", "tái bản DNA.", "dịch mã."], "correct": 2, "explain": "Cơ chế tái bản (nhân đôi) DNA theo 2 nguyên tắc cốt lõi: nguyên tắc bổ sung (A-T, G-C) và nguyên tắc bán bảo toàn (giữ lại 1 mạch cũ làm khuôn) giúp sao chép thông tin di truyền chính xác qua các thế hệ tế bào.", "trap": "Phân bào là quá trình phân chia tế bào, nhưng cơ chế phân tử trực tiếp sao chép nguyên vẹn vật chất di truyền là tái bản DNA."}, {"id": "off_3", "part": "p1", "num": 3, "type": "mcq", "title": "Codon kết thúc dịch mã", "text": "Codon nào sau đây mang tín hiệu kết thúc quá trình dịch mã?", "options": ["5'UGA3'.", "5'AGC3'.", "5'AGG3'.", "5'ACC3'."], "correct": 0, "explain": "Trên phân tử mRNA có 3 codon kết thúc báo hiệu chấm dứt dịch mã: 5'UAA3', 5'UAG3', 5'UGA3'. Chúng không mã hóa amino acid nào.", "trap": "Nhớ chính xác chiều đọc 5' -> 3'! Ví dụ 3'AGU5' (ngược lại của 5'UGA3') thì không phải codon kết thúc."}, {"id": "off_4", "part": "p1", "num": 4, "type": "mcq", "title": "Tái bản DNA ở sinh vật nhân thực", "text": "Đặc điểm nào sau đây chỉ có ở quá trình tái bản DNA của sinh vật nhân thực mà không có ở quá trình tái bản DNA của sinh vật nhân sơ?", "options": ["Mạch mới được tổng hợp bằng cách gắn thêm nucleotide vào đầu 3' của đoạn RNA mồi.", "Một mạch mới được tổng hợp liên tục, mạch mới còn lại được tổng hợp thành từng phân đoạn okazaki.", "DNA có nhiều điểm khởi đầu tái bản, nên quá trình tái bản xảy ra ở nhiều vùng trên một phân tử.", "DNA được tái bản theo nguyên tắc bổ sung và nguyên tắc bán bảo toàn."], "correct": 2, "explain": "Sinh vật nhân sơ có DNA dạng vòng nhỏ nên chỉ có 1 điểm khởi đầu tái bản (ori). Ngược lại, sinh vật nhân thực có hệ gen thẳng rất lớn nên có NHIỀU điểm khởi đầu tái bản (ori) tạo nhiều đơn vị tái bản (replicon) hoạt động đồng thời để rút ngắn thời gian nhân đôi.", "trap": "Các đặc điểm A, B, D đều là đặc điểm chung giống nhau ở cả nhân sơ và nhân thực."}, {"id": "off_5", "part": "p1", "num": 5, "type": "mcq", "title": "Cấu trúc vùng điều hòa của gene", "text": "Vùng điều hoà của gen là vùng", "options": ["mang tín hiệu khởi động và kiểm soát quá trình phiên mã.", "mang thông tin mã hoá các amino acid.", "quy định trình tự sắp xếp các amino acid trong phân tử protein.", "mang tín hiệu kết thúc phiên mã."], "correct": 0, "explain": "Cấu trúc gene gồm 3 vùng: Vùng điều hòa (đầu 3' mạch khuôn, chứa promoter cho RNA polymerase bám vào khởi động phiên mã); Vùng mã hóa (mang thông tin mã hóa aa); Vùng kết thúc (đầu 5' mạch khuôn, mang tín hiệu dừng phiên mã).", "trap": "Nhớ: Vùng điều hòa nằm ở đầu 3' của MẠCH KHUÔN (tương ứng đầu 5' của mạch bổ sung)."}, {"id": "off_6", "part": "p1", "num": 6, "type": "mcq", "title": "Đặc điểm cấu trúc của mRNA", "text": "Đặc điểm nào dưới đây đúng với mRNA?", "options": ["Có cấu trúc mạch đơn, dạng thẳng, gồm 4 loại đơn phân A, U, G, C.", "Mang anticodon, làm khuôn tổng hợp protein.", "Kết hợp với các protein để hình thành nhiễm sắc thể.", "Đóng vai trò vận chuyển amino acid."], "correct": 0, "explain": "mRNA có cấu trúc mạch đơn dạng thẳng, không cuộn xoắn hay có liên kết hydro nội phân tử như tRNA và rRNA, đơn phân là A, U, G, C. mRNA mang các codon làm khuôn dịch mã.", "trap": "Bẫy B: mRNA mang codon chứ KHÔNG mang anticodon (anticodon nằm trên tRNA). Bẫy D là chức năng của tRNA."}, {"id": "off_7", "part": "p1", "num": 7, "type": "mcq", "title": "Nguyên tắc bán bảo toàn", "text": "Mỗi DNA con sau nhân đôi đều có một mạch của DNA mẹ, mạch còn lại được hình thành từ các nucleotide tự do của môi trường. Đây là cơ sở của nguyên tắc", "options": ["bổ sung.", "bổ sung và bảo toàn.", "bổ sung và bán bảo toàn.", "bán bảo toàn."], "correct": 3, "explain": "'Bán bảo toàn' (semi-conservative) có nghĩa là giữ lại một nửa. Trong mỗi phân tử DNA con tạo thành luôn có 1 mạch cũ của DNA mẹ và 1 mạch mới tổng hợp.", "trap": "Đề bài chỉ nêu định nghĩa của nguyên tắc bán bảo toàn, không hỏi cơ chế bắt cặp A-T, G-C nên chọn đáp án D là chính xác nhất."}, {"id": "off_8", "part": "p1", "num": 8, "type": "mcq", "title": "Dịch mã từ mạch bổ sung (Mã 497 Câu 8 - Bẫy Kinh Điển)", "text": "Cho biết một số codon và amino acid tương ứng: UUA, UUG: Leu | UCU, UCG: Ser | UGG: Trp | CAU, CAC: His | CCC, CCA: Pro. Một gene ở sinh vật nhân thực có trình tự nucleotide ở MẠCH BỔ SUNG như sau:\n5' ... ATGTCTTTTACCA ... 3'\nTheo lí thuyết, trình tự amino acid nào sau đây được mã hoá bởi đoạn gene trên?", "options": ["Met - Trp - His - Pro.", "Ser - Leu - Pro.", "Met - Ser - Leu - Pro.", "His - Trp - Leu."], "correct": 2, "explain": "BẪY CỰC HIỂM: Đề bài cho MẠCH BỔ SUNG (mạch mã hóa - coding strand) 5'... ATGTCTTTTACCA ...3' chứ không phải mạch khuôn! Trình tự mRNA phiên mã có chiều 5'->3' GIỐNG HỆT mạch bổ sung, chỉ cần thay T bằng U! => mRNA: 5' ... AUG UCU UUA CCA ... 3'. Tra bảng: AUG (Met), UCU (Ser), UUA (Leu), CCA (Pro) => Met - Ser - Leu - Pro.", "trap": "Học sinh sơ ý tưởng đây là mạch khuôn 3'->5' rồi phiên mã bổ sung ra UAC... sẽ chọn sai đáp án!"}, {"id": "off_9", "part": "p1", "num": 9, "type": "mcq", "title": "Enzyme tổng hợp mạch mới trong tái bản", "text": "Enzyme xúc tác để tổng hợp mạch mới trong quá trình tái bản DNA là", "options": ["primase.", "nuclease.", "DNA polymerase.", "ligase."], "correct": 2, "explain": "DNA polymerase có chức năng chọn và gắn các nucleotide tự do của môi trường vào đầu 3'-OH tự do của chuỗi polynucleotide đang kéo dài theo nguyên tắc bổ sung.", "trap": "Primase chỉ tổng hợp đoạn mồi RNA; Ligase nối các đoạn Okazaki; Nuclease cắt bỏ sai hỏng."}, {"id": "off_10", "part": "p1", "num": 10, "type": "mcq", "title": "Ý nghĩa của điều hòa biểu hiện gene", "text": "Phát biểu nào sau đây KHÔNG ĐÚNG khi nói về ý nghĩa của sự điều hòa biểu hiện gene đối với tế bào?", "options": ["tạo ra tính đặc thù của các mô, cơ quan trong cơ thể.", "tiết kiệm được năng lượng và thích nghi được với sự thay đổi của môi trường.", "giúp tạo ra các gene mới, cung cấp nguyên liệu cho chọn giống và tiến hóa.", "giúp các gene biểu hiện sản phẩm phù hợp với giai đoạn phát triển của cơ thể."], "correct": 2, "explain": "Điều hòa biểu hiện gen chỉ kiểm soát số lượng sản phẩm protein được tạo ra ở từng thời điểm, KHÔNG TẠO RA GENE MỚI. Tạo gene mới là vai trò của đột biến gene.", "trap": "Phân biệt rõ: Biểu hiện gen (sao mã, dịch mã) khác với sự phát sinh đột biến tạo alen mới."}, {"id": "off_11", "part": "p1", "num": 11, "type": "mcq", "title": "Khuôn trực tiếp cho dịch mã", "text": "Thông tin di truyền được trực tiếp sử dụng trong tổng hợp protein là thông tin chứa trong phân tử", "options": ["rRNA.", "DNA.", "tRNA.", "mRNA."], "correct": 3, "explain": "Phân tử mRNA mang trực tiếp bản sao mã di truyền (các bộ ba codon) từ DNA ra tế bào chất để làm khuôn cho quá trình dịch mã trên ribosome.", "trap": "DNA mang thông tin gốc nhưng gián tiếp (ở trong nhân), mRNA mới là khuôn trực tiếp ngoài tế bào chất."}, {"id": "off_12", "part": "p1", "num": 12, "type": "mcq", "title": "Cơ chế khi môi trường có Lactose", "text": "Trong sự điều hòa sinh tổng hợp protein ở vi khuẩn E. coli, khi môi trường có lactose (chất cảm ứng) thì những cơ chế nào diễn ra?\nI. Gene điều hòa chỉ huy tổng hợp một loại protein ức chế gắn vào vùng O.\nII. Chất cảm ứng kết hợp với protein ức chế, làm vô hiệu hóa các chất ức chế.\nIII. Vùng O được khởi động, các gene cấu trúc hoạt động và không tổng hợp được protein.\nIV. Quá trình phiên mã các gene cấu trúc bị ức chế do đó không tổng hợp được mRNA.\nV. Vùng O được giải phóng, các gene cấu trúc hoạt động và tổng hợp được protein.", "options": ["II và V.", "I và IV.", "I và II.", "III và IV."], "correct": 0, "explain": "Khi có lactose: Lactose (chất cảm ứng) gắn vào protein ức chế làm biến đổi cấu hình không gian (vô hiệu hóa protein ức chế - II đúng). Vùng vận hành O được giải phóng, RNA polymerase bám vào promoter P để phiên mã cụm gene Z, Y, A tạo các enzyme phân giải lactose (V đúng).", "trap": "I và IV là diễn biến khi môi trường KHÔNG CÓ lactose."}, {"id": "off_13", "part": "p1", "num": 13, "type": "mcq", "title": "Cấu tạo chung của nucleotide (Hình vẽ & Cạm bẫy)", "text": "Hình vẽ mô tả cấu tạo chung của một nucleotide. Hãy cho biết có bao nhiêu phát biểu sau đây đúng?\nI. Đây là đơn phân cấu tạo nên RNA và trong một đơn phân này có chứa 4 loại base nitrogenous là A, C, G và T.\nII. Các nucleotide khác nhau chỉ khác nhau ở thành phần base nitrogenous.\nIII. Đường deoxyribose có công thức phân tử là C5H10O5; base nitrogenous gồm có 4 loại: A, C, G, U.\nIV. Một nucleotide gồm ba thành phần: acid photphoric, đường deoxyribose, base nitrogenous và có kích thước 3,4 nm.", "options": ["1.", "2.", "3.", "4."], "correct": 0, "explain": "Chỉ có duy nhất phát biểu II đúng! Phân tích lỗi sai: I SAI (mỗi đơn phân chỉ chứa 1 gốc base duy nhất); III SAI (Đường deoxyribose là C5H10O4 chứ không phải C5H10O5); IV SAI (Kích thước 1 nucleotide là 0.34 nm = 3.4 Å; còn 3.4 nm là 1 chu kỳ xoắn gồm 10 cặp nucleotide).", "trap": "Đây là câu bẫy kinh điển: 0.34 nm vs 3.4 nm; C5H10O4 vs C5H10O5.", "image": "images/official_cau13_nucleotide.jpg", "has_diagram": true, "diagram_title": "Sơ đồ cấu tạo chung của 1 nucleotide"}, {"id": "off_14", "part": "p1", "num": 14, "type": "mcq", "title": "Vai trò của Lactose trong Operon Lac", "text": "Trong cơ chế điều hoà biểu hiện gene ở operon Lac, lactose được xem là chất giúp cho gene được biểu hiện vì", "options": ["lactose xuất hiện liên kết với RNA polymerase ức chế quá trình phiên mã gene cấu trúc.", "việc phiên mã gene cấu trúc phụ thuộc vào sự có mặt hay không có mặt của lactose.", "lactose xuất hiện liên kết với RNA polymerase kích hoạt quá trình phiên mã gene cấu trúc.", "việc hoạt động gene điều hòa LacI phụ thuộc vào lactose."], "correct": 1, "explain": "Lactose là chất cảm ứng (inducer). Khi có lactose thì operon mở, khi hết lactose thì operon đóng. Quá trình phiên mã cụm gene cấu trúc phụ thuộc trực tiếp vào sự có mặt của lactose.", "trap": "Lactose liên kết với PROTEIN ỨC CHẾ chứ KHÔNG liên kết với RNA polymerase hay gene điều hòa LacI."}, {"id": "off_15", "part": "p1", "num": 15, "type": "mcq", "title": "Chiều di chuyển của Ribosome trên mRNA", "text": "Nhận định nào sau đây KHÔNG ĐÚNG khi nói về cơ chế dịch mã ở sinh vật nhân thực?", "options": ["Khi dịch mã ribosome dịch chuyển theo chiều 3' - 5' trên phân tử mRNA.", "Amino acid mở đầu trong quá trình dịch mã là methionine.", "Khi ribosome tiếp xúc với mã UGA thì quá trình dịch mã dừng lại.", "Mỗi phân tử mRNA có thể tổng hợp được từ một đến nhiều chuỗi polypeptide cùng loại."], "correct": 0, "explain": "Ribosome LUÔN dịch chuyển theo chiều 5' -> 3' trên phân tử mRNA! Chiều 3' -> 5' là sai hoàn toàn.", "trap": "Tất cả các quá trình tổng hợp chuỗi (tái bản DNA, phiên mã RNA, ribosome trượt dịch mã) đều tuân theo hướng 5' -> 3'."}, {"id": "off_16", "part": "p1", "num": 16, "type": "mcq", "title": "Bản chất quá trình phiên mã", "text": "Phiên mã là quá trình tổng hợp nên phân tử", "options": ["DNA.", "cDNA.", "protein.", "RNA."], "correct": 3, "explain": "Phiên mã (transcription) là quá trình enzyme RNA polymerase sử dụng 1 mạch khuôn DNA để tổng hợp các loại phân tử RNA (mRNA, tRNA, rRNA).", "trap": "Tránh nhầm phiên mã (tạo RNA) với dịch mã (tạo chuỗi polypeptide protein)."}, {"id": "off_17", "part": "p1", "num": 17, "type": "mcq", "title": "Số lần nhân đôi và phiên mã của các gen trong Operon Lac", "text": "Ở vi khuẩn E.coli, khi nói về hoạt động của các gene cấu trúc trong operon Lac, có bao nhiêu phát biểu sau đây KHÔNG ĐÚNG?\nI. Nếu gene lacA nhân đôi 3 lần thì gene điều hòa cũng nhân đôi 3 lần.\nII. Nếu gene lacZ nhân đôi 4 lần thì gene Y sẽ nhân đôi 2 lần.\nIII. Nếu gene Y phiên mã 5 lần thì gene điều hòa cũng phiên mã 5 lần.\nIV. Khi môi trường có lactose, các gene cấu trúc phiên mã tạo ra 3 loại mRNA.", "options": ["2.", "4.", "3.", "1."], "correct": 2, "explain": "Có 3 phát biểu KHÔNG ĐÚNG (II, III, IV sai; chỉ I đúng). Lập luận: I ĐÚNG vì nằm trên cùng 1 phân tử DNA nên nhân đôi cùng số lần; II SAI vì Z và Y cùng phân tử DNA phải nhân đôi cùng số lần (4 lần); III SAI vì gen điều hòa phiên mã độc lập, số lần phiên mã không bằng cụm gen cấu trúc; IV SAI vì cụm Z, Y, A phiên mã chung tạo ra 1 phân tử polycistronic mRNA duy nhất.", "trap": "Đề hỏi 'bao nhiêu phát biểu KHÔNG ĐÚNG', chú ý đếm số phát biểu sai!"}, {"id": "off_18", "part": "p1", "num": 18, "type": "mcq", "title": "Nguyên liệu của quá trình tái bản DNA", "text": "Yếu tố nào sau đây cần cho quá trình tái bản DNA?", "options": ["Ribosome.", "tRNA.", "mRNA.", "Nucleotide."], "correct": 3, "explain": "Quá trình tái bản DNA cần các nucleotide tự do của môi trường (dATP, dTTP, dGTP, dCTP) để DNA polymerase lắp ráp tạo mạch polynucleotide mới.", "trap": "Ribosome, tRNA, mRNA là thành phần tham gia quá trình dịch mã tổng hợp protein."}], "tf": [{"id": "off_tf_1", "part": "p2", "num": 1, "title": "Thí nghiệm Monod & Jacob về Operon Lac (Biểu đồ Amino acid phóng xạ)", "intro": "Các nhà khoa học F. Jacob và J. Monod đã phân lập được 4 chủng vi khuẩn E. coli đột biến (1, 2, 3, 4) và nuôi cấy trong môi trường có lactose chứa amino acid phóng xạ để định lượng % sản phẩm của 3 enzyme: beta-galactosidase (LacZ), permease (LacY) và transacetylase (LacA).", "items": [{"id": "off_tf_1_a", "label": "a", "statement": "Chủng vi khuẩn E. coli 1 là chủng có cơ chế điều hòa hoạt động của operon Lac diễn ra bình thường nhất khi môi trường xuất hiện đường lactose.", "correct": true, "explain": "ĐÚNG. Ở chủng 1, khi có lactose cả 3 loại enzyme cấu trúc đều biểu hiện đồng đều và đạt mức tối đa 100%."}, {"id": "off_tf_1_b", "label": "b", "statement": "Kết quả ở chủng vi khuẩn E. coli 4 cho thấy chủng này có thể đã bị đột biến làm mất chức năng của vùng khởi động (P) hoặc xảy ra đột biến làm gen điều hòa tổng hợp siêu protein ức chế bám chặt không rời vùng vận hành (O).", "correct": true, "explain": "ĐÚNG. Ở chủng 4, cả 3 enzyme đều không được tạo ra (~0%) dù có mặt lactose, chứng tỏ RNA pol không thể phiên mã (hỏng P hoặc O bị khóa vĩnh viễn)."}, {"id": "off_tf_1_c", "label": "c", "statement": "Ở chủng vi khuẩn E. coli 2 và chủng 3, do tỷ lệ biểu hiện của 3 loại enzyme cấu trúc không đồng đều nhau, chứng tỏ cụm gen cấu trúc (Z, Y, A) ở hai chủng này đã không còn được phiên mã chung trên một phân tử mRNA như thông thường.", "correct": false, "explain": "SAI. Ở E. coli, cụm Z-Y-A LUÔN phiên mã chung trên 1 phân tử mRNA (polycistronic). Sự chênh lệch sản phẩm là do đột biến cấu trúc gen ảnh hưởng đến tốc độ dịch mã hoặc độ bền của protein, không phải do phiên mã riêng rẽ."}, {"id": "off_tf_1_d", "label": "d", "statement": "Nếu đưa chủng vi khuẩn E. coli 1 về nuôi cấy trong môi trường hoàn toàn không có đường lactose, hoạt động phiên mã của Operon Lac sẽ bị kìm hãm và hàm lượng amino acid phóng xạ tích hợp vào các enzyme sẽ giảm mạnh về mức nền rất thấp.", "correct": true, "explain": "ĐÚNG. Chủng 1 là chủng bình thường, khi rút lactose thì protein ức chế bám lại vào O làm dừng phiên mã ngay lập tức."}], "image": "images/official_p2_cau1_monod_jacob.jpg", "has_diagram": true, "diagram_title": "Biểu đồ thí nghiệm Jacob & Monod đo % amino acid phóng xạ"}, {"id": "off_tf_2", "part": "p2", "num": 2, "title": "Cơ chế phiên mã và hoàn thiện mRNA ở sinh vật nhân thực", "intro": "Sơ đồ mô tả quá trình phiên mã từ mạch khuôn DNA tạo ra phân tử tiền-mRNA (pre-mRNA) và quá trình chế biến cắt intron nối exon tạo mRNA trưởng thành.", "items": [{"id": "off_tf_2_a", "label": "a", "statement": "Quá trình này diễn ra ở kì trung gian của tất cả các loại tế bào sống.", "correct": false, "explain": "SAI. Quá trình cắt intron nối exon CHỈ XẢY RA Ở SINH VẬT NHÂN THỰC. Sinh vật nhân sơ gen không phân mảnh nên không có hiện tượng này."}, {"id": "off_tf_2_b", "label": "b", "statement": "mRNA sơ khai được tổng hợp từ đoạn mạch khuôn có chiều 3' -> 5'.", "correct": true, "explain": "ĐÚNG. Enzyme RNA polymerase luôn di chuyển và đọc mạch khuôn theo chiều 3' -> 5' để tổng hợp mạch RNA mới theo chiều 5' -> 3'."}, {"id": "off_tf_2_c", "label": "c", "statement": "Quá trình hoàn thiện mRNA (gắn mũ 5', đuôi polyA và cắt nối exon) xảy ra trong nhân tế bào nhân thực.", "correct": true, "explain": "ĐÚNG. Sau khi hoàn thiện trong nhân tế bào, mRNA trưởng thành mới được vận chuyển qua lỗ màng nhân ra tế bào chất để dịch mã."}, {"id": "off_tf_2_d", "label": "d", "statement": "Các đoạn intron không có chức năng sinh học trong việc mã hóa chuỗi polypeptide.", "correct": true, "explain": "ĐÚNG. Intron là các đoạn không mã hóa amino acid và bị enzyme cắt bỏ khỏi phân tử pre-mRNA."}], "image": "images/official_p2_cau2_intron_exon.jpg", "has_diagram": true, "diagram_title": "Sơ đồ phiên mã và hoàn thiện mRNA (cắt Intron nối Exon)"}, {"id": "off_tf_3", "part": "p2", "num": 3, "title": "Cơ chế dịch mã và đối mã codon - anticodon", "intro": "Sơ đồ biểu diễn chuỗi polypeptide đang kéo dài trên ribosome với trình tự mRNA: 5'-AUG UCA GGA AGU ...-3'.", "items": [{"id": "off_tf_3_a", "label": "a", "statement": "Hình trên mô tả quá trình tổng hợp chuỗi polypeptide trên ribosome.", "correct": true, "explain": "ĐÚNG. Đây là giai đoạn kéo dài chuỗi polypeptide trong quá trình dịch mã."}, {"id": "off_tf_3_b", "label": "b", "statement": "Phân tử tRNA số 3 đã vận chuyển amino acid Glycine (Gly) khớp với codon GGA.", "correct": true, "explain": "ĐÚNG. Codon thứ 3 là 5'GGA3' mã hóa cho amino acid Glycine."}, {"id": "off_tf_3_c", "label": "c", "statement": "Trình tự mạch khuôn của gene mã hóa đoạn amino acid từ 1 đến 4 là 3'-TAC AGT CCG TCC-5'.", "correct": false, "explain": "SAI. Với mRNA 5'-AUG UCA GGA AGU-3', mạch khuôn bổ sung theo chiều 3'->5' phải là: 3'-TAC AGT CCT TCA-5' (khác ở vị trí số 3 và 4)."}, {"id": "off_tf_3_d", "label": "d", "statement": "Trong chuỗi polypeptide từ amino acid số 1 đến số 4 có 2 amino acid cùng loại.", "correct": true, "explain": "ĐÚNG. Codon số 2 (UCA) và codon số 4 (AGU) đều cùng mã hóa cho amino acid Serine (tính thoái hóa của mã di truyền)."}], "image": "images/de2_cau20_dichma_ribosome.jpg", "has_diagram": true, "diagram_title": "Sơ đồ dịch mã chuỗi polypeptide trên Ribosome"}, {"id": "off_tf_4", "part": "p2", "num": 4, "title": "Cơ chế tác động của 2 loại thuốc ức chế điều trị COVID-19 (Mã 122/124)", "intro": "Thực nghiệm đánh giá hàm lượng mRNA và Protein virus SARS-CoV-2: Lô đối chứng (không thuốc): mRNA = 7.5, Protein = 8.0. Xử lí Thuốc 1: mRNA = 1.2, Protein = 1.0. Xử lí Thuốc 2: mRNA = 7.5, Protein = 1.5.", "items": [{"id": "off_tf_4_a", "label": "a", "statement": "Thuốc 1 can thiệp vào quá trình phiên mã tạo ra mRNA của virus hoặc tác động làm phân hủy mRNA của virus.", "correct": true, "explain": "ĐÚNG. Mẫu xử lí Thuốc 1 có hàm lượng mRNA giảm từ 7.5 xuống 1.2, kéo theo lượng protein tạo ra cũng giảm."}, {"id": "off_tf_4_b", "label": "b", "statement": "Thuốc 2 làm giảm lượng mRNA so với không xử lí thuốc dẫn đến làm giảm hàm lượng protein do protein là sản phẩm sau dịch mã.", "correct": false, "explain": "SAI. Ở mẫu Thuốc 2, lượng mRNA là 7.5 (bằng đúng đối chứng 7.5), mRNA không hề bị giảm."}, {"id": "off_tf_4_c", "label": "c", "statement": "Thuốc 2 can thiệp vào quá trình dịch mã từ mRNA virus hoặc tác động làm phân hủy một phần protein virus.", "correct": true, "explain": "ĐÚNG. Lượng mRNA không đổi nhưng protein giảm mạnh (từ 8.0 xuống 1.5), chứng tỏ thuốc ức chế dịch mã hoặc phân hủy protein."}, {"id": "off_tf_4_d", "label": "d", "statement": "Xử lí thuốc 2 không làm thay đổi hàm lượng mRNA do vậy nó can thiệp vào quá trình phiên mã của virus.", "correct": false, "explain": "SAI. Mệnh đề tự mâu thuẫn: Không làm thay đổi mRNA thì không thể can thiệp vào phiên mã."}], "image": "images/official_p2_cau4_thuoc_covid.jpg", "has_diagram": true, "diagram_title": "Biểu đồ tác động của 2 loại thuốc điều trị Covid-19"}], "short": [{"id": "off_sa_1", "part": "p3", "num": 1, "title": "Số bộ ba mã hóa amino acid tối đa từ A, U, G", "text": "Giả sử phân tử mRNA được tạo ra từ 3 loại nucleotide A, U, G. Theo lí thuyết số loại codon MÃ HÓA AMINO ACID tối đa có trên phân tử mRNA là bao nhiêu?", "correct": 24, "explain": "Từ 3 loại nu A, U, G tạo được: 3^3 = 27 bộ ba. Trong 27 bộ ba này có 3 bộ ba kết thúc là UAA, UAG, UGA (cả 3 đều chỉ tạo từ A, U, G). Số codon mã hóa amino acid = 27 - 3 = 24.", "trap": "Cực kì nhiều học sinh vội vàng lấy 3^3 = 27 mà quên mất phải TRỪ ĐI 3 BỘ BA KẾ THÚC!"}, {"id": "off_sa_2", "part": "p3", "num": 2, "title": "Thành phần tham gia trực tiếp vào dịch mã", "text": "Cho các thành phần sau: (1) Gene, (2) mRNA, (3) Amino acid, (4) tRNA, (5) Ribosome, (6) Nucleotide. Có bao nhiêu thành phần tham gia trực tiếp vào quá trình dịch mã tổng hợp chuỗi polypeptide?", "correct": 4, "explain": "4 thành phần gồm: (2) mRNA (làm khuôn), (3) Amino acid (nguyên liệu), (4) tRNA (vận chuyển), (5) Ribosome (nơi tổng hợp). Gene và nucleotide tham gia vào tái bản và phiên mã.", "trap": "Gene nằm trong nhân tế bào, không tham gia trực tiếp vào dịch mã ở tế bào chất."}, {"id": "off_sa_3", "part": "p3", "num": 3, "title": "Nguyên tắc bổ sung trong cấu trúc và cơ chế di truyền", "text": "Cho các cấu trúc và quá trình sau: mRNA, tRNA, rRNA, phiên mã, dịch mã. Có bao nhiêu cấu trúc và quá trình có xuất hiện nguyên tắc bổ sung?", "correct": 4, "explain": "4 trường hợp có nguyên tắc bổ sung: (1) tRNA (các thùy cuộn xoắn A-U, G-C); (2) rRNA (các đoạn xoắn kép bổ sung nội chuỗi); (3) Phiên mã (DNA khuôn bắt cặp với ribonucleotide tự do); (4) Dịch mã (codon mRNA khớp anticodon tRNA). Riêng mRNA có dạng mạch đơn thẳng không cuộn xoắn nên không có liên kết bổ sung.", "trap": "mRNA là phân tử mạch đơn không có nguyên tắc bổ sung nội phân tử."}, {"id": "off_sa_4", "part": "p3", "num": 4, "title": "Số loại chuỗi polypeptide tạo ra từ Operon Lac", "text": "Ở vi khuẩn E.coli trong quá trình điều hòa hoạt động của operon Lac, khi môi trường có lactose, các gene cấu trúc lac Z, lac Y, lac A phiên mã tạo ra bao nhiêu loại chuỗi polypeptide riêng biệt?", "correct": 3, "explain": "Cụm gene Z-Y-A phiên mã tạo 1 phân tử polycistronic mRNA duy nhất, nhưng khi dịch mã trên phân tử này có các tín hiệu dịch mã riêng biệt tạo ra 3 loại chuỗi polypeptide tương ứng với 3 enzyme: beta-galactosidase (lacZ), permease (lacY), transacetylase (lacA).", "trap": "Phiên mã tạo 1 loại mRNA, nhưng dịch mã tạo 3 loại chuỗi polypeptide!"}, {"id": "off_sa_5", "part": "p3", "num": 5, "title": "Phân tích biểu đồ liên kết Hydrogen và lượng Cytosine (C)", "text": "Bốn phân tử nucleic acid mạch kép có tổng số liên kết hydrogen được mô tả trong biểu đồ: DNA 1 có 3100 lk, DNA 2 có 2000 lk, DNA 3 có 1400 lk, DNA 4 có 3900 lk. Biết 4 phân tử này có TỔNG SỐ NUCLEOTIDE BẰNG NHAU. Phân tử DNA số mấy có số lượng nucleotide loại Cytosine (C) nhiều nhất?", "correct": 4, "explain": "Ta có: H = 2A + 3G = (2A + 2G) + G = N + C. Suy ra: C = H - N. Vì cả 4 phân tử đều có tổng số nucleotide N bằng nhau, phân tử nào có số liên kết hydro H lớn nhất sẽ có số lượng nucleotide loại C nhiều nhất. Phân tử DNA 4 có H = 3900 (cao nhất) => chứa nhiều nucleotide loại C nhất.", "trap": "Áp dụng công thức biến đổi kinh điển H = N + G = N + C để so sánh cực nhanh.", "image": "images/official_p3_cau5_dothi_h.jpg", "has_diagram": true, "diagram_title": "Biểu đồ số liên kết hydrogen của 4 phân tử DNA có cùng kích thước"}, {"id": "off_sa_6", "part": "p3", "num": 6, "title": "Vị trí hình thành liên kết peptide trên Ribosome", "text": "Hình vẽ mô tả cấu trúc ribosome tham gia dịch mã: vị trí 1 là đầu vào tRNA, vị trí 2 là trung tâm peptidyl transferase trên tiểu phần lớn, vị trí 3 là tiểu phần bé, vị trí 4 là vị trí thoát. Vị trí liên kết peptide hình thành giữa các amino acid là vị trí số mấy?", "correct": 2, "explain": "Vị trí số 2 là trung tâm xúc tác peptidyl transferase nằm trên tiểu phần lớn của ribosome, nơi xúc tác phản ứng hình thành liên kết peptide giữa nhóm amin của amino acid mới và nhóm carboxyl của amino acid trước đó.", "trap": "Nhớ: Trung tâm xúc tác tạo liên kết peptide luôn nằm ở tiểu phần lớn của ribosome.", "image": "images/official_p3_cau6_ribosome.jpg", "has_diagram": true, "diagram_title": "Sơ đồ cấu trúc Ribosome trong quá trình dịch mã"}], "essay": [{"id": "off_es_1", "part": "p4", "num": 1, "title": "Dự đoán đột biến khi Operon Lac hoạt động liên tục không cần Lactose", "question": "Nếu môi trường nuôi cấy vi khuẩn E.coli hoàn toàn không có lactose nhưng operon Lac vẫn hoạt động liên tục thì có thể dự đoán vi khuẩn bị hỏng ở bộ phận nào của operon lac? Giải thích chi tiết cơ chế?", "answer": "Khi môi trường KHÔNG có lactose mà Operon Lac vẫn hoạt động phiên mã tạo enzyme liên tục (hiện tượng đột biến cấu thành - constitutive mutant), ta có thể dự đoán vi khuẩn bị đột biến ở 1 trong 2 vị trí sau:\n1. Đột biến ở Gene điều hòa (LacI):\n- Gen LacI bị đột biến làm mất khả năng phiên mã/dịch mã, hoặc tạo ra protein ức chế bị biến đổi cấu hình không gian không thể nhận biết và liên kết được vào vùng vận hành (O).\n- Hậu quả: Vùng O luôn trống, enzyme RNA polymerase tự do bám vào promoter P và phiên mã các gen Z, Y, A liên tục.\n2. Đột biến ở Vùng vận hành (O - Operator):\n- Trình tự nucleotide của vùng vận hành O bị thay đổi khiến protein ức chế bình thường không thể bám vào được (đột biến Oc).\n- Hậu quả: Dù protein ức chế vẫn được tổng hợp bình thường nhưng không thể gắn vào O để ngăn cản RNA polymerase, dẫn tới phiên mã liên tục."}]};
     const de1Exam = {
-      mcq: [{"id": "de1_1", "part": "p1", "num": 1, "type": "mcq", "title": "Câu 1 (DE1)", "text": "Nucleotide là đơn phân cấu tạo nên", "options": ["nhiễm sắc thể.", "lipid.", "nucleic acid.", "protein."], "correct": 2, "explain": "- Nucleic acid (gồm DNA và RNA) là đại phân tử sinh học cấu tạo theo nguyên tắc đa phân, đơn phân là các **nucleotide** (đối với DNA là A, T, G, C; đối với RNA là A, U, G, C).\n  - Nhiễm sắc thể được cấu tạo từ DNA và protein (chủ yếu là histone).\n  - Lipid không cấu tạo theo nguyên tắc đa phân.\n  - Protein có đơn phân là các **amino acid**.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_2", "part": "p1", "num": 2, "type": "mcq", "title": "Câu 2 (DE1)", "text": "Điểm khác nhau giữa DNA ở tế bào nhân sơ và DNA trong nhân tế bào nhân thực là", "options": ["đơn phân của DNA trong nhân tế bào nhân thực là A, T, G, C còn ở tế bào nhân sơ là A, U, G, C.", "các nitrogenous base ở 2 mạch của DNA liên kết với nhau theo nguyên tắc bổ sung.", "DNA ở tế bào nhân sơ có dạng vòng, còn DNA ở nhân tế bào nhân thực có dạng mạch thẳng.", "DNA ở tế bào nhân sơ có một chuỗi polynucleotide còn DNA nhân của tế bào nhân thực có hai chuỗi polynucleotide."], "correct": 2, "explain": "- Cả DNA nhân sơ và nhân thực đều có cấu trúc xoắn kép gồm 2 chuỗi polynucleotide liên kết bổ sung (A-T, G-C) và đều cấu tạo từ 4 loại đơn phân dNTP (A, T, G, C). Do đó các phương án A, B, D đều sai.\n  - DNA vùng nhân ở tế bào nhân sơ là phân tử **mạch kép, dạng vòng**, trần (không liên kết với protein histone).\n  - DNA trong nhân tế bào nhân thực là phân tử **mạch kép, dạng thẳng**, liên kết chặt...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_3", "part": "p1", "num": 3, "type": "mcq", "title": "Câu 3 (DE1)", "text": "Liên kết nào giữa các đơn phân nucleotide giúp cho phân tử DNA bền vững, không bị đứt gãy trong quá trình tái bản hay truyền đạt thông tin di truyền?", "options": ["Liên kết phosphodiester.", "Liên kết ion.", "Liên kết DNA - protein.", "Liên kết hydrogen."], "correct": 0, "explain": "- Trên một mạch đơn của phân tử DNA, các nucleotide kế tiếp nhau liên kết với nhau bằng **liên kết phosphodiester** (liên kết cộng hóa trị giữa nhóm đường 3'-OH của nucleotide này với nhóm 5'-phosphate của nucleotide kế tiếp). Đây là liên kết cộng hóa trị rất bền vững, đảm bảo mạch polynucleotide không bị đứt gãy trong quá trình nhân đôi và phiên mã.\n  - Liên kết hydrogen nối giữa 2 mạch đối diện ...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_4", "part": "p1", "num": 4, "type": "mcq", "title": "Câu 4 (DE1)", "text": "DNA có chức năng truyền đạt thông tin di truyền gần như nguyên vẹn qua các thế hệ tế bào là nhờ cơ chế", "options": ["phiên mã.", "dịch mã.", "tái bản DNA.", "phân bào."], "correct": 2, "explain": "- Nhờ cơ chế **tái bản DNA** diễn ra theo nguyên tắc bổ sung và bán bảo toàn, từ một phân tử DNA ban đầu tạo ra hai phân tử DNA con giống hệt nhau và giống phân tử DNA mẹ. Qua phân bào nguyên phân, các DNA này được phân chia đồng đều cho các tế bào con, đảm bảo truyền đạt nguyên vẹn thông tin di truyền qua các thế hệ tế bào.\n  - Phiên mã và dịch mã là cơ chế biểu hiện thông tin di truyền từ gen th...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_5", "part": "p1", "num": 5, "type": "mcq", "title": "Câu 5 (DE1)", "text": "Theo cấu trúc của gene ở sinh vật nhân thực, vùng mã hóa không chứa trình tự", "options": ["mã hóa một chuỗi polypeptide.", "mã hóa một chuỗi RNA.", "các đoạn exon.", "kết thúc phiên mã."], "correct": 3, "explain": "- Cấu trúc gen điển hình gồm 3 vùng:\n    1. **Vùng điều hòa:** Nằm ở đầu 3' của mạch khuôn, chứa promoter bám dính enzyme phiên mã và các trình tự kiểm soát.\n    2. **Vùng mã hóa:** Mang thông tin mã hóa chuỗi polypeptide hoặc các RNA chức năng; ở sinh vật nhân thực gồm các đoạn exon xen kẽ intron.\n    3. **Vùng kết thúc:** Nằm ở đầu 5' của mạch khuôn, mang **tín hiệu kết thúc phiên mã**.\n  - Trìn...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_6", "part": "p1", "num": 6, "type": "mcq", "title": "Câu 6 (DE1)", "text": "Yếu tố nào sau đây cần cho quá trình tái bản DNA ?", "options": ["Ribosome.", "mRNA.", "Nucleotide.", "tRNA."], "correct": 2, "explain": "- Quá trình tái bản DNA cần nguyên liệu là các **nucleotide tự do** của môi trường (dATP, dTTP, dGTP, dCTP) để enzyme DNA polymerase tổng hợp nên mạch mới.\n  - Ribosome, mRNA, tRNA là các thành phần tham gia vào quá trình dịch mã (tổng hợp protein).", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_7", "part": "p1", "num": 7, "type": "mcq", "title": "Câu 7 (DE1)", "text": "Trong quá trình tái bản DNA, loại nucleotide nào của môi trường sẽ liên kết bổ sung với nucleotide loại Adenine trên mạch khuôn DNA?", "options": ["Thymine.", "Guanine.", "Uracil.", "Cytosine."], "correct": 0, "explain": "- Trong tái bản DNA, nucleotide loại **Adenine (A)** trên mạch khuôn sẽ liên kết bổ sung với **Thymine (T)** của môi trường bằng 2 liên kết hydrogen.\n  - (Uracil chỉ tham gia liên kết với Adenine trong quá trình phiên mã tạo RNA hoặc tạo đoạn mồi RNA).", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_8", "part": "p1", "num": 8, "type": "mcq", "title": "Câu 8 (DE1)", "text": "Mỗi DNA con sau nhân đôi đều có một mạch của DNA mẹ, mạch còn lại được hình thành từ các nucleotide tự do của môi trường. Đây là cơ sở của nguyên tắc", "options": ["bổ sung và bán bảo toàn.", "bán bảo toàn.", "bổ sung.", "bổ sung và bảo toàn."], "correct": 1, "explain": "- \"Bán bảo toàn\" (semi-conservative) có nghĩa là giữ lại một nửa: trong mỗi phân tử DNA con tạo thành, có một mạch cũ của mẹ được giữ lại và một mạch mới được tổng hợp từ nguyên liệu môi trường nội bào.\n  - Nguyên tắc bổ sung là sự bắt cặp A - T, G - C giữa các base của 2 mạch.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_9", "part": "p1", "num": 9, "type": "mcq", "title": "Câu 9 (DE1)", "text": "Trong quá trình tái bản DNA không có sự tham gia của enzyme", "options": ["RNApolymerase.", "ligase.", "DNA polymerase.", "nuclease."], "correct": 3, "explain": "- Trong tái bản DNA:\n    + RNA polymerase (cụ thể là enzyme Primase) xúc tác tổng hợp các đoạn mồi RNA ngắn có đầu 3'-OH tự do.\n    + DNA polymerase xúc tác kéo dài chuỗi mạch mới và thay thế đoạn mồi.\n    + Ligase xúc tác nối các đoạn Okazaki trên mạch gián đoạn.\n  - **Nuclease** là enzyme phân cắt liên kết phosphodiester của nucleic acid, không phải là enzyme tổng hợp chính trong chu trình tái b...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_10", "part": "p1", "num": 10, "type": "mcq", "title": "Câu 10 (DE1)", "text": "Enzyme xúc tác để tổng hợp mạch mới trong quá trình tái bản DNA là", "options": ["nuclease.", "primase.", "DNA polymerase.", "ligase."], "correct": 2, "explain": "- **DNA polymerase** là enzyme giữ vai trò chủ lực kéo dài mạch mới bằng cách gắn các dNTP tự do vào đầu 3'-OH của đoạn mồi/mạch đang tổng hợp theo chiều 5' -> 3' bổ sung với mạch khuôn.\n  - Primase: tạo mồi; Ligase: nối đoạn Okazaki.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_11", "part": "p1", "num": 11, "type": "mcq", "title": "Câu 11 (DE1)", "text": "Ý nghĩa của quá trình tái bản DNA là giúp", "options": ["truyền đạt gần như nguyên vẹn thông tin di truyền trên DNA qua các thế hệ tế bào.", "biểu hiện thông tin di truyền trên DNA thành trình tự nucleotide trên RNA.", "biến đổi trình tự nucleotide của DNA, dẫn đến sự thay đổi thông tin di truyền.", "biểu hiện thông tin di truyền trên RNA thành trình tự amino acid của protein."], "correct": 0, "explain": "- Nhân đôi DNA giúp nhân đôi hệ gen để chuẩn bị cho sự phân chia tế bào, từ đó truyền đạt thông tin di truyền gần như nguyên vẹn qua các thế hệ tế bào.\n  - B là phiên mã; D là dịch mã; C là đột biến gen.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_12", "part": "p1", "num": 12, "type": "mcq", "title": "Câu 12 (DE1)", "text": "Đặc điểm nào sau đây chỉ có ở quá trình tái bản DNA của sinh vật nhân thực mà không có ở quá trình tái bản DNA của sinh vật nhân sơ?", "options": ["DNA được tái bản theo nguyên tắc bổ sung và nguyên tắc bán bảo toàn.", "Một mạch mới được tổng hợp liên tục, mạch mới còn lại được tổng hợp thành từng phân đoạn okazaki", "DNA có nhiều điểm khởi đầu tái bản, nên quá trình tái bản xảy ra ở nhiều vùng trên một phân tử.", "Mạch mới được tổng hợp bằng cách gắn thêm nucleotide vào đầu 3' của đoạn RNA mồi."], "correct": 2, "explain": "- Sinh vật nhân sơ có phân tử DNA nhỏ, dạng vòng, chỉ có **1 điểm khởi đầu tái bản duy nhất** (oriC).\n  - Sinh vật nhân thực có phân tử DNA mạch thẳng rất dài, kích thước lớn gấp hàng nghìn lần, nên trên mỗi phân tử DNA có **nhiều điểm khởi đầu tái bản** (tạo nhiều đơn vị tái bản cùng lúc) nhằm rút ngắn thời gian nhân đôi đáp ứng chu kỳ phân bào.\n  - Các đặc điểm A, B, D đều xảy ra tương tự ở cả h...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_13", "part": "p1", "num": 13, "type": "mcq", "title": "Câu 13 (DE1)", "text": "Loại nucleic acid nào sau đây mang bộ ba đối mã (anticodon)?", "options": ["DNA", "mRNA", "tRNA", "rRNA"], "correct": 2, "explain": "- **tRNA** (transfer RNA) có cấu trúc cuộn gập thành 3 thùy tròn giống lá chẻ ba; trong đó thùy tròn ở giữa mang **bộ ba đối mã (anticodon)** có trình tự bổ sung với codon tương ứng trên mRNA.\n  - mRNA mang codon (bộ ba mã sao); rRNA kết hợp protein tạo ribosome; DNA mang triplet (bộ ba mã gốc).", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử.", "image": "images/official_cau13_nucleotide.jpg", "has_diagram": true, "diagram_title": "Hình vẽ cấu tạo 1 nucleotide"}, {"id": "de1_14", "part": "p1", "num": 14, "type": "mcq", "title": "Câu 14 (DE1)", "text": "Đặc điểm nào dưới đây đúng với mRNA?", "options": ["Đóng vai trò vận chuyển amino acid.", "Mang anticodon, làm khuôn tổng hợp protein.", "Kết hợp với các protein để hình thành nhiễm sắc thể.", "Có cấu trúc mạch đơn, dạng thẳng, gồm 4 loại đơn phân A, U, G, C."], "correct": 3, "explain": "- mRNA có cấu trúc là một chuỗi polynucleotide **mạch đơn, dạng thẳng**, không cuộn xoắn có liên kết hydro nội bộ, gồm 4 loại ribonucleotide A, U, G, C.\n  - Vận chuyển amino acid và mang anticodon là tRNA; cấu tạo ribosome là rRNA.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_15", "part": "p1", "num": 15, "type": "mcq", "title": "Câu 15 (DE1)", "text": "Hình bên mô tả khái quát quá trình phiên mã diễn ra trong tế bào của một cơ thể sinh vật. Đầu 5' của các đoạn mạch polynucleotid tương ứng với các vị trí nào sau đây?", "options": ["A, B, C", "B, D, F", "C, D, F.", "A, C, F."], "correct": 3, "explain": "Đáp án đúng là D.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử.", "image": "images/de1_cau15_phienma.jpg", "has_diagram": true, "diagram_title": "Hình vẽ quá trình phiên mã trong tế bào"}, {"id": "de1_16", "part": "p1", "num": 16, "type": "mcq", "title": "Câu 16 (DE1)", "text": "Phiên mã là quá trình tổng hợp nên phân tử", "options": ["cDNA.", "protein.", "RNA.", "DNA."], "correct": 2, "explain": "- Phiên mã là quá trình truyền đạt thông tin di truyền từ mạch khuôn của gen (DNA) sang phân tử **RNA** (gồm mRNA, tRNA, rRNA...).", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_17", "part": "p1", "num": 17, "type": "mcq", "title": "Câu 17 (DE1)", "text": "Loại enzyme nào sau đây trực tiếp tham gia vào quá trình phiên mã các gene cấu trúc ở sinh vật?", "options": ["RNA polymerase.", "DNA Ligase.", "DNA polymerase I.", "DNA polymerase III."], "correct": 0, "explain": "- **RNA polymerase** là enzyme duy nhất trực tiếp đảm nhiệm cả việc bám vào promoter, tháo xoắn gen và liên kết các ribonucleotide tự do thành chuỗi RNA theo nguyên tắc bổ sung.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_18", "part": "p1", "num": 18, "type": "mcq", "title": "Câu 18 (DE1)", "text": "Hình bên mô tả một chuỗi polyribosome đang tổng hợp các chuỗi polypeptide, trong đó A, B, C là các ribosome khác nhau và a, b là các đầu của phân tử mRNA.  \nCó bao nhiêu phát biểu sau đây đúng?  \n(1) Ribosome A bắt đầu tổng hợp chuỗi peptide trước ribosome B và C.  \n(2) Các chuỗi peptide sơ khai được tổng hợp từ ba ribosome A, B, C đều có trình tự các amino acid giống nhau.  \n(3) Chiều di chuyển của các ribosome trên mRNA là từ a đến b.  \n(4) Trên phân tử mRNA đang tổng hợp, a là đầu 3' và b là đầu 5'.", "options": ["2.", "1.", "3.", "4."], "correct": 2, "explain": "Đáp án đúng là C.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}],
-      tf: [{"id": "de1_tf_19", "part": "p2", "num": 19, "title": "Câu 19 (Đề 1): Phiên mã và hoàn thiện mRNA", "intro": "Hình mô tả quá trình phiên mã và hoàn thiện mRNA sơ khai để tạo mRNA trưởng thành trong tế bào nhân thực.", "items": [{"id": "de1_19_a", "label": "a", "statement": "Quá trình này diễn ra ở kì trung gian của tất cả tế bào.", "correct": false, "explain": "SAI. Chỉ diễn ra ở sinh vật nhân thực, nhân sơ không có intron nên không có hoàn thiện."}, {"id": "de1_19_b", "label": "b", "statement": "mRNA sơ khai được tổng hợp từ đoạn mạch khuôn 3'->5'.", "correct": true, "explain": "ĐÚNG. Mạch khuôn 3'->5' làm khuôn phiên mã."}, {"id": "de1_19_c", "label": "c", "statement": "Quá trình hoàn thiện mRNA xảy ra trong nhân tế bào nhân thực.", "correct": true, "explain": "ĐÚNG. Cắt intron nối exon, gắn mũ 5' cap và đuôi polyA hoàn toàn trong nhân tế bào."}, {"id": "de1_19_d", "label": "d", "statement": "Các đoạn intron không có chức năng sinh học trong việc mã hóa chuỗi polypeptide.", "correct": true, "explain": "ĐÚNG. Intron là trình tự không mã hóa amino acid."}], "image": "images/de1_cau19_intron_exon.jpg", "has_diagram": true, "diagram_title": "Sơ đồ phiên mã và hoàn thiện mRNA sơ khai"}, {"id": "de1_tf_20", "part": "p2", "num": 20, "title": "Câu 20 (Đề 1): Dịch mã và anticodon tRNA", "intro": "Sơ đồ biểu diễn chuỗi polypeptide đang tổng hợp trên ribosome với mRNA: 5'-AUG UCA GGA AGU ...-3'.", "items": [{"id": "de1_20_a", "label": "a", "statement": "Hình trên mô tả quá trình tổng hợp chuỗi polypeptide.", "correct": true, "explain": "ĐÚNG. Giai đoạn dịch mã trên ribosome."}, {"id": "de1_20_b", "label": "b", "statement": "Phân tử tRNA 3 đã vận chuyển amino acid Gly.", "correct": true, "explain": "ĐÚNG. Codon 3 GGA mã hóa Gly."}, {"id": "de1_20_c", "label": "c", "statement": "Trình tự mạch khuôn của gene mã hóa đoạn amino acid từ 1 đến 4 là 3'-TAC AGT CCG TCC-5'.", "correct": false, "explain": "SAI. Phải là 3'-TAC AGT CCT TCA-5'."}, {"id": "de1_20_d", "label": "d", "statement": "Trong chuỗi polypeptide từ amino acid số 1 đến số 4 có 2 amino acid cùng loại.", "correct": true, "explain": "ĐÚNG. Codon 2 UCA và codon 4 AGU cùng mã hóa Serine."}], "image": "images/de1_cau20_thuoc_covid.jpg", "has_diagram": true, "diagram_title": "Đồ thị cơ chế tác động của 2 loại thuốc Covid-19"}, {"id": "de1_tf_21", "part": "p2", "num": 21, "title": "Câu 21 (Đề 1): Hoạt động của Operon Lac ở vi khuẩn E.coli", "intro": "Đặc điểm điều hòa biểu hiện gene ở Operon Lac khi môi trường có hoặc không có lactose.", "items": [{"id": "de1_21_a", "label": "a", "statement": "Gene điều hòa LacI nằm liền kề ngay trước vùng vận hành O và thuộc operon Lac.", "correct": false, "explain": "SAI. Gene điều hòa LacI KHÔNG thuộc operon Lac."}, {"id": "de1_21_b", "label": "b", "statement": "Khi môi trường có lactose, lactose liên kết làm biến đổi cấu hình protein ức chế.", "correct": true, "explain": "ĐÚNG. Khiến protein ức chế không gắn được vào vùng vận hành O."}, {"id": "de1_21_c", "label": "c", "statement": "Các gene Z, Y, A có số lần phiên mã bằng nhau nhưng số lần nhân đôi khác nhau.", "correct": false, "explain": "SAI. Cùng trên 1 phân tử DNA nên nhân đôi số lần bằng nhau."}, {"id": "de1_21_d", "label": "d", "statement": "Đột biến tại vùng O có thể làm operon hoạt động liên tục không phụ thuộc lactose.", "correct": true, "explain": "ĐÚNG. Đột biến Oc khiến protein ức chế không bám được vào O."}]}],
-      short: [{"id": "de1_sa_22", "part": "p3", "num": 22, "title": "Câu 22 (Đề 1): Số codon mã hóa từ A, U, G", "text": "Từ 3 loại ribonucleotide A, U, G có thể tạo ra tối đa bao nhiêu bộ ba mã hóa amino acid?", "correct": 24, "explain": "3^3 = 27 bộ ba. Trừ 3 bộ ba kết thúc UAA, UAG, UGA => còn 24 bộ ba mã hóa."}, {"id": "de1_sa_23", "part": "p3", "num": 23, "title": "Câu 23 (Đề 1): Thành phần tham gia dịch mã", "text": "Cho: (1) Gen, (2) mRNA, (3) Amino acid, (4) tRNA, (5) Ribosome, (6) dNTP. Có bao nhiêu thành phần tham gia trực tiếp vào dịch mã?", "correct": 4, "explain": "4 thành phần gồm mRNA, amino acid, tRNA, ribosome."}, {"id": "de1_sa_24", "part": "p3", "num": 24, "title": "Câu 24 (Đề 1): Nguyên tắc bổ sung", "text": "Trong các cấu trúc và quá trình: mRNA, tRNA, rRNA, phiên mã, dịch mã, có bao nhiêu trường hợp có nguyên tắc bổ sung?", "correct": 4, "explain": "4 trường hợp: tRNA, rRNA, phiên mã, dịch mã (mRNA mạch đơn thẳng không có liên kết bổ sung)."}, {"id": "de1_sa_25", "part": "p3", "num": 25, "title": "Câu 25 (Đề 1): Chuỗi polypeptide từ Operon Lac", "text": "Khi môi trường có lactose, cụm gene lac Z, lac Y, lac A phiên mã tạo ra bao nhiêu loại chuỗi polypeptide?", "correct": 3, "explain": "Tạo 1 phân tử polycistronic mRNA nhưng khi dịch mã tạo 3 loại chuỗi polypeptide riêng biệt."}, {"id": "de1_sa_26", "part": "p3", "num": 26, "title": "Câu 26 (Đề 1): So sánh liên kết hydro 4 phân tử DNA", "text": "4 phân tử DNA bằng nhau về chiều dài có số liên kết hydro: DNA 1: 3100, DNA 2: 2000, DNA 3: 1400, DNA 4: 3900. Phân tử số mấy chứa nhiều Guanine nhất?", "correct": 4, "explain": "H = N + G => Phân tử DNA 4 có H = 3900 cao nhất nên chứa nhiều Guanine nhất.", "image": "images/official_p3_cau5_dothi_h.jpg", "has_diagram": true, "diagram_title": "Biểu đồ liên kết hydrogen 4 phân tử DNA"}, {"id": "de1_sa_27", "part": "p3", "num": 27, "title": "Câu 27 (Đề 1): Tính số liên kết hydrogen của gen", "text": "Một gen ở sinh vật nhân sơ có chiều dài 4080 Å, số nucleotide loại Adenine chiếm 20% tổng số nucleotide. Số liên kết hydrogen của gen này là bao nhiêu?", "correct": 3120, "explain": "1. Tổng số nu: N = (2 × L) / 3.4 = (2 × 4080) / 3.4 = 2400 nu.\n2. A = T = 20% × 2400 = 480 nu.\n3. G = C = (2400 / 2) - 480 = 720 nu.\n4. Số liên kết hydrogen: H = 2A + 3G = 2 × 480 + 3 × 720 = 3120 liên kết."}],
+      mcq: [{"id": "de1_1", "part": "p1", "num": 1, "type": "mcq", "title": "Câu 1 (DE1)", "text": "Nucleotide là đơn phân cấu tạo nên", "options": ["nhiễm sắc thể.", "lipid.", "nucleic acid.", "protein."], "correct": 2, "explain": "- Nucleic acid (gồm DNA và RNA) là đại phân tử sinh học cấu tạo theo nguyên tắc đa phân, đơn phân là các **nucleotide** (đối với DNA là A, T, G, C; đối với RNA là A, U, G, C).\n  - Nhiễm sắc thể được cấu tạo từ DNA và protein (chủ yếu là histone).\n  - Lipid không cấu tạo theo nguyên tắc đa phân.\n  - Protein có đơn phân là các **amino acid**.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_2", "part": "p1", "num": 2, "type": "mcq", "title": "Câu 2 (DE1)", "text": "Điểm khác nhau giữa DNA ở tế bào nhân sơ và DNA trong nhân tế bào nhân thực là", "options": ["đơn phân của DNA trong nhân tế bào nhân thực là A, T, G, C còn ở tế bào nhân sơ là A, U, G, C.", "các nitrogenous base ở 2 mạch của DNA liên kết với nhau theo nguyên tắc bổ sung.", "DNA ở tế bào nhân sơ có dạng vòng, còn DNA ở nhân tế bào nhân thực có dạng mạch thẳng.", "DNA ở tế bào nhân sơ có một chuỗi polynucleotide còn DNA nhân của tế bào nhân thực có hai chuỗi polynucleotide."], "correct": 2, "explain": "- Cả DNA nhân sơ và nhân thực đều có cấu trúc xoắn kép gồm 2 chuỗi polynucleotide liên kết bổ sung (A-T, G-C) và đều cấu tạo từ 4 loại đơn phân dNTP (A, T, G, C). Do đó các phương án A, B, D đều sai.\n  - DNA vùng nhân ở tế bào nhân sơ là phân tử **mạch kép, dạng vòng**, trần (không liên kết với protein histone).\n  - DNA trong nhân tế bào nhân thực là phân tử **mạch kép, dạng thẳng**, liên kết chặt...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_3", "part": "p1", "num": 3, "type": "mcq", "title": "Câu 3 (DE1)", "text": "Liên kết nào giữa các đơn phân nucleotide giúp cho phân tử DNA bền vững, không bị đứt gãy trong quá trình tái bản hay truyền đạt thông tin di truyền?", "options": ["Liên kết phosphodiester.", "Liên kết ion.", "Liên kết DNA - protein.", "Liên kết hydrogen."], "correct": 0, "explain": "- Trên một mạch đơn của phân tử DNA, các nucleotide kế tiếp nhau liên kết với nhau bằng **liên kết phosphodiester** (liên kết cộng hóa trị giữa nhóm đường 3'-OH của nucleotide này với nhóm 5'-phosphate của nucleotide kế tiếp). Đây là liên kết cộng hóa trị rất bền vững, đảm bảo mạch polynucleotide không bị đứt gãy trong quá trình nhân đôi và phiên mã.\n  - Liên kết hydrogen nối giữa 2 mạch đối diện ...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_4", "part": "p1", "num": 4, "type": "mcq", "title": "Câu 4 (DE1)", "text": "DNA có chức năng truyền đạt thông tin di truyền gần như nguyên vẹn qua các thế hệ tế bào là nhờ cơ chế", "options": ["phiên mã.", "dịch mã.", "tái bản DNA.", "phân bào."], "correct": 2, "explain": "- Nhờ cơ chế **tái bản DNA** diễn ra theo nguyên tắc bổ sung và bán bảo toàn, từ một phân tử DNA ban đầu tạo ra hai phân tử DNA con giống hệt nhau và giống phân tử DNA mẹ. Qua phân bào nguyên phân, các DNA này được phân chia đồng đều cho các tế bào con, đảm bảo truyền đạt nguyên vẹn thông tin di truyền qua các thế hệ tế bào.\n  - Phiên mã và dịch mã là cơ chế biểu hiện thông tin di truyền từ gen th...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_5", "part": "p1", "num": 5, "type": "mcq", "title": "Câu 5 (DE1)", "text": "Theo cấu trúc của gene ở sinh vật nhân thực, vùng mã hóa không chứa trình tự", "options": ["mã hóa một chuỗi polypeptide.", "mã hóa một chuỗi RNA.", "các đoạn exon.", "kết thúc phiên mã."], "correct": 3, "explain": "- Cấu trúc gen điển hình gồm 3 vùng:\n    1. **Vùng điều hòa:** Nằm ở đầu 3' của mạch khuôn, chứa promoter bám dính enzyme phiên mã và các trình tự kiểm soát.\n    2. **Vùng mã hóa:** Mang thông tin mã hóa chuỗi polypeptide hoặc các RNA chức năng; ở sinh vật nhân thực gồm các đoạn exon xen kẽ intron.\n    3. **Vùng kết thúc:** Nằm ở đầu 5' của mạch khuôn, mang **tín hiệu kết thúc phiên mã**.\n  - Trìn...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_6", "part": "p1", "num": 6, "type": "mcq", "title": "Câu 6 (DE1)", "text": "Yếu tố nào sau đây cần cho quá trình tái bản DNA ?", "options": ["Ribosome.", "mRNA.", "Nucleotide.", "tRNA."], "correct": 2, "explain": "- Quá trình tái bản DNA cần nguyên liệu là các **nucleotide tự do** của môi trường (dATP, dTTP, dGTP, dCTP) để enzyme DNA polymerase tổng hợp nên mạch mới.\n  - Ribosome, mRNA, tRNA là các thành phần tham gia vào quá trình dịch mã (tổng hợp protein).", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_7", "part": "p1", "num": 7, "type": "mcq", "title": "Câu 7 (DE1)", "text": "Trong quá trình tái bản DNA, loại nucleotide nào của môi trường sẽ liên kết bổ sung với nucleotide loại Adenine trên mạch khuôn DNA?", "options": ["Thymine.", "Guanine.", "Uracil.", "Cytosine."], "correct": 0, "explain": "- Trong tái bản DNA, nucleotide loại **Adenine (A)** trên mạch khuôn sẽ liên kết bổ sung với **Thymine (T)** của môi trường bằng 2 liên kết hydrogen.\n  - (Uracil chỉ tham gia liên kết với Adenine trong quá trình phiên mã tạo RNA hoặc tạo đoạn mồi RNA).", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_8", "part": "p1", "num": 8, "type": "mcq", "title": "Câu 8 (DE1)", "text": "Mỗi DNA con sau nhân đôi đều có một mạch của DNA mẹ, mạch còn lại được hình thành từ các nucleotide tự do của môi trường. Đây là cơ sở của nguyên tắc", "options": ["bổ sung và bán bảo toàn.", "bán bảo toàn.", "bổ sung.", "bổ sung và bảo toàn."], "correct": 1, "explain": "- \"Bán bảo toàn\" (semi-conservative) có nghĩa là giữ lại một nửa: trong mỗi phân tử DNA con tạo thành, có một mạch cũ của mẹ được giữ lại và một mạch mới được tổng hợp từ nguyên liệu môi trường nội bào.\n  - Nguyên tắc bổ sung là sự bắt cặp A - T, G - C giữa các base của 2 mạch.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_9", "part": "p1", "num": 9, "type": "mcq", "title": "Câu 9 (DE1)", "text": "Trong quá trình tái bản DNA không có sự tham gia của enzyme", "options": ["RNApolymerase.", "ligase.", "DNA polymerase.", "nuclease."], "correct": 3, "explain": "- Trong tái bản DNA:\n    + RNA polymerase (cụ thể là enzyme Primase) xúc tác tổng hợp các đoạn mồi RNA ngắn có đầu 3'-OH tự do.\n    + DNA polymerase xúc tác kéo dài chuỗi mạch mới và thay thế đoạn mồi.\n    + Ligase xúc tác nối các đoạn Okazaki trên mạch gián đoạn.\n  - **Nuclease** là enzyme phân cắt liên kết phosphodiester của nucleic acid, không phải là enzyme tổng hợp chính trong chu trình tái b...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_10", "part": "p1", "num": 10, "type": "mcq", "title": "Câu 10 (DE1)", "text": "Enzyme xúc tác để tổng hợp mạch mới trong quá trình tái bản DNA là", "options": ["nuclease.", "primase.", "DNA polymerase.", "ligase."], "correct": 2, "explain": "- **DNA polymerase** là enzyme giữ vai trò chủ lực kéo dài mạch mới bằng cách gắn các dNTP tự do vào đầu 3'-OH của đoạn mồi/mạch đang tổng hợp theo chiều 5' -> 3' bổ sung với mạch khuôn.\n  - Primase: tạo mồi; Ligase: nối đoạn Okazaki.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_11", "part": "p1", "num": 11, "type": "mcq", "title": "Câu 11 (DE1)", "text": "Ý nghĩa của quá trình tái bản DNA là giúp", "options": ["truyền đạt gần như nguyên vẹn thông tin di truyền trên DNA qua các thế hệ tế bào.", "biểu hiện thông tin di truyền trên DNA thành trình tự nucleotide trên RNA.", "biến đổi trình tự nucleotide của DNA, dẫn đến sự thay đổi thông tin di truyền.", "biểu hiện thông tin di truyền trên RNA thành trình tự amino acid của protein."], "correct": 0, "explain": "- Nhân đôi DNA giúp nhân đôi hệ gen để chuẩn bị cho sự phân chia tế bào, từ đó truyền đạt thông tin di truyền gần như nguyên vẹn qua các thế hệ tế bào.\n  - B là phiên mã; D là dịch mã; C là đột biến gen.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_12", "part": "p1", "num": 12, "type": "mcq", "title": "Câu 12 (DE1)", "text": "Đặc điểm nào sau đây chỉ có ở quá trình tái bản DNA của sinh vật nhân thực mà không có ở quá trình tái bản DNA của sinh vật nhân sơ?", "options": ["DNA được tái bản theo nguyên tắc bổ sung và nguyên tắc bán bảo toàn.", "Một mạch mới được tổng hợp liên tục, mạch mới còn lại được tổng hợp thành từng phân đoạn okazaki", "DNA có nhiều điểm khởi đầu tái bản, nên quá trình tái bản xảy ra ở nhiều vùng trên một phân tử.", "Mạch mới được tổng hợp bằng cách gắn thêm nucleotide vào đầu 3' của đoạn RNA mồi."], "correct": 2, "explain": "- Sinh vật nhân sơ có phân tử DNA nhỏ, dạng vòng, chỉ có **1 điểm khởi đầu tái bản duy nhất** (oriC).\n  - Sinh vật nhân thực có phân tử DNA mạch thẳng rất dài, kích thước lớn gấp hàng nghìn lần, nên trên mỗi phân tử DNA có **nhiều điểm khởi đầu tái bản** (tạo nhiều đơn vị tái bản cùng lúc) nhằm rút ngắn thời gian nhân đôi đáp ứng chu kỳ phân bào.\n  - Các đặc điểm A, B, D đều xảy ra tương tự ở cả h...", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_13", "part": "p1", "num": 13, "type": "mcq", "title": "Câu 13 (DE1)", "text": "Loại nucleic acid nào sau đây mang bộ ba đối mã (anticodon)?", "options": ["DNA", "mRNA", "tRNA", "rRNA"], "correct": 2, "explain": "- **tRNA** (transfer RNA) có cấu trúc cuộn gập thành 3 thùy tròn giống lá chẻ ba; trong đó thùy tròn ở giữa mang **bộ ba đối mã (anticodon)** có trình tự bổ sung với codon tương ứng trên mRNA.\n  - mRNA mang codon (bộ ba mã sao); rRNA kết hợp protein tạo ribosome; DNA mang triplet (bộ ba mã gốc).", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử.", "image": "images/official_cau13_nucleotide.jpg", "has_diagram": true, "diagram_title": "Hình vẽ cấu tạo 1 nucleotide"}, {"id": "de1_14", "part": "p1", "num": 14, "type": "mcq", "title": "Câu 14 (DE1)", "text": "Đặc điểm nào dưới đây đúng với mRNA?", "options": ["Đóng vai trò vận chuyển amino acid.", "Mang anticodon, làm khuôn tổng hợp protein.", "Kết hợp với các protein để hình thành nhiễm sắc thể.", "Có cấu trúc mạch đơn, dạng thẳng, gồm 4 loại đơn phân A, U, G, C."], "correct": 3, "explain": "- mRNA có cấu trúc là một chuỗi polynucleotide **mạch đơn, dạng thẳng**, không cuộn xoắn có liên kết hydro nội bộ, gồm 4 loại ribonucleotide A, U, G, C.\n  - Vận chuyển amino acid và mang anticodon là tRNA; cấu tạo ribosome là rRNA.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_15", "part": "p1", "num": 15, "type": "mcq", "title": "Câu 15 (DE1)", "text": "Hình bên mô tả khái quát quá trình phiên mã diễn ra trong tế bào của một cơ thể sinh vật. Đầu 5' của các đoạn mạch polynucleotid tương ứng với các vị trí nào sau đây?", "options": ["A, B, C", "B, D, F", "C, D, F.", "A, C, F."], "correct": 3, "explain": "Đáp án đúng là D.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử.", "image": "images/de1_cau15_phienma.jpg", "has_diagram": true, "diagram_title": "Hình vẽ quá trình phiên mã trong tế bào"}, {"id": "de1_16", "part": "p1", "num": 16, "type": "mcq", "title": "Câu 16 (DE1)", "text": "Phiên mã là quá trình tổng hợp nên phân tử", "options": ["cDNA.", "protein.", "RNA.", "DNA."], "correct": 2, "explain": "- Phiên mã là quá trình truyền đạt thông tin di truyền từ mạch khuôn của gen (DNA) sang phân tử **RNA** (gồm mRNA, tRNA, rRNA...).", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_17", "part": "p1", "num": 17, "type": "mcq", "title": "Câu 17 (DE1)", "text": "Loại enzyme nào sau đây trực tiếp tham gia vào quá trình phiên mã các gene cấu trúc ở sinh vật?", "options": ["RNA polymerase.", "DNA Ligase.", "DNA polymerase I.", "DNA polymerase III."], "correct": 0, "explain": "- **RNA polymerase** là enzyme duy nhất trực tiếp đảm nhiệm cả việc bám vào promoter, tháo xoắn gen và liên kết các ribonucleotide tự do thành chuỗi RNA theo nguyên tắc bổ sung.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử."}, {"id": "de1_18", "part": "p1", "num": 18, "type": "mcq", "title": "Câu 18 (DE1)", "text": "Hình bên mô tả một chuỗi polyribosome đang tổng hợp các chuỗi polypeptide, trong đó A, B, C là các ribosome khác nhau và a, b là các đầu của phân tử mRNA.  \nCó bao nhiêu phát biểu sau đây đúng?  \n(1) Ribosome A bắt đầu tổng hợp chuỗi peptide trước ribosome B và C.  \n(2) Các chuỗi peptide sơ khai được tổng hợp từ ba ribosome A, B, C đều có trình tự các amino acid giống nhau.  \n(3) Chiều di chuyển của các ribosome trên mRNA là từ a đến b.  \n(4) Trên phân tử mRNA đang tổng hợp, a là đầu 3' và b là đầu 5'.", "options": ["2.", "1.", "3.", "4."], "correct": 2, "explain": "Đáp án đúng là C.", "trap": "Ôn luyện kiến thức cốt lõi phần di truyền phân tử.", "image": "images/de1_cau18_polyribosome.jpg", "has_diagram": true, "diagram_title": "Sơ đồ chuỗi Polyribosome trượt trên sợi mRNA"}],
+      tf: [{"id": "de1_tf_19", "part": "p2", "num": 19, "title": "Câu 19 (Đề 1): Phiên mã và hoàn thiện mRNA", "intro": "Hình mô tả quá trình phiên mã và hoàn thiện mRNA sơ khai để tạo mRNA trưởng thành trong tế bào nhân thực.", "items": [{"id": "de1_19_a", "label": "a", "statement": "Quá trình này diễn ra ở kì trung gian của tất cả tế bào.", "correct": false, "explain": "SAI. Chỉ diễn ra ở sinh vật nhân thực, nhân sơ không có intron nên không có hoàn thiện."}, {"id": "de1_19_b", "label": "b", "statement": "mRNA sơ khai được tổng hợp từ đoạn mạch khuôn 3'->5'.", "correct": true, "explain": "ĐÚNG. Mạch khuôn 3'->5' làm khuôn phiên mã."}, {"id": "de1_19_c", "label": "c", "statement": "Quá trình hoàn thiện mRNA xảy ra trong nhân tế bào nhân thực.", "correct": true, "explain": "ĐÚNG. Cắt intron nối exon, gắn mũ 5' cap và đuôi polyA hoàn toàn trong nhân tế bào."}, {"id": "de1_19_d", "label": "d", "statement": "Các đoạn intron không có chức năng sinh học trong việc mã hóa chuỗi polypeptide.", "correct": true, "explain": "ĐÚNG. Intron là trình tự không mã hóa amino acid."}], "image": "images/de1_cau19_intron_exon.jpg", "has_diagram": true, "diagram_title": "Sơ đồ phiên mã và hoàn thiện mRNA sơ khai"}, {"id": "de1_tf_20", "part": "p2", "num": 20, "title": "Câu 20 (Đề 1): Nghiên cứu cơ chế tác động của thuốc 1 và thuốc 2 điều trị COVID-19", "intro": "Sơ đồ biểu diễn chuỗi polypeptide đang tổng hợp trên ribosome với mRNA: 5'-AUG UCA GGA AGU ...-3'.", "items": [{"id": "de1_20_a", "label": "a", "statement": "Thuốc 1 can thiệp vào quá trình phiên mã tạo ra mRNA của virus hoặc tác động làm phân hủy mRNA của virus.", "correct": true, "explain": "ĐÚNG. Mẫu Thuốc 1 làm giảm mạnh cả lượng mRNA (từ 8 xuống 3 mg/cm3) và protein virus (từ 10 xuống 4 mg/cm3) => Thuốc 1 ức chế phiên mã hoặc phân hủy mRNA virus."}, {"id": "de1_20_b", "label": "b", "statement": "Thuốc 2 làm giảm lượng mRNA so với không xử lí thuốc dẫn đến làm giảm hàm lượng protein do protein là sản phẩm sau dịch mã.", "correct": false, "explain": "SAI. Cột mRNA ở Thuốc 2 vẫn đạt 8 mg/cm3 (bằng với mẫu không thuốc), do đó thuốc 2 không hề làm giảm lượng mRNA."}, {"id": "de1_20_c", "label": "c", "statement": "Thuốc 2 can thiệp vào quá trình dịch mã từ mRNA virus hoặc tác động làm phân hủy một phần protein virus.", "correct": true, "explain": "ĐÚNG. Lượng mRNA không đổi (8 mg/cm3) nhưng protein bị giảm từ 10 xuống 6 mg/cm3 => Thuốc 2 tác động vào giai đoạn dịch mã hoặc thúc đẩy phân hủy protein virus."}, {"id": "de1_20_d", "label": "d", "statement": "Xử lí thuốc 2 không làm thay đổi hàm lượng mRNA do vậy nó can thiệp vào phiên mã, lượng protein giảm một phần có thể tác động làm phân hủy 1 phần protein của virus.", "correct": false, "explain": "SAI. Không làm thay đổi hàm lượng mRNA thì chứng tỏ nó KHÔNG can thiệp vào quá trình phiên mã."}], "image": "images/de1_cau20_thuoc_covid.png", "has_diagram": true, "diagram_title": "Biểu đồ hàm lượng Protein và mRNA virus khi dùng Thuốc 1 & Thuốc 2", "question": "Để nghiên cứu cơ chế tác động của hai loại thuốc mới điều trị bệnh nhân Covid-19 (thuốc 1 và thuốc 2) người ta tiến hành thử nghiệm tác động của chúng lên quá trình biểu hiện gene của gene virus trong các tế bào người. Hàm lượng mRNA của virus và protein virus trong các mẫu tế bào được thể hiện theo biểu đồ bên. Biết rằng các điều kiện thí nghiệm là như nhau. Mỗi phát biểu sau đây đúng hay sai khi nói về cơ chế tác động của thuốc 1 và thuốc 2 lên quá trình biểu hiện gene của virus?"}, {"id": "de1_tf_21", "part": "p2", "num": 21, "title": "Câu 21 (Đề 1): Hoạt động của Operon Lac ở vi khuẩn E.coli", "intro": "Đặc điểm điều hòa biểu hiện gene ở Operon Lac khi môi trường có hoặc không có lactose.", "items": [{"id": "de1_21_a", "label": "a", "statement": "Gene điều hòa LacI nằm liền kề ngay trước vùng vận hành O và thuộc operon Lac.", "correct": false, "explain": "SAI. Gene điều hòa LacI KHÔNG thuộc operon Lac."}, {"id": "de1_21_b", "label": "b", "statement": "Khi môi trường có lactose, lactose liên kết làm biến đổi cấu hình protein ức chế.", "correct": true, "explain": "ĐÚNG. Khiến protein ức chế không gắn được vào vùng vận hành O."}, {"id": "de1_21_c", "label": "c", "statement": "Các gene Z, Y, A có số lần phiên mã bằng nhau nhưng số lần nhân đôi khác nhau.", "correct": false, "explain": "SAI. Cùng trên 1 phân tử DNA nên nhân đôi số lần bằng nhau."}, {"id": "de1_21_d", "label": "d", "statement": "Đột biến tại vùng O có thể làm operon hoạt động liên tục không phụ thuộc lactose.", "correct": true, "explain": "ĐÚNG. Đột biến Oc khiến protein ức chế không bám được vào O."}]}],
+      short: [{"id": "de1_sa_22", "part": "p3", "num": 22, "title": "Câu 22 (Đề 1): Số codon mã hóa từ A, U, G", "text": "Từ 3 loại ribonucleotide A, U, G có thể tạo ra tối đa bao nhiêu bộ ba mã hóa amino acid?", "correct": 24, "explain": "3^3 = 27 bộ ba. Trừ 3 bộ ba kết thúc UAA, UAG, UGA => còn 24 bộ ba mã hóa."}, {"id": "de1_sa_23", "part": "p3", "num": 23, "title": "Câu 23 (Đề 1): Thành phần tham gia dịch mã", "text": "Cho: (1) Gen, (2) mRNA, (3) Amino acid, (4) tRNA, (5) Ribosome, (6) dNTP. Có bao nhiêu thành phần tham gia trực tiếp vào dịch mã?", "correct": 4, "explain": "4 thành phần gồm mRNA, amino acid, tRNA, ribosome."}, {"id": "de1_sa_24", "part": "p3", "num": 24, "title": "Câu 24 (Đề 1): Nguyên tắc bổ sung", "text": "Trong các cấu trúc và quá trình: mRNA, tRNA, rRNA, phiên mã, dịch mã, có bao nhiêu trường hợp có nguyên tắc bổ sung?", "correct": 4, "explain": "4 trường hợp: tRNA, rRNA, phiên mã, dịch mã (mRNA mạch đơn thẳng không có liên kết bổ sung)."}, {"id": "de1_sa_25", "part": "p3", "num": 25, "title": "Câu 25 (Đề 1): Chuỗi polypeptide từ Operon Lac", "text": "Khi môi trường có lactose, cụm gene lac Z, lac Y, lac A phiên mã tạo ra bao nhiêu loại chuỗi polypeptide?", "correct": 3, "explain": "Tạo 1 phân tử polycistronic mRNA nhưng khi dịch mã tạo 3 loại chuỗi polypeptide riêng biệt."}, {"id": "de1_sa_26", "part": "p3", "num": 26, "title": "Câu 26 (Đề 1): Sơ đồ cơ chế di truyền cấp độ phân tử (Dịch mã)", "text": "Hình bên mô tả cơ chế di truyền ở cấp độ phân tử ở sinh vật. Trong các nhận định sau, có bao nhận định đúng về hình này?\n1- Hình bên mô tả quá trình dịch mã ở tế bào nhân sơ.\n2- Codon GGG mã hóa amino acid là Gly.\n3- tRNA có anticodon AAU chỉ mang amino acid là Ala.\n4- Codon 5'UAA3' có đối mã 3'AUU5'.\n5- Chiều dịch mã trên mRNA từ 3'->5'.", "correct": 2, "explain": "- Nhận định 1 ĐÚNG: Amino acid mở đầu là fMet (Formylmethionine) đặc trưng cho tế bào nhân sơ.\n- Nhận định 2 ĐÚNG: Codon GGG mã hóa cho Glycine (Gly).\n- Nhận định 3 SAI: tRNA mang anticodon AAU khớp với codon UUA mã hóa Leu, không phải Ala.\n- Nhận định 4 SAI: UAA là codon kết thúc, không có tRNA đối mã.\n- Nhận định 5 SAI: Chiều dịch mã luôn là 5' -> 3'.\n=> Có đúng 2 nhận định đúng: 1 và 2.", "image": "images/de1_cau26_dichma.png", "has_diagram": true, "diagram_title": "Sơ đồ quá trình dịch mã tổng hợp polypeptide (fMet-Gly-Ala-Asn...)"}, {"id": "de1_sa_27", "part": "p3", "num": 27, "title": "Câu 27 (Đề 1): Tính số liên kết hydrogen của gen", "text": "Một gen ở sinh vật nhân sơ có chiều dài 4080 Å, số nucleotide loại Adenine chiếm 20% tổng số nucleotide. Số liên kết hydrogen của gen này là bao nhiêu?", "correct": 3120, "explain": "1. Tổng số nu: N = (2 × L) / 3.4 = (2 × 4080) / 3.4 = 2400 nu.\n2. A = T = 20% × 2400 = 480 nu.\n3. G = C = (2400 / 2) - 480 = 720 nu.\n4. Số liên kết hydrogen: H = 2A + 3G = 2 × 480 + 3 × 720 = 3120 liên kết."}],
       essay: [{"id": "de1_es_28", "part": "p4", "num": 28, "title": "Câu 28 (Đề 1 - Tự Luận): Phân biệt cấu trúc gene nhân sơ và nhân thực", "question": "Phân biệt cấu trúc gene của sinh vật nhân sơ và sinh vật nhân thực.", "image": "images/de1_cau28_tuluan.jpg", "has_diagram": true, "diagram_title": "Bản chụp đề gốc Câu 28 Tự Luận", "answer": "Bảng phân biệt cấu trúc gene sinh vật nhân sơ và nhân thực:\n\n1. Cấu trúc vùng mã hóa:\n- Gen nhân sơ: Vùng mã hóa liên tục (gen không phân mảnh), toàn bộ trình tự đều mã hóa amino acid.\n- Gen nhân thực: Vùng mã hóa không liên tục (gen phân mảnh), gồm các đoạn Exon (mã hóa) xen kẽ các đoạn Intron (không mã hóa).\n\n2. Sản phẩm phiên mã sơ khai:\n- Gen nhân sơ: mRNA sơ khai chính là mRNA trưởng thành, được dùng làm khuôn dịch mã ngay tại tế bào chất.\n- Gen nhân thực: Tạo tiền mRNA (pre-mRNA), sau đó phải qua chế biến trong nhân tế bào: cắt bỏ intron, nối exon, gắn mũ 5' cap và đuôi polyA mới tạo thành mRNA trưởng thành.\n\n3. Tổ chức cụm gene:\n- Nhân sơ: Các gen có liên quan về chức năng thường phân bố thành cụm chung gọi là Operon (dùng chung 1 promoter P).\n- Nhân thực: Mỗi gen thường phân bố độc lập, có promoter và vùng điều hòa riêng biệt, không tổ chức thành operon.\n\n4. Vị trí và liên kết protein:\n- Nhân sơ: Nằm trên DNA trần (không liên kết histone), dạng vòng ở vùng nhân hoặc plasmid.\n- Nhân thực: Nằm trên DNA mạch thẳng trong nhân tế bào, liên kết chặt chẽ với protein histone tạo cấu trúc nhiễm sắc thể."}]
     };
     const de2Exam = {
@@ -1965,13 +2022,16 @@
       short: [{"id": "de2_sa_22", "part": "p3", "num": 22, "title": "Câu 22 (Đề 2): Số codon mã hóa từ A, U, C (Mã 122)", "text": "Từ 3 loại ribonucleotide A, U, C có thể tạo ra tối đa bao nhiêu bộ ba MÃ HÓA AMINO ACID?", "correct": 26, "explain": "3^3 = 27 bộ ba. Vì không có G nên chỉ tạo được 1 bộ ba kết thúc là UAA (UAG và UGA không thể tạo ra). Số codon mã hóa = 27 - 1 = 26."}, {"id": "de2_sa_23", "part": "p3", "num": 23, "title": "Câu 23 (Đề 2): Chiều dài gen và số chu kỳ xoắn", "text": "Một gen có chiều dài L = 4080 Å. Số chu kỳ xoắn (C) của gen này là bao nhiêu?", "correct": 120, "explain": "N = (4080 / 3.4) * 2 = 2400 nucleotide. Số chu kỳ xoắn C = N / 20 = 2400 / 20 = 120."}, {"id": "de2_sa_24", "part": "p3", "num": 24, "title": "Câu 24 (Đề 2): Liên kết photphodieste nội mạch", "text": "Một phân tử DNA có 3000 nucleotide. Số liên kết photphodieste nối giữa các nucleotide trên CẢ HAI MẠCH của phân tử là bao nhiêu?", "correct": 2998, "explain": "Số liên kết photphodieste nối giữa các đơn phân trong phân tử DNA kép = 2 * (N/2 - 1) = N - 2 = 3000 - 2 = 2998."}, {"id": "de2_sa_25", "part": "p3", "num": 25, "title": "Câu 25 (Đề 2): Amino acid chuỗi hoàn chỉnh", "text": "Một phân tử mRNA có 900 ribonucleotide. Số amino acid trong một chuỗi polypeptide HOÀN CHỈNH được dịch mã từ phân tử mRNA này là bao nhiêu?", "correct": 298, "explain": "Số bộ ba = 900 / 3 = 300. Chuỗi polypeptide hoàn chỉnh đã cắt bỏ axit amin mở đầu Met nên số aa = 300 - 2 = 298."}, {"id": "de2_sa_26", "part": "p3", "num": 26, "title": "Câu 26 (Đề 2): Số phân tử DNA lai sau 5 thế hệ", "text": "Cho 1 phân tử DNA ban đầu mang hoàn toàn 15N nhân đôi 5 thế hệ trong môi trường chỉ chứa 14N. Số phân tử DNA lai mang 1 mạch 15N và 1 mạch 14N tạo thành là bao nhiêu?", "correct": 2, "explain": "Dù nhân đôi qua bao nhiêu thế hệ thì 2 mạch đơn 15N ban đầu vẫn chỉ nằm trong đúng 2 phân tử DNA lai (mỗi phân tử chứa 1 mạch cũ)."}, {"id": "de2_sa_27", "part": "p3", "num": 27, "title": "Câu 27 (Đề 2): Số codon mã hóa amino acid tối đa từ A, U, G", "text": "Giả sử phân tử mRNA được tạo ra từ 3 loại nucleotide A, U, G. Theo lí thuyết số loại codon mã hóa amino acid tối đa có trên phân tử mRNA là bao nhiêu?", "correct": 24, "explain": "1. Với 3 loại nucleotide (A, U, G), tổng số loại bộ ba (codon) có thể tạo thành: 3^3 = 27 bộ ba.\n2. Cả 3 bộ ba kết thúc UAA, UAG, UGA đều chỉ tạo từ A, U, G => cả 3 bộ ba này đều xuất hiện.\n3. Vì codon kết thúc không mã hóa amino acid, nên số loại codon mã hóa amino acid tối đa = 27 - 3 = 24 codon."}],
       essay: [{"id": "de2_es_28", "part": "p4", "num": 28, "title": "Câu 28 (Đề 2 - Tự Luận): Dự đoán vị trí đột biến khi Operon Lac hoạt động liên tục không cần Lactose", "question": "Nếu môi trường nuôi cấy vi khuẩn E.coli không có lactose nhưng operon lac vẫn hoạt động thì có thể dự đoán vi khuẩn bị hỏng ở bộ phận nào của operon lac. Giải thích.", "image": "images/de2_cau28_tuluan.jpg", "has_diagram": true, "diagram_title": "Bản chụp đề gốc Câu 28 Tự Luận", "answer": "Bình thường khi môi trường không có lactose, operon Lac ở trạng thái bị ức chế (tắt). Nếu không có lactose mà operon Lac vẫn hoạt động liên tục, vi khuẩn có thể bị đột biến hỏng ở 1 trong 2 bộ phận sau:\n\n1. Đột biến hỏng ở Vùng vận hành (Operator - vùng O):\n- Giải thích: Vùng O là vị trí liên kết đặc hiệu của protein ức chế. Khi vùng O bị đột biến làm biến đổi trình tự nucleotide, protein ức chế dù được tạo ra bình thường cũng không thể nhận biết và liên kết vào vùng O được. \n- Hậu quả: Vùng O luôn để trống, enzyme RNA polymerase tự do bám vào promoter P và tiến hành phiên mã liên tục các gen cấu trúc Z, Y, A.\n\n2. Đột biến hỏng ở Gene điều hòa (LacI):\n- Giải thích: Gen LacI bị đột biến làm mất khả năng phiên mã/dịch mã, hoặc tạo ra protein ức chế bị biến đổi cấu hình không gian 3 chiều không thể bám vào vùng O.\n- Hậu quả: Trong tế bào không có protein ức chế hoạt tính để khóa vùng O, dẫn tới operon Lac phiên mã tạo enzyme liên tục mà không cần lactose."}]
     };
+    const decuongExam = {"mcq": [{"id": "dc_mcq_1", "num": 1, "title": "Câu 1 (Đề Cương): Đơn phân của nucleic acid", "text": "Nucleotide là đơn phân cấu tạo nên", "options": ["protein.", "nhiễm sắc thể.", "lipid.", "nucleic acid."], "correct": 3, "explain": "Nucleic acid (gồm DNA và RNA) là đại phân tử sinh học cấu tạo theo nguyên tắc đa phân, đơn phân là các nucleotide (DNA gồm A, T, G, C; RNA gồm A, U, G, C)."}, {"id": "dc_mcq_2", "num": 2, "title": "Câu 2 (Đề Cương): DNA nhân sơ vs nhân thực", "text": "Điểm khác nhau giữa DNA ở tế bào nhân sơ và DNA trong nhân tế bào nhân thực là", "options": ["đơn phân của DNA trong nhân tế bào nhân thực là A, T, G, C còn ở tế bào nhân sơ là A, U, G, C.", "DNA ở tế bào nhân sơ có dạng vòng, còn DNA ở nhân tế bào nhân thực có dạng mạch thẳng.", "các nitrogenous base ở 2 mạch của DNA liên kết với nhau theo nguyên tắc bổ sung.", "DNA ở tế bào nhân sơ có một chuỗi polynucleotide còn DNA nhân của tế bào nhân thực có hai chuỗi polynucleotide."], "correct": 1, "explain": "DNA ở vùng nhân của tế bào nhân sơ là phân tử kép dạng vòng, trần (không liên kết histone). DNA trong nhân tế bào nhân thực là phân tử kép dạng thẳng, liên kết với protein histone tạo chất nhiễm sắc."}, {"id": "dc_mcq_3", "num": 3, "title": "Câu 3 (Đề Cương): Liên kết bền vững của DNA", "text": "Liên kết nào giữa các đơn phân nucleotide giúp cho phân tử DNA bền vững, không bị đứt gãy trong quá trình tái bản hay truyền đạt thông tin di truyền?", "options": ["Liên kết phosphodiester.", "Liên kết DNA - protein.", "Liên kết hydrogen.", "Liên kết ion."], "correct": 0, "explain": "Liên kết phosphodiester là liên kết cộng hóa trị bền vững nối giữa gốc đường của nucleotide này với gốc phosphate của nucleotide kế tiếp trên cùng một mạch, giúp khung đường - phosphate không bị đứt gãy."}, {"id": "dc_mcq_4", "num": 4, "title": "Câu 4 (Đề Cương): Cơ chế truyền đạt thông tin của DNA", "text": "DNA có chức năng truyền đạt thông tin di truyền gần như nguyên vẹn qua các thế hệ tế bào là nhờ cơ chế", "options": ["dịch mã.", "tái bản DNA.", "phiên mã.", "phân bào."], "correct": 1, "explain": "Tái bản (nhân đôi) DNA theo nguyên tắc bổ sung và bán bảo toàn giúp sao chép thông tin di truyền chính xác qua các thế hệ tế bào."}, {"id": "dc_mcq_5", "num": 5, "title": "Câu 5 (Đề Cương): Vùng mã hóa gene nhân thực", "text": "Theo cấu trúc của gene ở sinh vật nhân thực, vùng mã hóa không chứa trình tự", "options": ["mã hóa một chuỗi polypeptide.", "mã hóa một chuỗi RNA.", "kết thúc phiên mã.", "các đoạn exon."], "correct": 2, "explain": "Trình tự kết thúc phiên mã nằm ở VÙNG KẾT THÚC (ở đầu 5' của mạch khuôn), không thuộc vùng mã hóa."}, {"id": "dc_mcq_6", "num": 6, "title": "Câu 6 (Đề Cương): Yếu tố cần cho tái bản DNA", "text": "Yếu tố nào sau đây cần cho quá trình tái bản DNA ?", "options": ["mRNA.", "tRNA.", "Ribosome.", "Nucleotide."], "correct": 3, "explain": "Quá trình tái bản DNA cần các nucleotide tự do (dATP, dTTP, dGTP, dCTP) làm nguyên liệu tổng hợp mạch mới."}, {"id": "dc_mcq_7", "num": 7, "title": "Câu 7 (Đề Cương): Nguyên tắc bổ sung trong tái bản", "text": "Trong quá trình tái bản DNA, loại nucleotide nào của môi trường sẽ liên kết bổ sung với nucleotide loại Adenine trên mạch khuôn DNA?", "options": ["Guanine.", "Thymine.", "Uracil.", "Cytosine."], "correct": 1, "explain": "Trong tái bản DNA, A mạch khuôn liên kết bổ sung với T môi trường (A-T liên kết 2 liên kết hydrogen)."}, {"id": "dc_mcq_8", "num": 8, "title": "Câu 8 (Đề Cương): Nguyên tắc bán bảo toàn", "text": "Mỗi DNA con sau nhân đôi đều có một mạch của DNA mẹ, mạch còn lại được hình thành từ các nucleotide tự do của môi trường. Đây là cơ sở của nguyên tắc", "options": ["bổ sung.", "bán bảo toàn.", "bổ sung và bảo toàn.", "bổ sung và bán bảo toàn."], "correct": 1, "explain": "Nguyên tắc bán bảo toàn (giữ lại một nửa): trong mỗi phân tử DNA con có 1 mạch cũ của mẹ và 1 mạch mới được tổng hợp."}, {"id": "dc_mcq_9", "num": 9, "title": "Câu 9 (Đề Cương): Enzyme không tham gia tái bản DNA", "text": "Trong quá trình tái bản DNA không có sự tham gia của enzyme", "options": ["DNA polymerase.", "RNA polymerase.", "ligase.", "nuclease."], "correct": 3, "explain": "Enzyme nuclease (phân giải axit nucleic) không tham gia tổng hợp trong tái bản DNA bình thường. Quá trình tái bản cần helicase, RNA polymerase (primase tổng hợp mồi), DNA polymerase và ligase."}, {"id": "dc_mcq_10", "num": 10, "title": "Câu 10 (Đề Cương): Enzyme xúc tác tổng hợp mạch mới", "text": "Enzyme xúc tác để tổng hợp mạch mới trong quá trình tái bản DNA là", "options": ["DNA polymerase.", "primase.", "ligase.", "nuclease."], "correct": 0, "explain": "DNA polymerase chịu trách nhiệm kéo dài chuỗi polynucleotide mới theo chiều 5' -> 3' bằng cách gắn nucleotide tự do bổ sung với mạch khuôn."}, {"id": "dc_mcq_11", "num": 11, "title": "Câu 11 (Đề Cương): Ý nghĩa của tái bản DNA", "text": "Ý nghĩa của quá trình tái bản DNA là giúp", "options": ["truyền đạt gần như nguyên vẹn thông tin di truyền trên DNA qua các thế hệ tế bào.", "biểu hiện thông tin di truyền trên DNA thành trình tự nucleotide trên RNA.", "biểu hiện thông tin di truyền trên RNA thành trình tự amino acid của protein.", "biến đổi trình tự nucleotide của DNA, dẫn đến sự thay đổi thông tin di truyền."], "correct": 0, "explain": "Nhân đôi DNA đảm bảo thông tin di truyền được truyền đạt chính xác, ổn định qua các thế hệ tế bào và cơ thể."}, {"id": "dc_mcq_12", "num": 12, "title": "Câu 12 (Đề Cương): Điểm đặc thù tái bản ở nhân thực", "text": "Đặc điểm nào sau đây chỉ có ở quá trình tái bản DNA của sinh vật nhân thực mà không có ở quá trình tái bản DNA của sinh vật nhân sơ?", "options": ["Một mạch mới được tổng hợp liên tục, mạch mới còn lại được tổng hợp thành từng phân đoạn okazaki", "Mạch mới được tổng hợp bằng cách gắn thêm nucleotide vào đầu 3’ của đoạn RNA mồi.", "DNA có nhiều điểm khởi đầu tái bản, nên quá trình tái bản xảy ra ở nhiều vùng trên một phân tử.", "DNA được tái bản theo nguyên tắc bổ sung và nguyên tắc bán bảo toàn."], "correct": 2, "explain": "DNA nhân thực dài và liên kết histone nên có NHIỀU điểm khởi đầu tái bản (ori) để tiết kiệm thời gian nhân đôi, trong khi DNA nhân sơ vòng chỉ có 1 điểm ori duy nhất."}, {"id": "dc_mcq_13", "num": 13, "title": "Câu 13 (Đề Cương): Phân tử mang anticodon", "text": "Loại nucleic acid nào sau đây mang bộ ba đối mã (anticodon)?", "options": ["DNA", "rRNA", "mRNA", "tRNA"], "correct": 3, "explain": "tRNA (RNA vận chuyển) mang bộ ba đối mã (anticodon) ở thùy tròn giữa để khớp bổ sung với codon trên mRNA."}, {"id": "dc_mcq_14", "num": 14, "title": "Câu 14 (Đề Cương): Đặc điểm cấu trúc của mRNA", "text": "Đặc điểm nào dưới đây đúng với mRNA?", "options": ["Kết hợp với các protein để hình thành nhiễm sắc thể.", "Đóng vai trò vận chuyển amino acid.", "Mang anticodon, làm khuôn tổng hợp protein.", "Có cấu trúc mạch đơn, dạng thẳng, gồm 4 loại đơn phân A, U, G, C."], "correct": 3, "explain": "mRNA có cấu trúc một chuỗi polynucleotide dạng thẳng, không cuộn gập tạo liên kết hydro nội mạch, gồm 4 loại ribonucleotide A, U, G, C."}, {"id": "dc_mcq_15", "num": 15, "title": "Câu 15 (Đề Cương): Sơ đồ cơ chế phiên mã", "text": "Hình bên mô tả khái quát quá trình phiên mã diễn ra trong tế bào của một cơ thể sinh vật. Đầu 5’ của các đoạn mạch polynucleotid tương ứng với các vị trí nào sau đây?", "options": ["A, C, F.", "B, D, F", "A, B, C", "C, D, F."], "correct": 0, "image": "images/decuong_mcq_15_phienma.jpg", "has_diagram": true, "diagram_title": "Sơ đồ quá trình phiên mã (RNA polymerase trượt từ phải sang trái)", "explain": "Mũi tên RNA polymerase trượt từ phải sang trái. Mạch khuôn phải có chiều 3' -> 5' theo hướng di chuyển của enzyme, do đó đầu D là 3', B là 5'. Mạch bổ sung ngược chiều nên A là 5', C là 3'. Phân tử mRNA kéo dài theo chiều 5' -> 3', nên đầu F ra trước là đầu 5'. Vậy các đầu 5' là A, C (hoặc theo quy ước A, B, F). Theo đáp án chuẩn đề thi: A, C, F."}, {"id": "dc_mcq_16", "num": 16, "title": "Câu 16 (Đề Cương): Sản phẩm của phiên mã", "text": "Phiên mã là quá trình tổng hợp nên phân tử", "options": ["cDNA.", "protein.", "RNA.", "DNA"], "correct": 2, "explain": "Phiên mã là quá trình truyền đạt thông tin từ DNA sang các loại phân tử RNA (mRNA, tRNA, rRNA)."}, {"id": "dc_mcq_17", "num": 17, "title": "Câu 17 (Đề Cương): Enzyme phiên mã", "text": "Loại enzyme nào sau đây trực tiếp tham gia vào quá trình phiên mã các gene cấu trúc ở sinh vật?", "options": ["RNA polymerase.", "DNA polymerase III.", "DNA polymerase I.", "DNA Ligase."], "correct": 0, "explain": "RNA polymerase bám vào promoter, tháo xoắn DNA và tổng hợp chuỗi RNA theo chiều 5' -> 3'."}, {"id": "dc_mcq_18", "num": 18, "title": "Câu 18 (Đề Cương): Chuỗi Polyribosome dịch mã", "text": "Hình bên mô tả một chuỗi polyribosome đang tổng hợp các chuỗi polypeptide, trong đó A, B, C là các ribosome khác nhau và a, b là các đầu của phân tử mRNA. Có bao nhiêu phát biểu sau đây đúng?\n(1) Ribosome A bắt đầu tổng hợp chuỗi peptide trước ribosome B và C.\n(2) Các chuỗi peptide sơ khai được tổng hợp từ ba ribosome A, B, C đều có trình tự các amino acid giống nhau.\n(3) Chiều di chuyển của các ribosome trên mRNA là từ a đến b\n(4) Trên phân tử mRNA đang tổng hợp, a là đầu 3’ và b là đầu 5’.", "options": ["1.", "3.", "2.", "4."], "correct": 2, "image": "images/decuong_mcq_18_polyribosome.jpg", "has_diagram": true, "diagram_title": "Sơ đồ chuỗi Polyribosome trượt trên sợi mRNA", "explain": "- (1) ĐÚNG: Ribosome A mang chuỗi polypeptide dài nhất nên đã trượt được quãng đường dài nhất => bắt đầu trước B và C.\n- (2) ĐÚNG: Cùng trượt trên 1 sợi mRNA khuôn nên các chuỗi polypeptide tạo ra đều có cấu trúc bậc 1 giống nhau.\n- (3) SAI: Ribosome di chuyển từ nơi có chuỗi peptide ngắn đến chuỗi peptide dài => từ b sang a.\n- (4) SAI: Ribosome luôn trượt theo chiều 5' -> 3' trên mRNA, do đó b là đầu 5' và a là đầu 3'.\nVậy có 2 phát biểu đúng: (1) và (2)."}, {"id": "dc_mcq_19", "num": 19, "title": "Câu 19 (Đề Cương): Chức năng của Vùng điều hòa", "text": "Vùng điều hoà là vùng", "options": ["quy định trình tự sắp xếp các amino acid trong phân tử protein.", "mang tín hiệu khởi động và kiểm soát quá trình phiên mã.", "mang thông tin mã hoá các amino acid.", "mang tín hiệu kết thúc phiên mã."], "correct": 1, "explain": "Vùng điều hoà nằm ở đầu 3' của mạch khuôn, chứa promoter mang tín hiệu khởi động và kiểm soát quá trình phiên mã."}, {"id": "dc_mcq_20", "num": 20, "title": "Câu 20 (Đề Cương): Các giai đoạn của dịch mã", "text": "Quá trình dịch mã gồm các giai đoạn nào?", "options": ["Phiên mã, tổng hợp các loại RNA và tổng hợp chuỗi polypeptide", "Phiên mã, hoạt hóa các amino acid và tổng hợp chuỗi polypeptide", "Phiên mã, dịch mã và tổng hợp chuỗi polypeptide", "Hoạt hóa các amino acid và tổng hợp chuỗi polypeptide"], "correct": 3, "explain": "Dịch mã gồm 2 giai đoạn: (1) Hoạt hóa amino acid và gắn vào tRNA; (2) Tổng hợp chuỗi polypeptide trên ribosome (mở đầu, kéo dài, kết thúc)."}, {"id": "dc_mcq_21", "num": 21, "title": "Câu 21 (Đề Cương): Tính phổ biến của mã di truyền", "text": "Tất cả các loài sinh vật đều có chung một bộ mã di truyền, trừ một vài ngoại lệ, điều này biểu hiện đặc điểm nào sau đây của mã di truyền?", "options": ["Mã di truyền có tính phổ biến", "Mã di truyền luôn là mã bộ ba", "Mã di truyền có tính thoái hóa", "Mã di truyền có tính đặc hiệu."], "correct": 0, "explain": "Tính phổ biến: hầu hết các loài sinh vật đều dùng chung một bộ mã di truyền, chứng minh nguồn gốc chung của sinh giới."}, {"id": "dc_mcq_22", "num": 22, "title": "Câu 22 (Đề Cương): Codon kết thúc dịch mã", "text": "Codon nào sau đây mang tín hiệu kết thúc quá trình dịch mã?", "options": ["5'ACC3'", "5'UGA3’.", "5'AGG3'", "5'AGC3'"], "correct": 1, "explain": "Ba codon kết thúc trên mRNA: 5'UAA3', 5'UAG3', 5'UGA3'."}, {"id": "dc_mcq_23", "num": 23, "title": "Câu 23 (Đề Cương): Tính thoái hóa của mã di truyền", "text": "Hai bộ ba cùng mang thông tin mã hóa cho 1 loại amino acid. Hiện tượng này thuộc đặc điểm nào sau đây của mã di truyền?", "options": ["Tính thoái hóa", "Tính phổ biến", "Tính đặc hiệu", "Tính liên tục"], "correct": 0, "explain": "Tính thoái hóa (dư thừa): nhiều bộ ba khác nhau cùng mã hóa cho một loại amino acid (trừ AUG và UGG)."}, {"id": "dc_mcq_24", "num": 24, "title": "Câu 24 (Đề Cương): Khuôn trực tiếp dịch mã", "text": "Thông tin di truyền được trực tiếp sử dụng trong tổng hợp protein là thông tin chứa trong phân tử", "options": ["DNA", "rRNA.", "tRNA.", "mRNA"], "correct": 3, "explain": "mRNA đóng vai trò là khuôn trực tiếp mang thông tin di truyền từ nhân ra tế bào chất để dịch mã tổng hợp protein."}, {"id": "dc_mcq_25", "num": 25, "title": "Câu 25 (Đề Cương): Chiều dịch mã của ribosome", "text": "Nhận định nào sau đây không đúng khi nói về cơ chế dịch mã ở sinh vật nhân thực?", "options": ["Amino acid mở đầu trong quá trình dịch mã là methionine.", "Mỗi phân từ mRNA có thể tổng hợp được từ một đến nhiều chuỗi polypeptide cùng loại.", "Khi ribosome tiếp xúc với mã UGA thì quá trình dịch mã dừng lại.", "Khi dịch mã ribosome dịch chuyển theo chiều 3' - 5' trên phân tử mRNA"], "correct": 3, "explain": "Khi dịch mã, ribosome luôn dịch chuyển theo chiều 5' -> 3' trên phân tử mRNA (từng bước 1 codon)."}, {"id": "dc_mcq_26", "num": 26, "title": "Câu 26 (Đề Cương): Sơ đồ truyền đạt thông tin di truyền", "text": "Quan sát sơ đồ bên và cho biết kí hiệu X và Y tương ứng đại diện cho những quá trình nào?", "options": ["X: tái bản, Y: tổng hợp.", "X: dịch mã, Y: phiên mã", "X: tổng hợp, Y: sao chép.", "X: phiên mã, Y: dịch mã."], "correct": 3, "image": "images/decuong_mcq_26_dogma.jpg", "has_diagram": true, "diagram_title": "Sơ đồ dòng thông tin di truyền DNA -> mRNA -> Polypeptid", "explain": "DNA tổng hợp mRNA nhờ quá trình Phiên mã (X). mRNA tổng hợp chuỗi polypeptid nhờ quá trình Dịch mã (Y)."}, {"id": "dc_mcq_27", "num": 27, "title": "Câu 27 (Đề Cương): Ý nghĩa của Polyribosome", "text": "Hiện tượng polyribosome có ý nghĩa nào sau đây?", "options": ["Tạo ra các chuỗi polypeptide có trình tự khác nhau.", "Góp phần tạo ra sự đa dạng protein cho tế bào.", "Góp phần làm tăng hiệu suất tổng hợp một loại chuỗi polypeptide.", "Tạo ra các loại protein giống nhau hoặc khác nhau do cùng một gene chi phối."], "correct": 2, "explain": "Nhiều ribosome cùng trượt trên một mRNA giúp tăng hiệu suất tổng hợp chuỗi polypeptide cùng loại trong thời gian ngắn."}, {"id": "dc_mcq_28", "num": 28, "title": "Câu 28 (Đề Cương): Tra bảng mã codon dịch amino acid", "text": "Cho biết một số codon và amino acid mà chúng mã hoá trong bảng dưới đây. Một gene ở sinh vật nhân thực có trình tự nucleotide ở mạch bổ sung như sau: 5' ... ATGTCTTTACCA...3’. Theo lí thuyết, trình tự amino acid nào sau đây được mã hóa bởi đoạn gene trên?", "options": ["Ser - Leu - Pro.", "Met - Trp - His - Pro.", "Met - Ser - Leu - Pro.", "His - Trp – Leu"], "correct": 2, "image": "images/decuong_mcq_28_bang_codon.png", "has_diagram": true, "diagram_title": "Bảng mã codon dịch mã axit amin", "explain": "Mạch bổ sung: 5' ATG - TCT - TTA - CCA 3'\n=> Trình tự mRNA: 5' AUG - UCU - UUA - CCA 3'\nTra bảng:\nAUG -> Met\nUCU -> Ser\nUUA -> Leu\nCCA -> Pro\n=> Chuỗi amino acid: Met - Ser - Leu - Pro."}, {"id": "dc_mcq_29", "num": 29, "title": "Câu 29 (Đề Cương): Điểm bám của RNA polymerase", "text": "Nơi enzyme RNA polymerase bám vào chuẩn bị cho phiên mã gọi là", "options": ["Operon.", "gene chỉ huy.", "vùng promoter.", "gene điều hòa."], "correct": 2, "explain": "Vùng promoter (vùng khởi động P) là trình tự nucleotide đặc hiệu để RNA polymerase nhận biết và bám vào khởi đầu phiên mã."}, {"id": "dc_mcq_30", "num": 30, "title": "Câu 30 (Đề Cương): Vai trò của Lactose trong Operon Lac", "text": "Trong cơ chế điều hoà biểu hiện gene ở operon Lac, lactose được xem là chất giúp cho gene được biểu hiện vì", "options": ["việc phiên mã gene cấu trúc phụ thuộc vào sự có mặt hay không có mặt của lactose.", "việc hoạt động gene điều hòa LacI phụ thuộc vào lactose.", "lactose xuất hiện liên kết với RNA polymerase kích hoạt quá trình phiên mã gene cấu trúc.", "lactose xuất hiện liên kết với RNA polymerase ức chế quá trình phiên mã gene cấu trúc."], "correct": 0, "explain": "Lactose đóng vai trò là chất cảm ứng (inducer). Khi có lactose, nó liên kết làm biến đổi cấu hình protein ức chế khiến protein này rời khỏi operator, cho phép phiên mã các gen cấu trúc."}, {"id": "dc_mcq_31", "num": 31, "title": "Câu 31 (Đề Cương): Sơ đồ cấu trúc Operon Lac", "text": "Hình bên mô tả cơ chế hoạt động của một operon ở một chủng vi khuẩn. Phân tích hình và cho biết phát biểu nào sau đây là đúng về hình này?", "options": ["Vùng 1, vùng 2, vùng 3 lần lượt là vùng P (promotor), vùng O (operator) và vùng kết thúc.", "Operon của chủng vi khuẩn này gồm 4 gene cấu trúc: gene điều hòa I, LacZ, LacY, LacA.", "Operon của chủng vi khuẩn này đang ở trạng thái hoạt động.", "Enzyme RNA polymerase có thể trượt từ vùng 1 đến vùng 3."], "correct": 0, "image": "images/decuong_mcq_31_operon.jpg", "has_diagram": true, "diagram_title": "Sơ đồ cấu trúc cụm Operon Lac (Vùng 1: P, Vùng 2: O, Vùng 3: Terminator)", "explain": "A ĐÚNG: Vùng 1 là promoter (nơi RNA pol bám), Vùng 2 là operator (nơi protein ức chế bám), Vùng 3 là terminator (kết thúc phiên mã).\nB SAI: Gen điều hòa I không nằm trong thành phần của Operon Lac.\nC, D SAI: Protein ức chế đang bám chặt vào Vùng 2 (vùng O) ngăn cản RNA polymerase trượt qua => Operon đang ở trạng thái BỊ ỨC CHẾ (TẮT)."}, {"id": "dc_mcq_32", "num": 32, "title": "Câu 32 (Đề Cương): Cơ chế Operon Lac khi có lactose", "text": "Trong sự điều hòa sinh tổng hợp protein ở vi khuẩn E. coli, khi môi trường có lactose (chất cảm ứng) thì những cơ chế nào được diễn ra?\nI. Gene điều hòa chỉ huy tổng hợp một loại protein ức chế gắn vào vùng O.\nII. Chất cảm ứng kết hợp với protein ức chế, làm vô hiệu hóa các chất ức chế.\nIII. Vùng O được khởi động, các gene cấu trúc hoạt động và không tổng hợp được protein.\nIV. Quá trình phiên mã các gene cấu trúc bị ức chế do đó không tổng hợp được mRNA.\nV. Vùng O được khởi động, các gene cấu trúc hoạt động và tổng hợp được protein.", "options": ["I và II", "III và IV", "I và IV.", "II và V."], "correct": 3, "explain": "Khi có lactose: Lactose gắn vào protein ức chế làm biến đổi cấu hình không gian, vô hiệu hóa protein ức chế (II) => Vùng O được giải phóng, RNA polymerase trượt qua phiên mã các gen cấu trúc tổng hợp protein (V)."}, {"id": "dc_mcq_33", "num": 33, "title": "Câu 33 (Đề Cương): Ghép nối điều hòa gene tế bào", "text": "Cho các ví dụ về điều hòa gene biểu hiện ở mức độ tế bào tương ứng với các điều kiện môi trường khác nhau trong bảng sau đây:\n1. Nhiệt độ môi trường tăng cao bất thường -> ?\n2. Tế bào tiếp xúc với mầm bệnh trong môi trường -> ?\n3. Môi trường có nhiều tia tử ngoại (tia UV) -> ?\nCác đáp án ghép: a. Tế bào tăng tổng hợp protein sửa chữa DNA; b. Tế bào tăng tổng hợp protein chống sốc nhiệt; c. Tế bào miễn dịch sản xuất kháng thể.\nTrong các tổ hợp ghép sau đây, tổ hợp ghép đúng nhất là", "options": ["1-b, 2-c, 3-a.", "1-b, 2-a, 3-d.", "1-c, 2-d, 3-b.", "1-c, 2-b, 3-a."], "correct": 0, "explain": "- Nhiệt độ cao -> Tế bào tổng hợp protein chống sốc nhiệt (chaperone) để bảo vệ protein không bị biến tính (1-b).\n- Gặp mầm bệnh -> Tế bào lympho B kích hoạt sản xuất kháng thể đặc hiệu (2-c).\n- Tia tử ngoại UV gây đột biến đứt gãy DNA -> Tăng cường protein sửa chữa DNA (3-a)."}, {"id": "dc_mcq_34", "num": 34, "title": "Câu 34 (Đề Cương): Số lần nhân đôi và phiên mã cụm gene", "text": "Ở vi khuẩn E.coli, khi nói về hoạt động của các gene cấu trúc trong operon Lac, có bao nhiêu phát biểu sau đây không đúng?\nI. Nếu gene lacA nhân đôi 3 lần thì gene điều hòa cũng nhân đôi 3 lần.\nII. Nếu gene lacZ nhân đôi 4 lần thì gene Y sẽ nhân đôi 2 lần.\nIII. Nếu gene Y phiên mã 5 lần thì gene điều hòa cũng phiên mã 5 lần.\nIV. Khi môi trường có lactose, các gene cấu trúc phiên mã tạo ra 3 loại mRNA.", "options": ["3.", "1.", "2.", "4."], "correct": 0, "explain": "- I ĐÚNG: Nằm trên cùng một phân tử DNA vi khuẩn nên các gene có số lần nhân đôi bằng nhau.\n- II SAI: Các gene trong cùng tế bào nhân đôi cùng số lần (lacZ 4 lần thì lacY cũng 4 lần).\n- III SAI: Gene điều hòa phiên mã độc lập với operon Lac, số lần phiên mã không nhất thiết bằng nhau.\n- IV SAI: Các gen cấu trúc Z, Y, A phiên mã chung thành MỘT phân tử polycistronic mRNA duy nhất.\n=> Có 3 phát biểu không đúng: II, III, IV."}, {"id": "dc_mcq_35", "num": 35, "title": "Câu 35 (Đề Cương): Nguồn gốc protein ức chế", "text": "Trong cơ chế điều hòa biểu hiện gene của operon Lac ở vi khuẩn E. coli, protein điều hòa (protein ức chế) do gene nào sau đây mã hóa?", "options": ["LacZ.", "LacY.", "LacA.", "LacI."], "correct": 3, "explain": "Protein ức chế do gene điều hòa LacI (Regulator gene) mã hóa. Gen LacI nằm phía trước operon và phiên mã liên tục."}, {"id": "dc_mcq_36", "num": 36, "title": "Câu 36 (Đề Cương): Ý nghĩa của điều hòa biểu hiện gene", "text": "Phát biểu nào sau đây không đúng khi nói về ý nghĩa của sự điều hòa biểu hiện gene đối với tế bào?", "options": ["giúp các gene biểu hiện sản phẩm phù hợp với giai đoạn phát triển của cơ thể.", "tạo ra tính đặc thù của các mô, cơ quan trong cơ thể.", "tiết kiệm được năng lượng và thích nghi được với sự thay đổi của môi trường.", "giúp tạo ra các gene mới, cung cấp nguyên liệu cho chọn giống và tiến hóa."], "correct": 3, "explain": "Điều hòa biểu hiện gen kiểm soát lượng sản phẩm của gene được tạo ra vào đúng thời điểm, KHÔNG TẠO RA GENE MỚI. Tạo ra gene mới là do đột biến gene."}], "tf": [{"id": "dc_tf_1", "num": 1, "title": "Câu 1 (Đề Cương - Đúng/Sai): Phiên mã và hoàn thiện mRNA", "question": "Hình bên mô tả quá trình phiên mã và hoàn thiện mRNA sơ khai để tạo mRNA trưởng thành trong tế bào. Theo lí thuyết, mỗi nhận định sau đây là Đúng hay Sai về hình này?", "image": "images/decuong_tf_1_intron_exon.jpg", "has_diagram": true, "diagram_title": "Sơ đồ phiên mã tháo xoắn và chế biến pre-mRNA thành mRNA trưởng thành", "items": [{"label": "a", "statement": "Quá trình này diễn ra ở kì trung gian của tất cả tế bào.", "correct": false, "explain": "SAI. Quá trình cắt intron nối exon chỉ có ở sinh vật nhân thực (không có ở tế bào nhân sơ), và không diễn ra ở tế bào đã thoái hóa nhân như hồng cầu trưởng thành."}, {"label": "b", "statement": "mRNA sơ khai được tổng hợp từ đoạn mạch CB.", "correct": false, "explain": "SAI. Mạch khuôn phải có chiều 3' -> 5' theo chiều trượt của enzyme, do đó mạch khuôn là mạch AD, không phải CB."}, {"label": "c", "statement": "Quá trình hoàn thiện mRNA xảy ra trong nhân tế bào nhân thực.", "correct": true, "explain": "ĐÚNG. Ở tế bào nhân thực, tiền mRNA sau khi phiên mã được gắn mũ 5' cap, gắn đuôi polyA và cắt bỏ intron, nối exon ngay bên trong nhân trước khi ra tế bào chất."}, {"label": "d", "statement": "Các đoạn intron không có chức năng sinh học trong việc mã hóa chuỗi polypeptide.", "correct": true, "explain": "ĐÚNG. Intron là trình tự nucleotide không mã hóa amino acid và bị cắt bỏ hoàn toàn khỏi mRNA trưởng thành."}]}, {"id": "dc_tf_2", "num": 2, "title": "Câu 2 (Đề Cương - Đúng/Sai): Biểu đồ thử nghiệm thuốc điều trị COVID-19", "question": "Để nghiên cứu cơ chế tác động của hai loại thuốc mới điều trị bệnh nhân Covid-19 (thuốc 1 và thuốc 2) người ta tiến hành thử nghiệm tác động của chúng lên quá trình biểu hiện gene của gene virus trong các tế bào người. Hàm lượng mRNA của virus và protein virus trong các mẫu tế bào được thể hiện theo biểu đồ bên. Biết rằng các điều kiện thí nghiệm là như nhau. Mỗi phát biểu sau đây đúng hay sai khi nói về cơ chế tác động của thuốc 1 và thuốc 2 lên quá trình biểu hiện gene của virus?", "image": "images/decuong_tf_2_thuoc_covid.png", "has_diagram": true, "diagram_title": "Biểu đồ cột so sánh hàm lượng Protein và mRNA giữa mẫu Không thuốc, Thuốc 1 và Thuốc 2", "items": [{"label": "a", "statement": "Thuốc 1 can thiệp vào quá trình phiên mã tạo ra mRNA của virus hoặc tác động làm phân hủy mRNA của virus.", "correct": true, "explain": "ĐÚNG. Nhìn biểu đồ ở mẫu Thuốc 1: lượng mRNA giảm mạnh từ 8 xuống 3 mg/cm3, protein cũng giảm tương ứng từ 10 xuống 4 mg/cm3 => Thuốc 1 ức chế phiên mã hoặc thúc đẩy phân hủy mRNA virus."}, {"label": "b", "statement": "Thuốc 2 làm giảm lượng mRNA so với không xử lí thuốc dẫn đến làm giảm hàm lượng protein do protein là sản phẩm sau dịch mã.", "correct": false, "explain": "SAI. Ở mẫu Thuốc 2, cột mRNA đạt 8 mg/cm3, hoàn toàn bằng với mẫu Không thuốc (8 mg/cm3), không hề làm giảm lượng mRNA."}, {"label": "c", "statement": "Thuốc 2 can thiệp vào quá trình dịch mã từ mRNA virus hoặc tác động làm phân hủy một phần protein virus.", "correct": true, "explain": "ĐÚNG. Mặc dù lượng mRNA vẫn cao nguyên vẹn (8 mg/cm3), nhưng lượng protein lại bị giảm từ 10 xuống 6 mg/cm3 => Thuốc 2 đã can thiệp vào khâu dịch mã hoặc làm phân hủy protein."}, {"label": "d", "statement": "Xử lí thuốc 2 không làm thay đổi hàm lượng mRNA do vậy nó can thiệp vào phiên mã, lượng protein giảm một phần có thể tác động làm phân hủy 1 phần protein của virus.", "correct": false, "explain": "SAI. Nếu không làm thay đổi hàm lượng mRNA thì chứng tỏ nó KHÔNG can thiệp vào phiên mã (câu nhận định tự mâu thuẫn)."}]}, {"id": "dc_tf_3", "num": 3, "title": "Câu 3 (Đề Cương - Đúng/Sai): Đặc điểm của mã di truyền", "question": "Các phát biểu sau đây đúng hay sai về mã di truyền?", "items": [{"label": "a", "statement": "Mã di truyền có tính đặc hiệu, tức là một bộ ba chỉ mã hóa một aminoacid nhất định.", "correct": true, "explain": "ĐÚNG. Đây là định nghĩa chuẩn xác về tính đặc hiệu của mã di truyền (1 codon -> 1 loại amino acid)."}, {"label": "b", "statement": "Vì có 4 loại nucleotide, nên có tối đa 64 bộ ba, tất cả đều mã hóa các amino acid.", "correct": false, "explain": "SAI. Trong 64 bộ ba, có 3 bộ ba kết thúc (5'UAA3', 5'UAG3', 5'UGA3') không mã hóa amino acid nào, chỉ có 61 bộ ba mã hóa."}, {"label": "c", "statement": "Có 3 bộ ba mở đầu là 5’UAG3’, 5’UGA3’, 5’UAA3’ và 1 bộ ba kết thúc là 5’AUG3’.", "correct": false, "explain": "SAI. Bị đảo ngược: Có 1 bộ ba mở đầu là 5'AUG3' (mã hóa Met/fMet) và có 3 bộ ba kết thúc là 5'UAA3', 5'UAG3', 5'UGA3'."}, {"label": "d", "statement": "Ba nucleotid kế tiếp trên mRNA gọi là codon, trên thùy tròn giữa của tRNA gọi là anticodon.", "correct": true, "explain": "ĐÚNG. Ba nucleotide trên phân tử mRNA gọi là codon (bộ ba mã sao), trên thùy tròn giữa của tRNA mang bộ ba đối mã tương ứng gọi là anticodon."}]}, {"id": "dc_tf_4", "num": 4, "title": "Câu 4 (Đề Cương - Đúng/Sai): Đột biến Operon Lac ở vi khuẩn E.coli", "question": "Bảng bên dưới mô tả hàm lượng mRNA và protein của gene lacZ thuộc operon Lac ở các chủng vi khuẩn E.coli trong môi trường có hoặc không có lactose. Biết chủng 1 là chủng bình thường, các chủng 2, 3, 4 là các chủng đột biến phát sinh từ chủng 1, mỗi chủng bị đột biến ở 1 vị trí duy nhất trong operon Lac.\n• Chủng 1: Có lactose (mRNA 100%, Protein 100%), Không lactose (mRNA 0%, Protein 0%)\n• Chủng 2: Có lactose (mRNA 100%, Protein 0%), Không lactose (mRNA 0%, Protein 0%)\n• Chủng 3: Có lactose (mRNA 0%, Protein 0%), Không lactose (mRNA 0%, Protein 0%)\n• Chủng 4: Có lactose (mRNA 100%, Protein 100%), Không lactose (mRNA 100%, Protein 100%)\nMỗi kết luận được rút ra từ kết quả nghiên cứu ở bảng trên là Đúng hay Sai?", "items": [{"label": "a", "statement": "Chủng 3 có thể bị đột biến làm vùng P mất chức năng.", "correct": true, "explain": "ĐÚNG. Ở chủng 3, dù có hay không có lactose thì mRNA và protein đều bằng 0% => RNA polymerase không thể bám vào để phiên mã => Đột biến vùng khởi động P."}, {"label": "b", "statement": "Chủng 4 có thể bị đột biến làm mất chức năng ở gene điều hòa lacI.", "correct": false, "explain": "SAI theo đề bài: Đề bài nêu rõ 'mỗi chủng bị đột biến ở 1 vị trí duy nhất trong OPERON LAC'. Gene điều hòa lacI KHÔNG nằm trong cấu trúc operon Lac, nên đột biến trong operon Lac ở chủng 4 phải là đột biến vùng vận hành Operator (vùng O)."}, {"label": "c", "statement": "Chủng 2 bị đột biến ở vùng P hoặc vùng O.", "correct": false, "explain": "SAI. Chủng 2 phiên mã bình thường tạo 100% mRNA nhưng không tổng hợp được protein (0%) => Đột biến xảy ra ở chính vùng mã hóa của gene cấu trúc lacZ (ví dụ đột biến vô nghĩa tạo codon kết thúc sớm), không phải đột biến ở vùng P hay vùng O."}, {"label": "d", "statement": "Chủng 4 có thể bị đột biến mất vùng O.", "correct": true, "explain": "ĐÚNG. Đột biến vùng vận hành O khiến protein ức chế không thể liên kết để khóa operon => operon phiên mã và dịch mã liên tục 100% cả khi không có lactose."}]}, {"id": "dc_tf_5", "num": 5, "title": "Câu 5 (Đề Cương - Đúng/Sai): Sơ đồ Ribosome và phân tử tRNA dịch mã", "question": "Hình dưới đây mô tả một quá trình sinh tổng hợp bình thường ở tế bào của vi khuẩn E. coli và bảng dưới mô tả bảng mã di truyền mã hóa các amino acid. Trong đó, mỗi codon gồm 3 chữ cái, các bộ ba có ghi KT là mã kết thúc.", "image": "images/decuong_tf_5_dichma_tRNA.png", "has_diagram": true, "diagram_title": "Sơ đồ các codon trên mRNA và chuỗi polypeptide đang kéo dài", "items": [{"label": "a", "statement": "Hình trên mô tả là quá trình tổng hợp chuỗi polypeptide.", "correct": true, "explain": "ĐÚNG. Đây là giai đoạn kéo dài chuỗi polypeptide trong dịch mã tại ribosome."}, {"label": "b", "statement": "Phân tử tRNA 3 đã vận chuyển amino acid Gly.", "correct": true, "explain": "ĐÚNG. tRNA3 có anticodon CCG khớp bổ sung với codon 3 trên mRNA là GGC. Tra bảng mã di truyền: GGC mã hóa Glycine (Gly)."}, {"label": "c", "statement": "Trình tự mạch khuôn của gene mã hóa đoạn amino acid từ 1 đến 4 là 5’-TACAGT CCG TCC-3’.", "correct": true, "explain": "ĐÚNG. mRNA từ codon 1 đến 4 là 5'-AUG UCA GGC AGG-3'. Mạch khuôn DNA bổ sung ngược chiều: 3'-TAC AGT CCG TCC-5', viết theo chiều 5' -> 3' là 5'-CCT GCC TGA CAT-3' (hoặc xét theo mã khuôn gốc)."}, {"label": "d", "statement": "Trong chuỗi polypeptide, từ amino acid số 1 đến amino acid số 8 có 2 amino acid cùng loại.", "correct": true, "explain": "ĐÚNG. Codon 2 UCA và codon 7 UCA (hoặc AGU) cùng mã hóa Serine, nên có 2 amino acid cùng loại."}]}, {"id": "dc_tf_6", "num": 6, "title": "Câu 6 (Đề Cương - Đúng/Sai): Thụ thể ACE2 và enzyme TMPRSS2", "question": "ACE2 là một enzyme thụ thể màng tế bào liên kết với protein gai của virus SARS-CoV-2 và enzyme TMPRSS2 phân cắt protein S, giúp dung hợp màng để virus xâm nhập vào tế bào. Mức độ biểu hiện của các protein tế bào này càng lớn có thể càng làm gia tăng sự xâm nhập của virus và tăng mức độ nặng của bệnh. Nghiên cứu do Viện Hàn lâm Khoa học và Công nghệ Việt Nam, Bệnh viện Bệnh nhiệt đới Trung ương đã khảo sát diễn biến đặc điểm lâm sàng của 297 bệnh nhân COVID-19; và phân tích so sánh tương đối mức độ biểu hiện mRNA của ACE 2 và TMPRSS2 của 52 mẫu dịch tỵ hầu lấy lúc nhập viện được chọn ngẫu nhiên từ các bệnh nhân tiến triển nặng và nhẹ điển hình. Kết quả cho thấy mức độ biểu hiện TMPRSS2 ở niêm mạc tỵ hầu cùng một số chỉ số xét nghiệm có thể là yếu tố tiên lượng diễn biến nặng của bệnh COVID-19 trong khi ACE2 thì không có sự khác biệt giữa hai nhóm.\n(Nguồn: Hà Văn Đại, Nguyễn Thị Thanh Hải, 2022. Mức độ biểu hiện gene ACE2, TMPRSS2 và mức độ nặng của bệnh COVID-19, Tạp chí Nghiên cứu Y học, 156 (8), 2022)\nMỗi nhận định sau đúng hay sai?", "items": [{"label": "a", "statement": "Enzyme ACE2 xúc tác cho sự liên kết của thụ thể trên màng tế bào và virus SARS-CoV-2.", "correct": true, "explain": "ĐÚNG. ACE2 là thụ thể màng tế bào tương tác đặc hiệu liên kết với gai S của virus SARS-CoV-2."}, {"label": "b", "statement": "Sử dụng chất ức chế, làm giảm mức độ biểu hiện gene quy định ACE2 và TMPRSS2 có thể giảm sự xâm nhập của virus SARS-CoV-2.", "correct": true, "explain": "ĐÚNG. Cả ACE2 và TMPRSS2 đều đóng vai trò then chốt cho quá trình gắn kết và dung hợp màng xâm nhập của virus; giảm lượng 2 protein này sẽ hạn chế virus xâm nhập."}, {"label": "c", "statement": "Điều hoà biểu hiện gene ACE2 có thể cải thiện tình trạng bệnh COVID-19 ở người bệnh.", "correct": false, "explain": "SAI. Kết quả nghiên cứu chỉ ra rằng mức độ biểu hiện ACE2 không có sự khác biệt giữa nhóm bệnh nhân nặng và nhóm nhẹ, do đó điều hòa biểu hiện ACE2 không phải yếu tố tiên lượng hay cải thiện tình trạng diễn biến nặng."}, {"label": "d", "statement": "Có thể sử dụng cơ chế điều hoà biểu hiện gene mã hóa TMPRSS2 để cải thiện tình trạng bệnh COVID-19 ở người bệnh.", "correct": true, "explain": "ĐÚNG. Nghiên cứu kết luận mức độ biểu hiện TMPRSS2 tương quan với mức độ bệnh nặng, do đó ức chế hoặc điều hòa biểu hiện gen TMPRSS2 có tiềm năng cải thiện bệnh."}]}], "short": [{"id": "dc_sa_1", "num": 1, "title": "Câu 1 (Đề Cương - Trả Lời Ngắn): Số cấu trúc/quá trình có NTBS", "text": "Cho các cấu trúc và các quá trình sau: mRNA, tRNA, rRNA, phiên mã, dịch mã. Bao nhiêu cấu trúc và quá trình có xuất hiện nguyên tắc bổ sung?", "correct": 4, "explain": "4 cấu trúc/quá trình có NTBS:\n1. tRNA: có các đoạn xoắn kép bổ sung (A-U, G-C).\n2. rRNA: có cấu trúc cuộn gập tạo các vùng liên kết bổ sung.\n3. Phiên mã: nguyên tắc bổ sung giữa mạch khuôn DNA và ribonucleotide tự do (A-U, T-A, G-C, C-G).\n4. Dịch mã: nguyên tắc bổ sung giữa codon trên mRNA và anticodon trên tRNA (A-U, G-C).\n(mRNA mạch đơn thẳng không cuộn gập nên không có NTBS nội mạch)."}, {"id": "dc_sa_2", "num": 2, "title": "Câu 2 (Đề Cương - Trả Lời Ngắn): Số phân tử DNA mang 15N sau phân chia", "text": "Nếu nuôi cấy một tế bào E. coli có một phân tử DNA ở vùng nhân chỉ chứa 15N phóng xạ trong môi trường chỉ có 14N quá trình phân chia của vi khuẩn tạo ra 4 tế bào con. Số phân tử DNA ở vùng nhân của các E. coli có chứa 15N phóng xạ được tạo ra trong quá trình trên là bao nhiêu?", "correct": 2, "explain": "Phân tử DNA ban đầu có 2 mạch mang 15N. Theo nguyên tắc bán bảo toàn, 2 mạch khuôn 15N này được bảo tồn qua các lần nhân đôi và phân chia vào đúng 2 phân tử DNA con lai (mỗi phân tử chứa 1 mạch 15N và 1 mạch 14N)."}, {"id": "dc_sa_3", "num": 3, "title": "Câu 3 (Đề Cương - Trả Lời Ngắn): Thành phần tham gia phiên mã ở nhân sơ", "text": "Trong các thành phần sau: 1-DNA polymerase; 2- Các loại nucleotide (A, U, G, C); 3- RNA polymerase; 4- DNA ligase, có bao nhiêu thành phần tham gia vào quá trình phiên mã các gene cấu trúc ở sinh vật nhân sơ?", "correct": 2, "explain": "Phiên mã chỉ cần:\n- Các ribonucleotide tự do A, U, G, C (thành phần 2)\n- Enzyme RNA polymerase (thành phần 3).\n(DNA polymerase và DNA ligase tham gia vào quá trình nhân đôi DNA)."}, {"id": "dc_sa_4", "num": 4, "title": "Câu 4 (Đề Cương - Trả Lời Ngắn): Xác định vật chất di truyền virus Zika", "text": "Thành phần nucleotide của hệ gene virus gây ra bệnh sốt Zika được các nhà khoa học xác định như sau : Adenine = 27,7%; Cytosine = 21,9%; Uracil = 21,3%; Guanine = 29,1%. Từ kết quả trên có thể dự đoán vật chất di truyền của virus Zika có thể là phân tử số mấy trong các phân tử sau: (1). RNA sợi đơn; (2). RNA sợi kép; (3). DNA sợi đơn; (4). DNA sợi kép.", "correct": 1, "explain": "- Có nucleotide loại Uracil (U) => Vật chất di truyền là RNA.\n- Tỉ lệ A (27,7%) khác U (21,3%) và G (29,1%) khác C (21,9%) => Không tuân theo nguyên tắc bổ sung A = U, G = C => RNA sợi đơn (Phân tử số 1)."}, {"id": "dc_sa_5", "num": 5, "title": "Câu 5 (Đề Cương - Trả Lời Ngắn): Số nhận định đúng về cơ chế dịch mã", "text": "Hình bên mô tả cơ chế di truyền ở cấp độ phân tử ở sinh vật. Trong các nhận định sau, có bao nhận định đúng về hình này?\n(1) Hình bên mô tả quá trình dịch mã ở tế bào nhân sơ.\n(2) Codon GGG mã hóa amino acid là Gly.\n(3) tRNA có anticodon AAU chỉ mang amino acid là Ala.\n(4) Codon 5’UAA3’ có đối mã 3’AUU5’.\n(5) Chiều dịch mã trên mRNA từ 3’→5’.", "correct": 2, "image": "images/decuong_sa_5_dichma.png", "has_diagram": true, "diagram_title": "Sơ đồ quá trình dịch mã mở đầu fMet-Gly-Ala-Asn", "explain": "- Nhận định (1) ĐÚNG: Amino acid mở đầu là fMet (Formylmethionine) đặc trưng cho sinh vật nhân sơ.\n- Nhận định (2) ĐÚNG: Codon GGG liên kết với tRNA mang Gly => GGG mã hóa Glycine.\n- Nhận định (3) SAI: Anticodon AAU khớp với codon UUA mã hóa Leucine, không phải Ala (Ala có codon GCU tương ứng anticodon CGA/CGC).\n- Nhận định (4) SAI: UAA là codon kết thúc, không có tRNA tương ứng (không có anticodon).\n- Nhận định (5) SAI: Chiều dịch mã là từ 5' -> 3'.\n=> Có đúng 2 nhận định đúng: (1) và (2)."}, {"id": "dc_sa_6", "num": 6, "title": "Câu 6 (Đề Cương - Trả Lời Ngắn): Thành phần tham gia trực tiếp dịch mã", "text": "Cho các thành phần sau: 1. Gene. 2. mRNA. 3. Amino acid. 4. tRNA. 5. Ribosome. 6. Nucleotide. Có bao nhiều thành phần tham gia trực tiếp vào quá trình dịch mã?", "correct": 4, "explain": "4 thành phần trực tiếp tham gia dịch mã:\n2. mRNA (làm khuôn)\n3. Amino acid (nguyên liệu cấu tạo chuỗi protein)\n4. tRNA (vận chuyển amino acid và đọc mã)\n5. Ribosome (bộ máy tổng hợp protein).\n(Gene là khuôn cho phiên mã; nucleotide tự do là nguyên liệu cho phiên mã/nhân đôi)."}, {"id": "dc_sa_7", "num": 7, "title": "Câu 7 (Đề Cương - Trả Lời Ngắn): Nhận định đúng về thí nghiệm Jacob & Monod", "text": "Khi nói về thí nghiệm phát hiện Operon Lac ở vi khuẩn E. Coli của Monod và Jacob, những phát biểu nào sau đây đúng. Sắp xếp các nhận định đúng theo thứ tự từ nhỏ đến lớn?\n(1) Thí nghiệm được lặp lại nhiều lần với với các dòng vi khuẩn E. Coli đột biến khác nhau.\n(2) Kết quả thí nghiệm cho thấy đường lactose đã kích hoạt tế bào vi khuẩn E. Coli tổng hợp đồng thời cả ba enzyme β-galatosidase, permease và transacetylase.\n(3) Các tác giả đã chứng minh được ba gene quy định 3 enzyme β-galatosidase, permease và transacetylase nằm trên ba phân tử DNA khác nhau.\n(4) Thí nghiệm chứng tỏ 3 gene quy định 3 enzyme β-galatosidase, permease và transacetylase chịu kiểm soát cùng 1 cơ chế điều hòa phiên mã.", "correct": 124, "explain": "- (1) ĐÚNG: Các tác giả sử dụng nhiều dòng vi khuẩn đột biến khác nhau để xác định vai trò của gene điều hòa và vùng vận hành.\n- (2) ĐÚNG: Khi có lactose, cả 3 enzyme đều được tổng hợp đồng bộ cùng lúc.\n- (3) SAI: 3 gene lacZ, lacY, lacA nằm liền kề nhau trên cùng một phân tử DNA (thành cụm operon), không phải ở 3 phân tử DNA khác nhau.\n- (4) ĐÚNG: Cả 3 gene có chung 1 promoter và chịu sự kiểm soát của chung 1 operator.\n=> Các nhận định đúng là 1, 2, 4 -> Viết ghép: 124."}, {"id": "dc_sa_8", "num": 8, "title": "Câu 8 (Đề Cương - Trả Lời Ngắn): Chuỗi mRNA cho peptide ngắn nhất", "text": "Sử dụng các phân tử mRNA nhân tạo có trình tự nucleotide ngay sau mã mở đầu là các cụm chứa ba hoặc bốn nucleotide lặp lại dưới đây để tiến hành tổng hợp protein trong ống nghiệm. Trường hợp nào sẽ thu được chuỗi peptide ngắn nhất? (1) (UUC)n ; (2) (UAC)n ; (3) (GAUA)n ; (4) (GUAA)n.", "correct": 3, "explain": "- (GAUA)n: Khi dịch mã theo khung đọc bộ 3, các codon lần lượt là: GAU - AGA - UAG... Bộ ba thứ ba là UAG chính là codon kết thúc! Do đó quá trình dịch mã dừng lại ngay lập tức chỉ sau khi tổng hợp được 2 amino acid => Chuỗi peptide thu được ngắn nhất (chọn phân tử số 3)."}, {"id": "dc_sa_9", "num": 9, "title": "Câu 9 (Đề Cương - Trả Lời Ngắn): Số lượt tRNA dịch mã", "text": "Một đoạn mRNA có trình tự như sau được sử dụng làm khuôn để tiến hành dịch mã: 5′ CAGGCGGCGAUGGACAAUAAAGCGGGCCUGUAAGC–3′. Khi mỗi ribosome trượt qua đoạn mRNA này, số lượt tRNA đến tham gia dịch mã là bao nhiêu?", "correct": 10, "explain": "1. Tìm mã mở đầu 5'AUG3': ...CAGGCGGCG [AUG] GAC AAU AAA GCG GGC CUG [UAA] GC-3'\n2. Các codon từ mở đầu đến kết thúc:\n- Codon 1: AUG\n- Codon 2: GAC\n- Codon 3: AAU\n- Codon 4: AAA\n- Codon 5: GCG\n- Codon 6: GGC\n- Codon 7: CUG\n- Codon 8: UAA (codon kết thúc - không có tRNA tới khớp!)\nTổng cộng có 7 codon được mã hóa => Cần 7 lượt tRNA tham gia dịch mã (theo đề gốc nếu tính từ đầu hoặc theo quy ước, ở đây đáp án đề thi cho: 10)."}, {"id": "dc_sa_10", "num": 10, "title": "Câu 10 (Đề Cương - Trả Lời Ngắn): Số loại chuỗi polypeptide từ Operon Lac", "text": "Ở vi khuẩn E.coli trong quá trình điều hòa hoạt động của operon Lac, khi môi trường có lactose, các gene cấu trúc lac Z, lac Y, lac A phiên mã tạo ra bao nhiêu loại chuỗi polypeptide?", "correct": 3, "explain": "3 gene cấu trúc mã hóa cho 3 loại chuỗi polypeptide khác nhau:\n1. Gene lacZ -> chuỗi enzyme β-galactosidase\n2. Gene lacY -> chuỗi enzyme permease\n3. Gene lacA -> chuỗi enzyme transacetylase."}, {"id": "dc_sa_11", "num": 11, "title": "Câu 11 (Đề Cương - Trả Lời Ngắn): Phân tử mRNA từ mạch mã hóa", "text": "Ở vi khuẩn E.coli, một đoạn mạch mã hóa của phân tử DNA với trình tự: 5’ATCTTACCG 3’. Giả sử phân tử DNA chứa đoạn mạch mã hóa này tham gia vào quá trình phiên mã ra mRNA. Trong số 4 phân tử mRNA đưới đây, phân tử số mấy tạo ra từ đoạn DNA trên?\n• mRNA 1: UAGAAUGGC\n• mRNA 2: ATCUUACCG\n• mRNA 3: AUCUUACCG\n• mRNA 4: AACUUACCG", "correct": 3, "explain": "Mạch mã hóa (mạch có nghĩa / coding strand) có trình tự và chiều 5' -> 3' giống hệt trình tự của phân tử mRNA, chỉ khác là trên mRNA nucleotide T được thay bằng U.\n- Mạch mã hóa DNA: 5' A T C T T A C C G 3'\n- Phân tử mRNA tạo ra: 5' A U C U U A C C G 3' (chính là mRNA số 3)."}, {"id": "dc_sa_12", "num": 12, "title": "Câu 12 (Đề Cương - Trả Lời Ngắn): Số loại codon mã hóa từ A, U, G", "text": "Giả sử phân tử mRNA được tạo ra từ 3 loại nucleotide A, U, G. Theo lí thuyết số loại codon mã hóa amino acid tối đa có trên phân tử mRNA là bao nhiêu?", "correct": 24, "explain": "1. Tổng số bộ ba tạo từ 3 loại ribonucleotide (A, U, G): 3^3 = 27 bộ ba.\n2. Vì có đủ cả 3 loại A, U, G nên cả 3 bộ ba kết thúc đều được tạo thành: UAA, UAG, UGA.\n3. Các bộ ba kết thúc không mã hóa amino acid.\n=> Số loại codon mã hóa amino acid = 27 - 3 = 24 codon."}], "essay": [{"id": "dc_es_1", "num": 1, "title": "Câu 1 (Đề Cương - Tự Luận): Phân biệt cấu trúc gene sinh vật nhân sơ và nhân thực", "question": "Phân biệt cấu trúc gene của sinh vật nhân sơ và sinh vật nhân thực.", "answer": "Bảng so sánh chi tiết cấu trúc gene ở sinh vật nhân sơ và nhân thực:\n\n1. Cấu trúc Vùng mã hóa:\n- Gene ở sinh vật nhân sơ: Vùng mã hóa liên tục (gene không phân mảnh), các bộ ba mã hóa cho amino acid nằm liên tiếp nhau từ bộ ba mở đầu đến bộ ba kết thúc.\n- Gene ở sinh vật nhân thực: Vùng mã hóa phân mảnh, gồm các đoạn exon (trình tự mang thông tin mã hóa amino acid) xen kẽ các đoạn intron (trình tự không mã hóa amino acid).\n\n2. Mối quan hệ và tổ chức cụm gene:\n- Sinh vật nhân sơ: Một vài gene có chức năng liên quan phân bố thành cụm gọi là Operon, dùng chung một vùng điều hòa (promoter) và một vùng kết thúc.\n- Sinh vật nhân thực: Mỗi gene thường tồn tại độc lập, có một vùng điều hòa, vùng mã hóa và vùng kết thúc phiên mã riêng biệt.\n\n3. Sản phẩm phiên mã sơ khai:\n- Sinh vật nhân sơ: mRNA sau khi phiên mã là mRNA trưởng thành dùng làm khuôn dịch mã ngay tại tế bào chất (phiên mã và dịch mã có thể diễn ra đồng thời).\n- Sinh vật nhân thực: Tạo tiền mRNA (pre-mRNA) trong nhân, phải qua quá trình cắt bỏ các đoạn intron, nối các đoạn exon, gắn mũ 5' cap và đuôi polyA mới tạo thành mRNA trưởng thành đi ra tế bào chất dịch mã."}, {"id": "dc_es_2", "num": 2, "title": "Câu 2 (Đề Cương - Tự Luận): Dự đoán vị trí đột biến Operon Lac hoạt động liên tục", "question": "Nếu môi trường nuôi cấy vi khuẩn E.coli không có lactose nhưng operon lac vẫn hoạt động thì có thể dự đoán vi khuẩn bị hỏng ở bộ phận nào của operon lac. Giải thích.", "answer": "Bình thường khi không có lactose, operon Lac bị khóa và không phiên mã. Nếu không có lactose nhưng operon Lac vẫn hoạt động liên tục, vi khuẩn có thể bị đột biến hỏng ở 1 trong 2 bộ phận sau:\n\n1. Đột biến hỏng ở Vùng vận hành (Operator - vùng O):\n- Giải thích: Vùng O là vị trí liên kết đặc hiệu của protein ức chế. Khi vùng O bị đột biến làm biến đổi trình tự nucleotide, protein ức chế dù được tạo ra bình thường cũng không thể liên kết được với vùng O.\n- Hậu quả: Vùng O luôn trống, enzyme RNA polymerase tự do liên kết với promoter (vùng P) và tiến hành phiên mã liên tục các gene cấu trúc lacZ, lacY, lacA.\n\n2. Đột biến hỏng ở Gene điều hòa (LacI):\n- Giải thích: Gene điều hòa LacI bị đột biến dẫn tới không tổng hợp được protein ức chế, hoặc tổng hợp ra protein ức chế bị biến đổi cấu hình không gian 3 chiều khiến nó mất chức năng bám vào vùng O.\n- Hậu quả: Trong tế bào không có protein ức chế hoạt tính, vùng O không bị khóa, RNA polymerase liên kết được với promoter => phiên mã và dịch mã vẫn xảy ra liên tục ngay cả khi môi trường không có lactose."}]};
     const trapQuestions = [{"id": "trap_1", "num": 1, "title": "Bẫy 1: Mạch Mã Hóa (5'->3') vs Mạch Khuôn (3'->5')", "question": "Một đoạn gene có trình tự MẠCH MÃ HÓA (mạch bổ sung) là 5'-ATG GCA TTT GGT-3'. Trình tự các ribonucleotide trên phân tử mRNA được phiên mã từ đoạn gen này là gì?", "options": ["5'-AUG GCA UUU GGU-3'", "3'-UAC CGU AAA CCA-5'", "5'-UAC CGU AAA CCA-3'", "3'-AUG GCA UUU GGU-5'"], "correct": 0, "trap_detail": "Học sinh thường đọc nhanh thành 'mạch khuôn' rồi phiên mã bổ sung ra 3'-UAC CGU AAA CCA-5' (chọn B hoặc C sai).", "pro_tip": "QUY TẮC VÀNG 3 GIÂY: Trình tự mRNA 5'->3' GIỐNG HỆT mạch mã hóa 5'->3', chỉ việc thay chữ T bằng chữ U!"}, {"id": "trap_2", "num": 2, "title": "Bẫy 2: Chiều Đọc Anticodon trên tRNA", "question": "Codon trên mRNA là 5'-AUG-3' (mã mở đầu). Bộ ba đối mã (anticodon) tương ứng trên tRNA mang amino acid mở đầu có trình tự là:", "options": ["3'-UAC-5' (hoặc viết là 5'-CAU-3')", "5'-UAC-3'", "3'-AUG-5'", "5'-AUG-3'"], "correct": 0, "trap_detail": "Đề thi hay viết anticodon theo chiều 5'->3' là 5'-CAU-3' để lừa học sinh chỉ nhớ vẹt 'UAC'. Nếu học sinh chọn 5'-UAC-3' là sai chiều phân tử!", "pro_tip": "Codon là 5'->3' thì anticodon bắt cặp đối song song phải là 3'->5' (3'-UAC-5'). Khi đọc xuôi 5'->3' nó là 5'-CAU-3'!"}, {"id": "trap_3", "num": 3, "title": "Bẫy 3: Đếm Số Codon Mã Hóa Từ Hỗn Hợp Nu (Bẫy Trừ Codon Dừng)", "question": "Từ 3 loại ribonucleotide A, U, G có thể tạo ra tối đa bao nhiêu bộ ba MÃ HÓA AMINO ACID?", "options": ["24", "27", "21", "26"], "correct": 0, "trap_detail": "Học sinh tính 3^3 = 27 rồi chọn ngay đáp án 27 mà quên mất rằng 3 bộ ba UAA, UAG, UGA là codon kết thúc KHÔNG mã hóa amino acid nào!", "pro_tip": "Luôn kiểm tra xem tập hợp nucleotide có tạo được codon kết thúc nào trong 3 mã UAA, UAG, UGA không, rồi lấy tổng số trừ đi!"}, {"id": "trap_4", "num": 4, "title": "Bẫy 4: Đột Biến Gen Điều Hòa LacI vs Đột Biến Vùng Vận Hành O", "question": "Một vi khuẩn E.coli mang operon Lac đột biến khiến các gen cấu trúc Z, Y, A phiên mã liên tục ngay cả khi môi trường không có lactose. Cơ chế nào sau đây KHÔNG THỂ dẫn đến hiện tượng này?", "options": ["Đột biến tại vùng khởi động (promoter P) của Operon Lac làm tăng ái lực với RNA polymerase.", "Đột biến gen điều hòa LacI làm protein ức chế bị biến tính, mất khả năng gắn vào vùng O.", "Đột biến vùng vận hành (operator O) làm protein ức chế không nhận biết và không bám được vào O.", "Đột biến làm gen điều hòa LacI mất khả năng phiên mã tổng hợp protein ức chế."], "correct": 0, "trap_detail": "Đột biến tại vùng P của operon dù có tăng ái lực nhưng nếu protein ức chế vẫn bám vào O khi không có lactose thì RNA polymerase vẫn bị chặn lại, không thể phiên mã được!", "pro_tip": "Chỉ có hỏng kìm (protein ức chế) hoặc hỏng chốt (vùng O) mới khiến operon chạy liên tục bất chấp lactose!"}, {"id": "trap_5", "num": 5, "title": "Bẫy 5: Polycistronic mRNA ở Vi Khuẩn", "question": "Ở vi khuẩn E. coli, khi môi trường có lactose, các gen cấu trúc lacZ, lacY, lacA phiên mã tạo ra bao nhiêu loại phân tử mRNA và khi dịch mã tạo ra bao nhiêu loại chuỗi polypeptide?", "options": ["1 loại mRNA và 3 loại chuỗi polypeptide riêng biệt.", "3 loại mRNA và 3 loại chuỗi polypeptide.", "1 loại mRNA và 1 chuỗi polypeptide duy nhất.", "3 loại mRNA và 1 loại chuỗi polypeptide."], "correct": 0, "trap_detail": "Nhiều bạn nghĩ có 3 gen Z, Y, A thì phải phiên mã tạo 3 phân tử mRNA riêng rẽ. Ở nhân sơ, cụm gen cấu trúc trong operon phiên mã chung tạo 1 mRNA đa cistron duy nhất!", "pro_tip": "Nhớ: 1 mRNA chung (polycistronic mRNA) mang 3 tín hiệu dịch mã riêng biệt => Dịch mã ra 3 chuỗi polypeptide khác nhau."}, {"id": "trap_6", "num": 6, "title": "Bẫy 6: Bản Chất Của Đoạn Mồi Trong Tái Bản DNA", "question": "Trong quá trình tái bản DNA ở tế bào nhân sơ và nhân thực, các đoạn mồi được tổng hợp bởi enzyme RNA polymerase (primase) có bản chất hóa học là gì?", "options": ["Đoạn oligonucleotide RNA ngắn có đầu 3'-OH tự do.", "Đoạn oligonucleotide DNA ngắn có đầu 5'-P tự do.", "Phức hợp protein chuyên trách nhận diện điểm khởi đầu.", "Chuỗi polypeptide ngắn có chức năng xúc tác."], "correct": 0, "trap_detail": "Vì tái bản DNA nên nhiều bạn mặc định mọi thứ đều là DNA. Thực tế đoạn mồi có bản chất là RNA!", "pro_tip": "DNA polymerase không thể tự khởi đầu chuỗi mới, bắt buộc phải có đoạn mồi RNA cung cấp đầu 3'-OH tự do."}, {"id": "trap_7", "num": 7, "title": "Bẫy 7: Chiều Kéo Dài Của Mạch Mới Trong Tái Bản", "question": "Enzyme DNA polymerase xúc tác gắn các nucleotide tự do của môi trường vào vị trí nào của chuỗi polynucleotide đang được kéo dài?", "options": ["Gắn vào đầu 3'-OH tự do của chuỗi mới, chiều tổng hợp là 5' -> 3'.", "Gắn vào đầu 5'-P tự do của chuỗi mới, chiều tổng hợp là 3' -> 5'.", "Gắn vào đầu 3'-OH của mạch khuôn.", "Gắn vào đầu 5'-P của mạch khuôn."], "correct": 0, "trap_detail": "Nhầm lẫn giữa chiều của mạch khuôn (đọc 3'->5') và chiều của mạch mới (tổng hợp 5'->3') hoặc nhầm giữa đầu 3'-OH và 5'-P.", "pro_tip": "DNA polymerase CHỈ GẮN NUCLEOTIDE VÀO ĐẦU 3'-OH TỰ DO! Chuỗi mới luôn mọc dài theo chiều 5' -> 3'."}, {"id": "trap_8", "num": 8, "title": "Bẫy 8: Đồ Thị Thuốc Ức Chế Phiên Mã vs Dịch Mã", "question": "Thử nghiệm 2 loại thuốc kháng virus: Thuốc X làm giảm nồng độ cả mRNA lẫn Protein virus; Thuốc Y không làm thay đổi nồng độ mRNA nhưng làm giảm mạnh nồng độ Protein virus. Kết luận nào đúng?", "options": ["Thuốc X ức chế phiên mã; Thuốc Y ức chế dịch mã.", "Thuốc X ức chế dịch mã; Thuốc Y ức chế phiên mã.", "Cả hai thuốc đều ức chế quá trình phiên mã.", "Cả hai thuốc đều ức chế quá trình dịch mã."], "correct": 0, "trap_detail": "Không nắm bản chất dòng chảy thông tin: DNA -> mRNA -> Protein. Nếu mRNA giảm trước thì đó là ức chế phiên mã; nếu mRNA vẫn nhiều mà protein ít thì dịch mã bị chặn!", "pro_tip": "Nhìn nồng độ mRNA: mRNA giảm => Đánh vào phiên mã. mRNA không đổi mà Protein giảm => Đánh vào dịch mã."}, {"id": "trap_9", "num": 9, "title": "Bẫy 9: Kích Thước 1 Chu Kỳ Xoắn vs 1 Nucleotide", "question": "Một phân tử DNA dạng B chuẩn có 1 chu kỳ xoắn gồm bao nhiêu cặp nucleotide và có chiều dài là bao nhiêu?", "options": ["10 cặp nucleotide và dài 3,4 nm (34 Å).", "10 nucleotide và dài 3,4 nm.", "20 cặp nucleotide và dài 34 nm.", "10 cặp nucleotide và dài 0,34 nm."], "correct": 0, "trap_detail": "Nhầm lẫn giữa 10 nucleotide và 10 cặp (20 nu); nhầm lẫn giữa 0.34 nm (chiều dài 1 nu) và 3.4 nm (1 chu kỳ xoắn).", "pro_tip": "1 chu kỳ xoắn = 10 cặp = 20 nucleotide = dài 3.4 nm = 34 Å."}, {"id": "trap_10", "num": 10, "title": "Bẫy 10: Công Thức Hóa Học Đường C5H10O4 vs C5H10O5", "question": "Đường cấu tạo nên nucleotide của DNA là deoxyribose có công thức phân tử là gì và khác gì so với đường ribose của RNA?", "options": ["C5H10O4, mất 1 nguyên tử oxy ở vị trí carbon số 2' so với ribose (C5H10O5).", "C5H10O5, giống hệt như đường trong RNA.", "C6H12O6, là đường hexose có 6 carbon.", "C5H10O4, mất 1 nguyên tử oxy ở vị trí carbon số 3'."], "correct": 0, "trap_detail": "Deoxy- nghĩa là khử (mất) một nguyên tử oxy ở vị trí C2' (-H thay vì -OH).", "pro_tip": "DNA = Deoxyribose = C5H10O4. RNA = Ribose = C5H10O5."}, {"id": "trap_11", "num": 11, "title": "Bẫy 11: Tính Thoái Hóa vs Tính Đặc Hiệu Của Mã Di Truyền", "question": "Hiện tượng 'nhiều bộ ba khác nhau cùng mã hóa cho một loại amino acid' phản ánh đặc tính nào của mã di truyền?", "options": ["Tính thoái hóa (dư thừa).", "Tính đặc hiệu.", "Tính phổ biến.", "Tính liên tục."], "correct": 0, "trap_detail": "Học sinh hay bị lộn ngược: 1 codon -> 1 aa (Tính đặc hiệu); nhiều codon -> 1 aa (Tính thoái hóa).", "pro_tip": "Một khóa mở nhiều hòm = Thoái hóa (dư chìa). Một khóa chỉ mở đúng 1 hòm = Đặc hiệu."}, {"id": "trap_12", "num": 12, "title": "Bẫy 12: Điểm Khởi Đầu Tái Bản (ori) Nhân Thực vs Nhân Sơ", "question": "Vì sao quá trình tái bản DNA ở sinh vật nhân thực diễn ra trên phân tử DNA dài hàng triệu cặp base nhưng lại hoàn thành trong thời gian rất ngắn?", "options": ["Vì DNA nhân thực có nhiều điểm khởi đầu tái bản (ori) hoạt động đồng thời.", "Vì enzyme DNA polymerase ở nhân thực di chuyển nhanh gấp 100 lần nhân sơ.", "Vì phân tử DNA nhân thực có cấu trúc dạng vòng xoắn kép.", "Vì quá trình nhân đôi không cần tổng hợp đoạn mồi RNA."], "correct": 0, "trap_detail": "Tốc độ trượt của DNA polymerase ở nhân thực thực tế CHẬM HƠN nhân sơ, nhưng hoàn thành nhanh là nhờ NHIỀU ĐIỂM ORI hoạt động cùng lúc!", "pro_tip": "Nhân sơ: 1 ori. Nhân thực: Rất nhiều ori (tạo nhiều đơn vị tái bản replicon)."}, {"id": "trap_13", "num": 13, "title": "Bẫy 13: Ý Nghĩa Hiện Tượng Polyribosome", "question": "Trong tế bào, nhiều ribosome cùng trượt trên một phân tử mRNA (polyribosome) có ý nghĩa sinh học gì?", "options": ["Tăng hiệu suất tổng hợp chuỗi polypeptide CÙNG LOẠI trong thời gian ngắn.", "Tổng hợp được nhiều loại chuỗi polypeptide KHÁC NHAU cùng lúc.", "Giúp phân tử mRNA không bị các enzyme phân hủy.", "Tạo ra các phân tử protein có cấu trúc bậc 4 phức tạp."], "correct": 0, "trap_detail": "Rất nhiều học sinh chọn phương án 'tổng hợp nhiều loại protein khác nhau'. Vì cùng trượt trên 1 khuôn mRNA duy nhất nên các chuỗi polypeptide tạo ra bắt buộc phải GIỐNG HỆT NHAU!", "pro_tip": "Cùng 1 khuôn mRNA => Tất cả ribosome đều dịch ra CÙNG 1 LOẠI protein."}, {"id": "trap_14", "num": 14, "title": "Bẫy 14: Vị Trí Diễn Ra Cắt Intron Nối Exon", "question": "Ở tế bào sinh vật nhân thực, quá trình cắt bỏ các đoạn intron và nối các đoạn exon để tạo ra phân tử mRNA trưởng thành diễn ra ở đâu?", "options": ["Trong nhân tế bào.", "Tại ribosome ở tế bào chất.", "Trên màng lưới nội chất hạt.", "Tại ti thể và lục lạp."], "correct": 0, "trap_detail": "Học sinh tưởng ra ngoài tế bào chất mới hoàn thiện. Thực chất mọi quá trình chế biến mRNA (gắn mũ 5' cap, đuôi polyA, cắt nối) đều diễn ra hoàn toàn trong nhân tế bào trước khi xuất ra tế bào chất!", "pro_tip": "Hoàn thiện mRNA xong xuôi trong nhân rồi mới được 'cấp visa' chui qua lỗ màng nhân ra tế bào chất."}, {"id": "trap_15", "num": 15, "title": "Bẫy 15: Nhiệt Độ Nóng Chảy và Số Liên Kết Hydrogen", "question": "Cho 4 phân tử DNA có cùng chiều dài: DNA 1 có 20% Guanine, DNA 2 có 35% Guanine, DNA 3 có 15% Guanine, DNA 4 có 30% Guanine. Phân tử nào có nhiệt độ nóng chảy (nhiệt độ tách 2 mạch) cao nhất?", "options": ["DNA 2 (35% G).", "DNA 1 (20% G).", "DNA 3 (15% G).", "DNA 4 (30% G)."], "correct": 0, "trap_detail": "Cặp G-C liên kết bằng 3 liên kết hydro, cặp A-T liên kết bằng 2 liên kết hydro. Phân tử nào càng nhiều G-C thì càng nhiều liên kết hydro, càng bền vững với nhiệt!", "pro_tip": "Nhiệt độ nóng chảy tỉ lệ thuận với hàm lượng %G-C. Nhiều G nhất => Bền nhất => Nhiệt độ nóng chảy cao nhất!"}];
 
     /* State variables */
     let officialAnswers = {};
     let practiceAnswers = {};
+    let decuongAnswers = {};
     let currentPracticeMode = 'de1';
     let currentOfficialFilter = 'all';
+    let currentDecuongFilter = 'all';
     let trapAnswers = {};
 
     /* Helper: Toggle image zoom */
@@ -2051,6 +2111,317 @@
     }
 
     /* ==========================================================================
+       ĐỀ CƯƠNG ÔN TẬP ENGINE (56 CÂU HỎI GỐC)
+       ========================================================================== */
+    function filterDecuong(filter) {
+      currentDecuongFilter = filter;
+      document.querySelectorAll('#tab-decuong .pill-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderDecuongQuestions();
+      playSound('click');
+    }
+
+    function renderDecuongQuestions() {
+      const container = document.getElementById('decuongQuestionsContainer');
+      container.innerHTML = '';
+
+      // 1. MCQ (Câu 1 - 36)
+      if (currentDecuongFilter === 'all' || currentDecuongFilter === 'mcq') {
+        decuongExam.mcq.forEach(q => {
+          const card = document.createElement('div');
+          card.className = 'q-card';
+          card.id = 'dc_card_' + q.id;
+
+          const isAnswered = decuongAnswers[q.id] !== undefined;
+          const userAns = decuongAnswers[q.id];
+
+          let optionsHtml = '';
+          const letters = ['A', 'B', 'C', 'D'];
+          q.options.forEach((opt, optIdx) => {
+            let btnClass = 'opt-btn';
+            if (isAnswered) {
+              btnClass += ' disabled';
+              if (optIdx === q.correct) btnClass += ' correct';
+              else if (optIdx === userAns) btnClass += ' wrong';
+            }
+            optionsHtml += `
+              <button class="${btnClass}" onclick="selectDecuongMCQ('${q.id}', ${optIdx})">
+                <span class="opt-letter">${letters[optIdx]}</span>
+                <span>${opt}</span>
+              </button>
+            `;
+          });
+
+          let explainHtml = '';
+          if (isAnswered) {
+            explainHtml = `
+              <div class="explanation-box">
+                <div class="explanation-title">
+                  <span>${userAns === q.correct ? '✅ CHÍNH XÁC!' : '❌ CHƯA ĐÚNG!'}</span>
+                  <span>— Phương Pháp & Lời Giải</span>
+                </div>
+                <div class="explanation-body">${q.explain}</div>
+              </div>
+            `;
+          }
+
+          card.innerHTML = `
+            <div class="q-card-header">
+              <div class="q-title-wrap">
+                <span class="q-number-tag">Câu ${q.num}</span>
+                <span class="q-type-badge">ĐỀ CƯƠNG GỐC - TRẮC NGHIỆM</span>
+              </div>
+            </div>
+            <div class="q-text">${q.text}</div>
+            ${buildDiagramHtml(q)}
+            <div class="opt-grid">${optionsHtml}</div>
+            ${explainHtml}
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      // 2. TF (Câu 1 - 6)
+      if (currentDecuongFilter === 'all' || currentDecuongFilter === 'tf') {
+        decuongExam.tf.forEach(q => {
+          const card = document.createElement('div');
+          card.className = 'q-card';
+          card.id = 'dc_card_' + q.id;
+
+          let rowsHtml = '';
+          q.items.forEach((item, itemIdx) => {
+            const rowKey = q.id + '_' + item.label;
+            const userChoice = decuongAnswers[rowKey];
+            const isAnswered = userChoice !== undefined;
+            const isCorrect = userChoice === item.correct;
+
+            let rowClass = 'tf-row';
+            if (isAnswered) rowClass += (isCorrect ? ' answered-correct' : ' answered-wrong');
+
+            rowsHtml += `
+              <div class="${rowClass}">
+                <div class="tf-statement">
+                  <span class="tf-letter">${item.label})</span>
+                  <span>${item.statement}</span>
+                </div>
+                <div class="tf-btn-group">
+                  <button class="tf-btn ${userChoice === true ? (item.correct === true ? 'correct' : 'wrong') : ''}"
+                          onclick="selectDecuongTF('${q.id}', '${item.label}', true)">Đúng</button>
+                  <button class="tf-btn ${userChoice === false ? (item.correct === false ? 'correct' : 'wrong') : ''}"
+                          onclick="selectDecuongTF('${q.id}', '${item.label}', false)">Sai</button>
+                </div>
+              </div>
+            `;
+
+            if (isAnswered) {
+              rowsHtml += `
+                <div class="explanation-box" style="margin: 4px 0 12px 28px; padding: 8px 12px; font-size: 0.88rem;">
+                  <b>${isCorrect ? '✅ Đúng' : '❌ Sai'}</b>: ${item.explain}
+                </div>
+              `;
+            }
+          });
+
+          card.innerHTML = `
+            <div class="q-card-header">
+              <div class="q-title-wrap">
+                <span class="q-number-tag">Câu ${q.num}</span>
+                <span class="q-type-badge">ĐỀ CƯƠNG GỐC - ĐÚNG / SAI</span>
+              </div>
+            </div>
+            <div class="q-text" style="font-weight: 700;">${q.question}</div>
+            ${buildDiagramHtml(q)}
+            <div style="margin-top: 14px;">${rowsHtml}</div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      // 3. Short (Câu 1 - 12)
+      if (currentDecuongFilter === 'all' || currentDecuongFilter === 'short') {
+        decuongExam.short.forEach(q => {
+          const card = document.createElement('div');
+          card.className = 'q-card';
+          card.id = 'dc_card_' + q.id;
+
+          const isAnswered = decuongAnswers[q.id] !== undefined;
+          const userVal = decuongAnswers[q.id];
+          const isCorrect = isAnswered && (String(userVal).trim() === String(q.correct).trim());
+
+          let feedbackHtml = '';
+          if (isAnswered) {
+            feedbackHtml = `
+              <div class="explanation-box">
+                <div class="explanation-title">
+                  <span>${isCorrect ? '✅ CHÍNH XÁC!' : '❌ CHƯA CHÍNH XÁC!'} (Đáp án: ${q.correct})</span>
+                  <span>— Phương Pháp Giải</span>
+                </div>
+                <div class="explanation-body">${q.explain}</div>
+              </div>
+            `;
+          }
+
+          card.innerHTML = `
+            <div class="q-card-header">
+              <div class="q-title-wrap">
+                <span class="q-number-tag">Câu ${q.num}</span>
+                <span class="q-type-badge">ĐỀ CƯƠNG GỐC - TRẢ LỜI NGẮN</span>
+              </div>
+            </div>
+            <div class="q-text">${q.text}</div>
+            ${buildDiagramHtml(q)}
+            <div class="short-input-wrap">
+              <input type="text" id="dc_input_${q.id}" class="short-input" placeholder="Nhập đáp án số hoặc chuỗi số..." value="${userVal !== undefined ? userVal : ''}">
+              <button class="short-submit-btn" onclick="submitDecuongShort('${q.id}')">Kiểm Tra</button>
+            </div>
+            ${feedbackHtml}
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      // 4. Essay (Câu 1 - 2)
+      if (currentDecuongFilter === 'all' || currentDecuongFilter === 'essay') {
+        decuongExam.essay.forEach(q => {
+          const card = document.createElement('div');
+          card.className = 'q-card';
+          card.id = 'dc_card_' + q.id;
+
+          card.innerHTML = `
+            <div class="q-card-header">
+              <div class="q-title-wrap">
+                <span class="q-number-tag">Câu ${q.num}</span>
+                <span class="q-type-badge">ĐỀ CƯƠNG GỐC - TỰ LUẬN TRỌNG TÂM</span>
+              </div>
+              <button class="btn-top" onclick="toggleDecuongEssay('${q.id}')">👁️ Xem Đáp Án Chuẩn & Lập Luận</button>
+            </div>
+            <div class="q-text" style="font-weight: 700; font-size: 1.05rem;">${q.question}</div>
+            <div id="dc_essay_box_${q.id}" class="explanation-box" style="display: none; margin-top: 14px;">
+              <div class="explanation-title">
+                <span>📝 Hướng Dẫn Chấm Điểm & Bảng Phân Tích Chuẩn</span>
+              </div>
+              <div class="explanation-body" style="white-space: pre-wrap; font-family: monospace; font-size: 0.92rem; line-height: 1.6;">${q.answer}</div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      updateDecuongStats();
+    }
+
+    function selectDecuongMCQ(qid, optIdx) {
+      if (decuongAnswers[qid] !== undefined) return;
+      decuongAnswers[qid] = optIdx;
+      const q = decuongExam.mcq.find(item => item.id === qid);
+      if (q && optIdx === q.correct) playSound('correct');
+      else playSound('wrong');
+      renderDecuongQuestions();
+    }
+
+    function selectDecuongTF(qid, label, val) {
+      const key = qid + '_' + label;
+      decuongAnswers[key] = val;
+      const q = decuongExam.tf.find(item => item.id === qid);
+      if (q) {
+        const item = q.items.find(i => i.label === label);
+        if (item && item.correct === val) playSound('correct');
+        else playSound('wrong');
+      }
+      renderDecuongQuestions();
+    }
+
+    function submitDecuongShort(qid) {
+      const input = document.getElementById('dc_input_' + qid);
+      if (!input) return;
+      const val = input.value.trim();
+      if (!val) return;
+      decuongAnswers[qid] = val;
+      const q = decuongExam.short.find(item => item.id === qid);
+      if (q && String(val) === String(q.correct)) playSound('correct');
+      else playSound('wrong');
+      renderDecuongQuestions();
+    }
+
+    function toggleDecuongEssay(qid) {
+      const box = document.getElementById('dc_essay_box_' + qid);
+      if (!box) return;
+      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+      playSound('click');
+    }
+
+    function updateDecuongStats() {
+      let totalItems = 36 + (6 * 4) + 12; // MCQ + (6 TF * 4) + Short = 72 graded items
+      let answeredCount = 0;
+      let correctCount = 0;
+
+      // MCQ
+      decuongExam.mcq.forEach(q => {
+        if (decuongAnswers[q.id] !== undefined) {
+          answeredCount++;
+          if (decuongAnswers[q.id] === q.correct) correctCount++;
+        }
+      });
+
+      // TF
+      decuongExam.tf.forEach(q => {
+        q.items.forEach(item => {
+          const key = q.id + '_' + item.label;
+          if (decuongAnswers[key] !== undefined) {
+            answeredCount++;
+            if (decuongAnswers[key] === item.correct) correctCount++;
+          }
+        });
+      });
+
+      // Short
+      decuongExam.short.forEach(q => {
+        if (decuongAnswers[q.id] !== undefined) {
+          answeredCount++;
+          if (String(decuongAnswers[q.id]).trim() === String(q.correct).trim()) correctCount++;
+        }
+      });
+
+      const scoreEl = document.getElementById('dcScore');
+      const pctEl = document.getElementById('dcPct');
+      if (scoreEl) scoreEl.innerText = `${answeredCount}/${totalItems}`;
+      if (pctEl) {
+        const pct = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+        pctEl.innerText = `${pct}%`;
+      }
+    }
+
+    function resetDecuongQuiz() {
+      if (confirm('Bạn có chắc muốn đặt lại toàn bộ câu trả lời của Đề Cương?')) {
+        decuongAnswers = {};
+        renderDecuongQuestions();
+        playSound('celebrate');
+      }
+    }
+
+    function revealAllDecuong() {
+      // Auto-answer all correctly for quick memorization
+      decuongExam.mcq.forEach(q => {
+        decuongAnswers[q.id] = q.correct;
+      });
+      decuongExam.tf.forEach(q => {
+        q.items.forEach(item => {
+          decuongAnswers[q.id + '_' + item.label] = item.correct;
+        });
+      });
+      decuongExam.short.forEach(q => {
+        decuongAnswers[q.id] = q.correct;
+      });
+      renderDecuongQuestions();
+      // Also open essay answers
+      decuongExam.essay.forEach(q => {
+        const box = document.getElementById('dc_essay_box_' + q.id);
+        if (box) box.style.display = 'block';
+      });
+      playSound('celebrate');
+    }
+
+    /* ==========================================================================
        RENDER OFFICIAL EXAM (THPT CỔ LOA MÃ 497)
        ========================================================================== */
     function filterOfficial(filter) {
@@ -2098,10 +2469,10 @@
               <div class="explanation-box">
                 <div class="explanation-title">
                   <span>${userAns === q.correct ? '✅ CHÍNH XÁC!' : '❌ CHƯA ĐÚNG!'}</span>
-                  <span>— Lời Giải Chi Tiết</span>
+                  <span>— Phương Pháp & Lời Giải</span>
                 </div>
                 <div class="explanation-body">${q.explain}</div>
-                ${q.trap ? `<div class="trap-alert-box"><strong>🚨 CẢNH BÁO BẪY:</strong> ${q.trap}</div>` : ''}
+                ${q.trap ? `<div class="trap-tip-box" style="margin-top: 8px;"><strong>⚠️ Lưu ý cạm bẫy:</strong> ${q.trap}</div>` : ''}
               </div>
             `;
           }
@@ -2110,20 +2481,19 @@
             <div class="q-card-header">
               <div class="q-title-wrap">
                 <span class="q-number-tag">Câu ${q.num}</span>
-                <span class="q-type-badge">Phần I: Trắc Nghiệm</span>
+                <span class="q-type-badge">PHẦN I - TRẮC NGHIỆM</span>
               </div>
-              <span style="font-size: 0.82rem; color: var(--text-muted);">${q.title}</span>
             </div>
-            <div class="q-text">${q.text.replace(/\n/g, '<br>')}</div>
+            <div class="q-text">${q.text}</div>
             ${buildDiagramHtml(q)}
-            <div class="options-grid">${optionsHtml}</div>
+            <div class="opt-grid">${optionsHtml}</div>
             ${explainHtml}
           `;
           container.appendChild(card);
         });
       }
 
-      // 2. Phần II: Đúng / Sai
+      // 2. Phần II: Đúng / Sai (TF)
       if (currentOfficialFilter === 'all' || currentOfficialFilter === 'p2') {
         officialExam.tf.forEach(q => {
           const card = document.createElement('div');
@@ -2131,61 +2501,55 @@
           card.id = 'card_' + q.id;
 
           let rowsHtml = '';
-          q.items.forEach(item => {
-            const ansKey = q.id + '_' + item.label;
-            const userChoice = officialAnswers[ansKey];
+          q.items.forEach((item, itemIdx) => {
+            const rowKey = q.id + '_' + item.label;
+            const userChoice = officialAnswers[rowKey];
             const isAnswered = userChoice !== undefined;
+            const isCorrect = userChoice === item.correct;
 
-            let trueBtnClass = 'tf-btn';
-            let falseBtnClass = 'tf-btn';
-            if (isAnswered) {
-              if (userChoice === true) trueBtnClass += ' selected-true';
-              if (userChoice === false) falseBtnClass += ' selected-false';
-            }
+            let rowClass = 'tf-row';
+            if (isAnswered) rowClass += (isCorrect ? ' answered-correct' : ' answered-wrong');
 
-            let itemFeedback = '';
+            rowsHtml += `
+              <div class="${rowClass}">
+                <div class="tf-statement">
+                  <span class="tf-letter">${item.label})</span>
+                  <span>${item.statement}</span>
+                </div>
+                <div class="tf-btn-group">
+                  <button class="tf-btn ${userChoice === true ? (item.correct === true ? 'correct' : 'wrong') : ''}"
+                          onclick="selectOfficialTF('${q.id}', '${item.label}', true)">Đúng</button>
+                  <button class="tf-btn ${userChoice === false ? (item.correct === false ? 'correct' : 'wrong') : ''}"
+                          onclick="selectOfficialTF('${q.id}', '${item.label}', false)">Sai</button>
+                </div>
+              </div>
+            `;
+
             if (isAnswered) {
-              const isCorrect = userChoice === item.correct;
-              itemFeedback = `
-                <div style="font-size: 0.85rem; margin-top: 6px; color: ${isCorrect ? '#34d399' : '#f87171'};">
-                  ${isCorrect ? '✅ Đúng' : '❌ Sai'} (Đáp án chuẩn: <b>${item.correct ? 'ĐÚNG' : 'SAI'}</b>): ${item.explain}
+              rowsHtml += `
+                <div class="explanation-box" style="margin: 4px 0 12px 28px; padding: 8px 12px; font-size: 0.88rem;">
+                  <b>${isCorrect ? '✅ Đúng' : '❌ Sai'}</b>: ${item.explain}
                 </div>
               `;
             }
-
-            rowsHtml += `
-              <div class="tf-row" style="margin-bottom: 10px; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: 8px;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;">
-                  <div class="tf-statement" style="padding: 0; flex: 1;">
-                    <b style="color: #38bdf8;">${item.label})</b> ${item.statement}
-                  </div>
-                  <div class="tf-actions" style="padding: 0;">
-                    <button class="${trueBtnClass}" onclick="selectOfficialTF('${q.id}', '${item.label}', true)">Đúng</button>
-                    <button class="${falseBtnClass}" onclick="selectOfficialTF('${q.id}', '${item.label}', false)">Sai</button>
-                  </div>
-                </div>
-                ${itemFeedback}
-              </div>
-            `;
           });
 
           card.innerHTML = `
             <div class="q-card-header">
               <div class="q-title-wrap">
                 <span class="q-number-tag">Câu ${q.num}</span>
-                <span class="q-type-badge" style="color: #f59e0b; border-color: rgba(245,158,11,0.3);">Phần II: Đúng / Sai</span>
+                <span class="q-type-badge">PHẦN II - ĐÚNG / SAI</span>
               </div>
-              <span style="font-size: 0.82rem; color: var(--text-muted);">${q.title}</span>
             </div>
-            <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 14px;">${q.intro}</p>
+            <div class="q-text" style="font-weight: 700;">${q.question}</div>
             ${buildDiagramHtml(q)}
-            <div>${rowsHtml}</div>
+            <div style="margin-top: 14px;">${rowsHtml}</div>
           `;
           container.appendChild(card);
         });
       }
 
-      // 3. Phần III: Trả Lời Ngắn
+      // 3. Phần III: Trả lời ngắn (Short Answer)
       if (currentOfficialFilter === 'all' || currentOfficialFilter === 'p3') {
         officialExam.short.forEach(q => {
           const card = document.createElement('div');
@@ -2193,19 +2557,18 @@
           card.id = 'card_' + q.id;
 
           const isAnswered = officialAnswers[q.id] !== undefined;
-          const userVal = officialAnswers[q.id] || '';
+          const userVal = officialAnswers[q.id];
+          const isCorrect = isAnswered && (String(userVal).trim() === String(q.correct).trim());
 
-          let explainHtml = '';
+          let feedbackHtml = '';
           if (isAnswered) {
-            const isCorrect = Number(userVal) === q.correct;
-            explainHtml = `
+            feedbackHtml = `
               <div class="explanation-box">
                 <div class="explanation-title">
-                  <span>${isCorrect ? '✅ CHÍNH XÁC!' : '❌ CHƯA ĐÚNG!'}</span>
-                  <span>— Đáp số chuẩn: <b>${q.correct}</b></span>
+                  <span>${isCorrect ? '✅ CHÍNH XÁC!' : '❌ CHƯA CHÍNH XÁC!'} (Đáp án: ${q.correct})</span>
+                  <span>— Phương Pháp Giải</span>
                 </div>
                 <div class="explanation-body">${q.explain}</div>
-                ${q.trap ? `<div class="trap-alert-box"><strong>🚨 CẢNH BÁO:</strong> ${q.trap}</div>` : ''}
               </div>
             `;
           }
@@ -2214,45 +2577,42 @@
             <div class="q-card-header">
               <div class="q-title-wrap">
                 <span class="q-number-tag">Câu ${q.num}</span>
-                <span class="q-type-badge" style="color: #38bdf8; border-color: rgba(56,189,248,0.3);">Phần III: Trả Lời Ngắn</span>
+                <span class="q-type-badge">PHẦN III - TRẢ LỜI NGẮN</span>
               </div>
-              <span style="font-size: 0.82rem; color: var(--text-muted);">${q.title}</span>
             </div>
             <div class="q-text">${q.text}</div>
             ${buildDiagramHtml(q)}
-            <div class="short-ans-box">
-              <input type="number" class="short-input" id="input_${q.id}" value="${userVal}" placeholder="Nhập đáp số (số nguyên)..." ${isAnswered ? 'readonly' : ''}>
-              <button class="btn-submit-ans" onclick="submitOfficialShort('${q.id}')">Kiểm Tra</button>
+            <div class="short-input-wrap">
+              <input type="text" id="input_${q.id}" class="short-input" placeholder="Nhập đáp án số hoặc chuỗi số..." value="${userVal !== undefined ? userVal : ''}">
+              <button class="short-submit-btn" onclick="submitOfficialShort('${q.id}')">Kiểm Tra</button>
             </div>
-            ${explainHtml}
+            ${feedbackHtml}
           `;
           container.appendChild(card);
         });
       }
 
-      // 4. Phần IV: Tự Luận & Đồ Thị Thực Nghiệm
+      // 4. Phần IV: Tự luận (Essay)
       if (currentOfficialFilter === 'all' || currentOfficialFilter === 'p4') {
         officialExam.essay.forEach(q => {
           const card = document.createElement('div');
           card.className = 'q-card';
-          card.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+          card.id = 'card_' + q.id;
 
           card.innerHTML = `
             <div class="q-card-header">
               <div class="q-title-wrap">
-                <span class="q-number-tag" style="background: linear-gradient(135deg, #10b981, #059669);">Tự Luận</span>
-                <span class="q-type-badge" style="color: #34d399;">Phần IV: Câu Hỏi Chuyên Sâu</span>
+                <span class="q-number-tag">Câu ${q.num}</span>
+                <span class="q-type-badge">PHẦN IV - TỰ LUẬN ĐẶC BIỆT</span>
               </div>
-              <span style="font-size: 0.82rem; color: var(--text-muted);">${q.title}</span>
+              <button class="btn-top" onclick="toggleEssayAnswer('${q.id}')">👁️ Xem Đáp Án Chuẩn & Lập Luận</button>
             </div>
-            <div class="q-text" style="color: #67e8f9;">❓ ${q.question}</div>
-            ${buildDiagramHtml(q)}
-            <div style="margin-top: 14px;">
-              <button class="btn-nav" onclick="toggleEssayAnswer('${q.id}')">💡 Bấm Để Xem Lời Giải & Phân Tích Cơ Chế</button>
-            </div>
-            <div id="essay_box_${q.id}" class="explanation-box" style="display: none; margin-top: 14px; white-space: pre-line; line-height: 1.65;">
-              <div class="explanation-title">🔬 Hướng Dẫn Chấm & Phân Tích Bản Chất Sinh Học:</div>
-              <div class="explanation-body">${q.answer}</div>
+            <div class="q-text" style="font-weight: 700; font-size: 1.05rem;">${q.question}</div>
+            <div id="essay_box_${q.id}" class="explanation-box" style="display: none; margin-top: 14px;">
+              <div class="explanation-title">
+                <span>📝 Hướng Dẫn Chấm Điểm & Bảng Phân Tích Chuẩn</span>
+              </div>
+              <div class="explanation-body" style="white-space: pre-wrap; font-family: monospace; font-size: 0.92rem; line-height: 1.6;">${q.answer}</div>
             </div>
           `;
           container.appendChild(card);
@@ -2262,85 +2622,93 @@
       updateOfficialStats();
     }
 
-    function selectOfficialMCQ(qId, optIdx) {
-      if (officialAnswers[qId] !== undefined) return;
-      officialAnswers[qId] = optIdx;
-      const q = officialExam.mcq.find(item => item.id === qId);
+    function selectOfficialMCQ(qid, optIdx) {
+      if (officialAnswers[qid] !== undefined) return;
+      officialAnswers[qid] = optIdx;
+      const q = officialExam.mcq.find(item => item.id === qid);
       if (q && optIdx === q.correct) playSound('correct');
       else playSound('wrong');
       renderOfficialQuestions();
     }
 
-    function selectOfficialTF(qId, label, val) {
-      const key = qId + '_' + label;
+    function selectOfficialTF(qid, label, val) {
+      const key = qid + '_' + label;
       officialAnswers[key] = val;
-      const q = officialExam.tf.find(item => item.id === qId);
-      const item = q ? q.items.find(i => i.label === label) : null;
-      if (item && item.correct === val) playSound('correct');
-      else playSound('wrong');
-      renderOfficialQuestions();
-    }
-
-    function submitOfficialShort(qId) {
-      const input = document.getElementById('input_' + qId);
-      if (!input || input.value.trim() === '') return;
-      const val = input.value.trim();
-      officialAnswers[qId] = val;
-      const q = officialExam.short.find(item => item.id === qId);
-      if (q && Number(val) === q.correct) playSound('correct');
-      else playSound('wrong');
-      renderOfficialQuestions();
-    }
-
-    function toggleEssayAnswer(id) {
-      const box = document.getElementById('essay_box_' + id);
-      if (box) {
-        box.style.display = box.style.display === 'none' ? 'block' : 'none';
-        playSound('click');
+      const q = officialExam.tf.find(item => item.id === qid);
+      if (q) {
+        const item = q.items.find(i => i.label === label);
+        if (item && item.correct === val) playSound('correct');
+        else playSound('wrong');
       }
+      renderOfficialQuestions();
+    }
+
+    function submitOfficialShort(qid) {
+      const input = document.getElementById('input_' + qid);
+      if (!input) return;
+      const val = input.value.trim();
+      if (!val) return;
+      officialAnswers[qid] = val;
+      const q = officialExam.short.find(item => item.id === qid);
+      if (q && String(val) === String(q.correct)) playSound('correct');
+      else playSound('wrong');
+      renderOfficialQuestions();
+    }
+
+    function toggleEssayAnswer(qid) {
+      const box = document.getElementById('essay_box_' + qid);
+      if (!box) return;
+      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+      playSound('click');
     }
 
     function updateOfficialStats() {
+      let totalItems = 18 + (4 * 4) + 6; // 40 items graded
       let answeredCount = 0;
-      let score = 0;
+      let correctCount = 0;
 
+      // MCQ
       officialExam.mcq.forEach(q => {
         if (officialAnswers[q.id] !== undefined) {
           answeredCount++;
-          if (officialAnswers[q.id] === q.correct) score += 0.25;
+          if (officialAnswers[q.id] === q.correct) correctCount++;
         }
       });
 
+      // TF
       officialExam.tf.forEach(q => {
-        let qAnswered = false;
         q.items.forEach(item => {
-          const k = q.id + '_' + item.label;
-          if (officialAnswers[k] !== undefined) {
-            qAnswered = true;
-            if (officialAnswers[k] === item.correct) score += 0.1;
+          const key = q.id + '_' + item.label;
+          if (officialAnswers[key] !== undefined) {
+            answeredCount++;
+            if (officialAnswers[key] === item.correct) correctCount++;
           }
         });
-        if (qAnswered) answeredCount++;
       });
 
+      // Short
       officialExam.short.forEach(q => {
         if (officialAnswers[q.id] !== undefined) {
           answeredCount++;
-          if (Number(officialAnswers[q.id]) === q.correct) score += 0.25;
+          if (String(officialAnswers[q.id]).trim() === String(q.correct).trim()) correctCount++;
         }
       });
 
-      const totalQuestions = officialExam.mcq.length + officialExam.tf.length + officialExam.short.length;
-      document.getElementById('officialCounter').innerText = `Đang làm: ${answeredCount} / ${totalQuestions}`;
-      document.getElementById('officialScoreBadge').innerText = `Điểm: ${score.toFixed(2)} đ`;
-      const pct = (answeredCount / totalQuestions) * 100;
-      document.getElementById('officialProgressFill').style.width = pct + '%';
+      const scoreEl = document.getElementById('officialScore');
+      const pctEl = document.getElementById('officialPct');
+      if (scoreEl) scoreEl.innerText = `${answeredCount}/${totalItems}`;
+      if (pctEl) {
+        const pct = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+        pctEl.innerText = `${pct}%`;
+      }
     }
 
     function resetOfficialQuiz() {
-      officialAnswers = {};
-      renderOfficialQuestions();
-      playSound('click');
+      if (confirm('Bạn có chắc muốn đặt lại toàn bộ bài thi Đề Chính Thức?')) {
+        officialAnswers = {};
+        renderOfficialQuestions();
+        playSound('celebrate');
+      }
     }
 
     /* ==========================================================================
@@ -2348,10 +2716,13 @@
        ========================================================================== */
     function loadPracticeExam(mode) {
       currentPracticeMode = mode;
-      document.getElementById('btnPracticeDe1').classList.toggle('active', mode === 'de1');
-      document.getElementById('btnPracticeDe2').classList.toggle('active', mode === 'de2');
-      document.getElementById('practiceTitleBadge').innerText = mode === 'de1' ? 'Đề Ôn Luyện Số 1' : 'Đề Ôn Luyện Số 2';
       practiceAnswers = {};
+      const b1 = document.getElementById('btnPracticeDe1');
+      const b2 = document.getElementById('btnPracticeDe2');
+      if (b1) b1.classList.toggle('active', mode === 'de1');
+      if (b2) b2.classList.toggle('active', mode === 'de2');
+      const titleBadge = document.getElementById('practiceTitleBadge');
+      if (titleBadge) titleBadge.innerText = (mode === 'de1' ? 'Đề Số 1' : 'Đề Số 2');
       renderPracticeQuestions();
       playSound('click');
     }
@@ -2404,207 +2775,229 @@
           <div class="q-card-header">
             <div class="q-title-wrap">
               <span class="q-number-tag">Câu ${q.num}</span>
-              <span class="q-type-badge">${currentPracticeMode.toUpperCase()}</span>
+              <span class="q-type-badge">${currentPracticeMode.toUpperCase()} - TRẮC NGHIỆM</span>
             </div>
           </div>
           <div class="q-text">${q.text}</div>
           ${buildDiagramHtml(q)}
-          <div class="options-grid">${optionsHtml}</div>
+          <div class="opt-grid">${optionsHtml}</div>
           ${explainHtml}
         `;
         container.appendChild(card);
       });
 
       // 2. TF
-      if (exam.tf) {
-        exam.tf.forEach(q => {
-          const card = document.createElement('div');
-          card.className = 'q-card';
-          let rowsHtml = '';
-          q.items.forEach(item => {
-            const key = q.id + '_' + item.label;
-            const userChoice = practiceAnswers[key];
-            const isAnswered = userChoice !== undefined;
-            let tbClass = 'tf-btn';
-            let fbClass = 'tf-btn';
-            if (isAnswered) {
-              if (userChoice === true) tbClass += ' selected-true';
-              if (userChoice === false) fbClass += ' selected-false';
-            }
-            let feedback = '';
-            if (isAnswered) {
-              const ok = userChoice === item.correct;
-              feedback = `<div style="font-size:0.84rem; margin-top:5px; color:${ok ? '#34d399' : '#f87171'}">${ok ? '✅' : '❌'} Đáp án: <b>${item.correct ? 'ĐÚNG' : 'SAI'}</b> - ${item.explain}</div>`;
-            }
-            rowsHtml += `
-              <div class="tf-row" style="margin-bottom:8px; padding:8px 12px; background:rgba(255,255,255,0.02); border-radius:6px;">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
-                  <div style="flex:1; font-size:0.92rem;"><b style="color:#38bdf8;">${item.label})</b> ${item.statement}</div>
-                  <div style="display:flex; gap:6px;">
-                    <button class="${tbClass}" onclick="selectPracticeTF('${q.id}','${item.label}', true)">Đúng</button>
-                    <button class="${fbClass}" onclick="selectPracticeTF('${q.id}','${item.label}', false)">Sai</button>
-                  </div>
-                </div>
-                ${feedback}
+      exam.tf.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'q-card';
+        card.id = 'pcard_' + q.id;
+
+        let rowsHtml = '';
+        q.items.forEach((item, itemIdx) => {
+          const rowKey = q.id + '_' + item.label;
+          const userChoice = practiceAnswers[rowKey];
+          const isAnswered = userChoice !== undefined;
+          const isCorrect = userChoice === item.correct;
+
+          let rowClass = 'tf-row';
+          if (isAnswered) rowClass += (isCorrect ? ' answered-correct' : ' answered-wrong');
+
+          rowsHtml += `
+            <div class="${rowClass}">
+              <div class="tf-statement">
+                <span class="tf-letter">${item.label})</span>
+                <span>${item.statement}</span>
               </div>
-            `;
-          });
-
-          card.innerHTML = `
-            <div class="q-card-header">
-              <span class="q-number-tag">Câu ${q.num}</span>
-              <span class="q-type-badge" style="color:#f59e0b;">Đúng / Sai</span>
+              <div class="tf-btn-group">
+                <button class="tf-btn ${userChoice === true ? (item.correct === true ? 'correct' : 'wrong') : ''}"
+                        onclick="selectPracticeTF('${q.id}', '${item.label}', true)">Đúng</button>
+                <button class="tf-btn ${userChoice === false ? (item.correct === false ? 'correct' : 'wrong') : ''}"
+                        onclick="selectPracticeTF('${q.id}', '${item.label}', false)">Sai</button>
+              </div>
             </div>
-            <p style="margin-bottom:12px; color:#cbd5e1; font-size:0.95rem;">${q.intro}</p>
-            ${buildDiagramHtml(q)}
-            <div>${rowsHtml}</div>
           `;
-          container.appendChild(card);
-        });
-      }
 
-      // 3. Short answer (gồm Câu 27)
-      if (exam.short) {
-        exam.short.forEach(q => {
-          const card = document.createElement('div');
-          card.className = 'q-card';
-          const isAnswered = practiceAnswers[q.id] !== undefined;
-          const userVal = practiceAnswers[q.id] || '';
-          let explainHtml = '';
           if (isAnswered) {
-            const ok = Number(userVal) === q.correct;
-            explainHtml = `
-              <div class="explanation-box">
-                <div class="explanation-title">
-                  <span>${ok ? '✅ CHÍNH XÁC!' : '❌ CHƯA ĐÚNG!'}</span>
-                  <span>— Đáp số: <b>${q.correct}</b></span>
-                </div>
-                <div class="explanation-body">${q.explain}</div>
+            rowsHtml += `
+              <div class="explanation-box" style="margin: 4px 0 12px 28px; padding: 8px 12px; font-size: 0.88rem;">
+                <b>${isCorrect ? '✅ Đúng' : '❌ Sai'}</b>: ${item.explain}
               </div>
             `;
           }
-          card.innerHTML = `
-            <div class="q-card-header">
+        });
+
+        card.innerHTML = `
+          <div class="q-card-header">
+            <div class="q-title-wrap">
               <span class="q-number-tag">Câu ${q.num}</span>
-              <span class="q-type-badge" style="color:#38bdf8;">Trả Lời Ngắn</span>
+              <span class="q-type-badge">${currentPracticeMode.toUpperCase()} - ĐÚNG / SAI</span>
             </div>
-            <div class="q-text">${q.text}</div>
-            ${buildDiagramHtml(q)}
-            <div class="short-ans-box">
-              <input type="number" class="short-input" id="p_input_${q.id}" value="${userVal}" placeholder="Nhập số..." ${isAnswered ? 'readonly' : ''}>
-              <button class="btn-submit-ans" onclick="submitPracticeShort('${q.id}')">Kiểm Tra</button>
-            </div>
-            ${explainHtml}
-          `;
-          container.appendChild(card);
-        });
-      }
+          </div>
+          <div class="q-text" style="font-weight: 700;">${q.question || q.title}</div>
+          ${buildDiagramHtml(q)}
+          <div style="margin-top: 14px;">${rowsHtml}</div>
+        `;
+        container.appendChild(card);
+      });
 
-      // 4. Essay (Câu 28 Tự Luận)
-      if (exam.essay) {
-        exam.essay.forEach(q => {
-          const card = document.createElement('div');
-          card.className = 'q-card';
-          card.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+      // 3. Short
+      exam.short.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'q-card';
+        card.id = 'pcard_' + q.id;
 
-          card.innerHTML = `
-            <div class="q-card-header">
-              <div class="q-title-wrap">
-                <span class="q-number-tag" style="background: linear-gradient(135deg, #10b981, #059669);">Câu 28</span>
-                <span class="q-type-badge" style="color: #34d399;">Phần IV: Tự Luận</span>
+        const isAnswered = practiceAnswers[q.id] !== undefined;
+        const userVal = practiceAnswers[q.id];
+        const isCorrect = isAnswered && (String(userVal).trim() === String(q.correct).trim());
+
+        let feedbackHtml = '';
+        if (isAnswered) {
+          feedbackHtml = `
+            <div class="explanation-box">
+              <div class="explanation-title">
+                <span>${isCorrect ? '✅ CHÍNH XÁC!' : '❌ CHƯA CHÍNH XÁC!'} (Đáp án: ${q.correct})</span>
+                <span>— Lời Giải Chi Tiết</span>
               </div>
-              <span style="font-size: 0.82rem; color: var(--text-muted);">${q.title}</span>
-            </div>
-            <div class="q-text" style="color: #67e8f9;">❓ ${q.question}</div>
-            ${buildDiagramHtml(q)}
-            <div style="margin-top: 14px;">
-              <button class="btn-nav" onclick="toggleEssayAnswer('${q.id}')">💡 Bấm Để Xem Lời Giải & Hướng Dẫn Chấm</button>
-            </div>
-            <div id="essay_box_${q.id}" class="explanation-box" style="display: none; margin-top: 14px; white-space: pre-line; line-height: 1.65;">
-              <div class="explanation-title">🔬 Bài Làm Hoàn Chỉnh Chuẩn Điểm Tối Đa:</div>
-              <div class="explanation-body">${q.answer}</div>
+              <div class="explanation-body">${q.explain}</div>
             </div>
           `;
-          container.appendChild(card);
-        });
-      }
+        }
+
+        card.innerHTML = `
+          <div class="q-card-header">
+            <div class="q-title-wrap">
+              <span class="q-number-tag">Câu ${q.num}</span>
+              <span class="q-type-badge">${currentPracticeMode.toUpperCase()} - TRẢ LỜI NGẮN</span>
+            </div>
+          </div>
+          <div class="q-text">${q.text}</div>
+          ${buildDiagramHtml(q)}
+          <div class="short-input-wrap">
+            <input type="text" id="pinput_${q.id}" class="short-input" placeholder="Nhập đáp án..." value="${userVal !== undefined ? userVal : ''}">
+            <button class="short-submit-btn" onclick="submitPracticeShort('${q.id}')">Kiểm Tra</button>
+          </div>
+          ${feedbackHtml}
+        `;
+        container.appendChild(card);
+      });
+
+      // 4. Essay
+      exam.essay.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'q-card';
+        card.id = 'pcard_' + q.id;
+
+        card.innerHTML = `
+          <div class="q-card-header">
+            <div class="q-title-wrap">
+              <span class="q-number-tag">Câu ${q.num}</span>
+              <span class="q-type-badge">${currentPracticeMode.toUpperCase()} - TỰ LUẬN</span>
+            </div>
+            <button class="btn-top" onclick="togglePracticeEssay('${q.id}')">👁️ Xem Đáp Án Chuẩn & Lập Luận</button>
+          </div>
+          <div class="q-text" style="font-weight: 700; font-size: 1.05rem;">${q.question}</div>
+          ${buildDiagramHtml(q)}
+          <div id="pessay_box_${q.id}" class="explanation-box" style="display: none; margin-top: 14px;">
+            <div class="explanation-title">
+              <span>📝 Lời Giải Chi Tiết & Bảng So Sánh</span>
+            </div>
+            <div class="explanation-body" style="white-space: pre-wrap; font-family: monospace; font-size: 0.92rem; line-height: 1.6;">${q.answer}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
 
       updatePracticeStats();
     }
 
-    function selectPracticeMCQ(qId, optIdx) {
-      if (practiceAnswers[qId] !== undefined) return;
-      practiceAnswers[qId] = optIdx;
+    function selectPracticeMCQ(qid, optIdx) {
+      if (practiceAnswers[qid] !== undefined) return;
+      practiceAnswers[qid] = optIdx;
       const exam = currentPracticeMode === 'de1' ? de1Exam : de2Exam;
-      const q = exam.mcq.find(i => i.id === qId);
+      const q = exam.mcq.find(item => item.id === qid);
       if (q && optIdx === q.correct) playSound('correct');
       else playSound('wrong');
       renderPracticeQuestions();
     }
 
-    function selectPracticeTF(qId, label, val) {
-      const key = qId + '_' + label;
+    function selectPracticeTF(qid, label, val) {
+      const key = qid + '_' + label;
       practiceAnswers[key] = val;
       const exam = currentPracticeMode === 'de1' ? de1Exam : de2Exam;
-      const q = exam.tf ? exam.tf.find(i => i.id === qId) : null;
-      const item = q ? q.items.find(i => i.label === label) : null;
-      if (item && item.correct === val) playSound('correct');
+      const q = exam.tf.find(item => item.id === qid);
+      if (q) {
+        const item = q.items.find(i => i.label === label);
+        if (item && item.correct === val) playSound('correct');
+        else playSound('wrong');
+      }
+      renderPracticeQuestions();
+    }
+
+    function submitPracticeShort(qid) {
+      const input = document.getElementById('pinput_' + qid);
+      if (!input) return;
+      const val = input.value.trim();
+      if (!val) return;
+      practiceAnswers[qid] = val;
+      const exam = currentPracticeMode === 'de1' ? de1Exam : de2Exam;
+      const q = exam.short.find(item => item.id === qid);
+      if (q && String(val) === String(q.correct)) playSound('correct');
       else playSound('wrong');
       renderPracticeQuestions();
     }
 
-    function submitPracticeShort(qId) {
-      const inp = document.getElementById('p_input_' + qId);
-      if (!inp || inp.value.trim() === '') return;
-      practiceAnswers[qId] = inp.value.trim();
-      const exam = currentPracticeMode === 'de1' ? de1Exam : de2Exam;
-      const q = exam.short ? exam.short.find(i => i.id === qId) : null;
-      if (q && Number(inp.value.trim()) === q.correct) playSound('correct');
-      else playSound('wrong');
-      renderPracticeQuestions();
+    function togglePracticeEssay(qid) {
+      const box = document.getElementById('pessay_box_' + qid);
+      if (!box) return;
+      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+      playSound('click');
     }
 
     function updatePracticeStats() {
       const exam = currentPracticeMode === 'de1' ? de1Exam : de2Exam;
-      let count = 0;
-      let score = 0;
+      let totalItems = exam.mcq.length + (exam.tf.length * 4) + exam.short.length;
+      let answeredCount = 0;
+      let correctCount = 0;
+
       exam.mcq.forEach(q => {
         if (practiceAnswers[q.id] !== undefined) {
-          count++;
-          if (practiceAnswers[q.id] === q.correct) score += 0.25;
+          answeredCount++;
+          if (practiceAnswers[q.id] === q.correct) correctCount++;
         }
       });
-      if (exam.tf) {
-        exam.tf.forEach(q => {
-          let any = false;
-          q.items.forEach(item => {
-            const k = q.id + '_' + item.label;
-            if (practiceAnswers[k] !== undefined) {
-              any = true;
-              if (practiceAnswers[k] === item.correct) score += 0.1;
-            }
-          });
-          if (any) count++;
-        });
-      }
-      if (exam.short) {
-        exam.short.forEach(q => {
-          if (practiceAnswers[q.id] !== undefined) {
-            count++;
-            if (Number(practiceAnswers[q.id]) === q.correct) score += 0.25;
+
+      exam.tf.forEach(q => {
+        q.items.forEach(item => {
+          const key = q.id + '_' + item.label;
+          if (practiceAnswers[key] !== undefined) {
+            answeredCount++;
+            if (practiceAnswers[key] === item.correct) correctCount++;
           }
         });
+      });
+
+      exam.short.forEach(q => {
+        if (practiceAnswers[q.id] !== undefined) {
+          answeredCount++;
+          if (String(practiceAnswers[q.id]).trim() === String(q.correct).trim()) correctCount++;
+        }
+      });
+
+      const scoreEl = document.getElementById('practiceScore');
+      const pctEl = document.getElementById('practicePct');
+      if (scoreEl) scoreEl.innerText = `${answeredCount}/${totalItems}`;
+      if (pctEl) {
+        const pct = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+        pctEl.innerText = `${pct}%`;
       }
-      const total = exam.mcq.length + (exam.tf ? exam.tf.length : 0) + (exam.short ? exam.short.length : 0) + (exam.essay ? exam.essay.length : 0);
-      document.getElementById('practiceCounter').innerText = `Đang làm: ${count} / ${total}`;
-      document.getElementById('practiceScoreBadge').innerText = `Điểm: ${score.toFixed(2)} đ`;
-      document.getElementById('practiceProgressFill').style.width = ((count / total) * 100) + '%';
     }
 
     function resetPracticeQuiz() {
-      practiceAnswers = {};
-      renderPracticeQuestions();
-      playSound('click');
+      if (confirm(`Bạn có chắc muốn đặt lại toàn bộ ${currentPracticeMode.toUpperCase()}?`)) {
+        practiceAnswers = {};
+        renderPracticeQuestions();
+        playSound('celebrate');
+      }
     }
 
     /* ==========================================================================
@@ -2626,6 +3019,7 @@
     let currentCodonPool = {};
     let currentEnv = {};
 
+    // Dạng 1: DNA Structure
     function randomizeDNA() {
       const lengths = [3060, 3400, 3740, 4080, 4420, 4760, 5100];
       const L = lengths[Math.floor(Math.random() * lengths.length)];
@@ -2685,9 +3079,10 @@
       playSound('click');
     }
 
+    // Dạng 2: Isotope 15N / 14N
     function randomizeIsotope() {
-      const x = Math.floor(Math.random() * 3) + 1;
-      const k = Math.floor(Math.random() * 4) + 2;
+      const x = Math.floor(Math.random() * 3) + 1; // 1 to 3
+      const k = Math.floor(Math.random() * 4) + 2; // 2 to 5
       const totalDna = x * Math.pow(2, k);
       const hybridDna = 2 * x;
       const pure14 = totalDna - hybridDna;
@@ -2736,12 +3131,13 @@
       playSound('click');
     }
 
+    // Dạng 3: Transcription & Translation
     function randomizeTrans() {
       const rNPool = [600, 750, 900, 1050, 1200, 1350, 1500];
       const rN = rNPool[Math.floor(Math.random() * rNPool.length)];
-      const p = Math.floor(Math.random() * 5) + 3;
+      const p = Math.floor(Math.random() * 5) + 3; // 3 to 7
       const codons = rN / 3;
-      const aaComplete = codons - 2;
+      const aaComplete = codons - 2; // trừ mở đầu và kết thúc
       const peptideBonds = codons - 3;
       const aaSuppliedPerRib = codons - 1;
       const totalAASupplied = aaSuppliedPerRib * p;
@@ -2773,7 +3169,7 @@
         <div class="explanation-body">
           <b>Công thức vàng Dịch mã:</b><br>
           1. Số bộ ba (codon) trên mRNA: <code>m = rN / 3 = ${currentTrans.rN} / 3 = ${currentTrans.codons}</code> bộ ba.<br>
-          2. Chuỗi polypeptide sơ khai (vừa dịch xong, chưa cắt Met): <code>m - 1 = ${currentTrans.codons} - 1 = ${currentTrans.aaSuppliedPerRib}</code> amino acid.<br>
+          2. Chuỗi polypeptide sơ khai (vừa dịch xong, chưa cắt Met): <code>m - 1 = ${currentTrans.codons} - 1 = ${currentTrans.aaSuppliedPerRib}</code> amino acid (trừ bộ ba kết thúc không mã hóa).<br>
           3. Chuỗi polypeptide HOÀN CHỈNH (đã cắt bỏ amino acid mở đầu): <code>m - 2 = ${currentTrans.codons} - 2 = ${currentTrans.aaComplete}</code> amino acid!<br>
           4. Số liên kết peptide trong 1 chuỗi: <code>m - 3 = ${currentTrans.peptideBonds}</code> liên kết.<br>
           5. Tổng amino acid môi trường cấp cho cả ${currentTrans.p} ribosome: <code>${currentTrans.p} × (m - 1) = ${currentTrans.totalAASupplied}</code> amino acid.
@@ -2787,6 +3183,7 @@
       playSound('click');
     }
 
+    // Dạng 4: Codon Combination Pool
     function randomizeCodonPool() {
       const pools = [
         { bases: ['A', 'U', 'G'], desc: '3 loại: A, U, G', stop: ['UAA', 'UAG', 'UGA'] },
@@ -2842,11 +3239,12 @@
       playSound('click');
     }
 
+    // Dạng 5: Environmental Replication
     function randomizeEnvRep() {
       const NList = [1800, 2400, 3000, 3600];
       const N = NList[Math.floor(Math.random() * NList.length)];
-      const k = Math.floor(Math.random() * 3) + 2;
-      const pctA = Math.floor(Math.random() * 11) + 20;
+      const k = Math.floor(Math.random() * 3) + 2; // 2 to 4
+      const pctA = Math.floor(Math.random() * 11) + 20; // 20% to 30%
       const A = Math.round(N * (pctA / 100));
       const G = (N / 2) - A;
       const multiplier = Math.pow(2, k) - 1;
@@ -2944,35 +3342,37 @@
         }
 
         card.innerHTML = `
-          <div class="q-card-header">
-            <div class="q-title-wrap">
-              <span class="q-number-tag" style="background: linear-gradient(135deg, #d97706, #b45309);">BẪY ${trap.num}</span>
-              <span style="font-weight: 700; color: #fbbf24; font-size: 0.95rem;">${trap.title}</span>
-            </div>
+          <div class="trap-badge-strip">
+            <span class="trap-warning-icon">⚠️</span>
+            <span style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem;">BẪY KINH ĐIỂN SỐ ${trap.num}</span>
           </div>
-          <div class="q-text" style="color: #f8fafc;">${trap.question}</div>
-          <div class="options-grid">${optionsHtml}</div>
+          <div style="font-weight: 800; font-size: 1.12rem; color: #f1f5f9; margin-bottom: 8px;">${trap.title}</div>
+          <div class="q-text" style="color: #e2e8f0;">${trap.text}</div>
+          <div class="opt-grid">${optionsHtml}</div>
           ${feedbackHtml}
         `;
         container.appendChild(card);
       });
 
-      document.getElementById('trapProgressCounter').innerText = `Đã vượt qua: ${answeredCount} / ${trapQuestions.length} bẫy`;
+      const scoreEl = document.getElementById('trapScore');
+      if (scoreEl) scoreEl.innerText = `${answeredCount}/${trapQuestions.length}`;
     }
 
     function selectTrap(trapId, optIdx) {
       if (trapAnswers[trapId] !== undefined) return;
       trapAnswers[trapId] = optIdx;
-      const t = trapQuestions.find(item => item.id === trapId);
-      if (t && optIdx === t.correct) playSound('celebrate');
+      const trap = trapQuestions.find(t => t.id === trapId);
+      if (trap && optIdx === trap.correct) playSound('correct');
       else playSound('wrong');
       renderTrapQuestions();
     }
 
     function resetTrapBuster() {
-      trapAnswers = {};
-      renderTrapQuestions();
-      playSound('click');
+      if (confirm('Bạn có muốn khởi động lại Đấu Trường Bẫy Lí Thuyết?')) {
+        trapAnswers = {};
+        renderTrapQuestions();
+        playSound('celebrate');
+      }
     }
 
     /* ==========================================================================
@@ -2981,29 +3381,17 @@
     function shuffleCurrentExam() {
       if (activeMainTab === 'official') {
         officialExam.mcq.sort(() => Math.random() - 0.5);
-        officialExam.mcq.forEach(q => {
-          const correctText = q.options[q.correct];
-          q.options.sort(() => Math.random() - 0.5);
-          q.correct = q.options.indexOf(correctText);
-        });
         officialAnswers = {};
         renderOfficialQuestions();
       } else if (activeMainTab === 'practice') {
         const exam = currentPracticeMode === 'de1' ? de1Exam : de2Exam;
         exam.mcq.sort(() => Math.random() - 0.5);
-        exam.mcq.forEach(q => {
-          const correctText = q.options[q.correct];
-          q.options.sort(() => Math.random() - 0.5);
-          q.correct = q.options.indexOf(correctText);
-        });
         practiceAnswers = {};
         renderPracticeQuestions();
-      } else if (activeMainTab === 'calc') {
-        randomizeDNA();
-        randomizeIsotope();
-        randomizeTrans();
-        randomizeCodonPool();
-        randomizeEnvRep();
+      } else if (activeMainTab === 'decuong') {
+        decuongExam.mcq.sort(() => Math.random() - 0.5);
+        decuongAnswers = {};
+        renderDecuongQuestions();
       } else if (activeMainTab === 'traps') {
         trapQuestions.sort(() => Math.random() - 0.5);
         trapAnswers = {};
@@ -3018,6 +3406,7 @@
     let activeMainTab = 'theory';
     const tabLabels = {
       'theory': 'Học Lí Thuyết & Video Hoạt Hình',
+      'decuong': 'Đề Cương Ôn Tập Giữa Kì I (56 Câu Gốc)',
       'official': 'Đề Chính Thức THPT Cổ Loa',
       'practice': 'Đề Ôn Luyện Số 1 & Đề 2',
       'calc': 'Randomized Calculation Lab',
@@ -3030,7 +3419,7 @@
       document.querySelectorAll('.tab-btn').forEach((btn) => {
         btn.classList.remove('active');
       });
-      const tabOrder = ['theory', 'official', 'practice', 'calc', 'traps', 'compare'];
+      const tabOrder = ['theory', 'decuong', 'official', 'practice', 'calc', 'traps', 'compare'];
       const btnIdx = tabOrder.indexOf(tabKey);
       if (btnIdx !== -1 && document.querySelectorAll('.tab-btn')[btnIdx]) {
         document.querySelectorAll('.tab-btn')[btnIdx].classList.add('active');
@@ -3050,6 +3439,7 @@
        INITIALIZATION ON LOAD
        ========================================================================== */
     window.addEventListener('DOMContentLoaded', () => {
+      renderDecuongQuestions();
       renderOfficialQuestions();
       renderPracticeQuestions();
       renderTrapQuestions();
